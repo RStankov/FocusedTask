@@ -37,7 +37,7 @@ export const counterSlice = createSlice({
     newShortcut: (state, action) => {
       state.shortcuts.push({
         id: uniqueId('shortcut_'),
-        uri: 'https://',
+        uri: '',
       });
     },
     updateShortcut: (state, action) => {
