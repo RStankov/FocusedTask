@@ -9,9 +9,9 @@ import {
   toggleTodo,
   updateTodo,
   removeTodo,
-  newShortcut,
-  updateShortcut,
-  removeShortcut,
+  newBookmark,
+  updateBookmark,
+  removeBookmark,
 } from './modules/task';
 
 export default function App() {
@@ -58,28 +58,28 @@ export default function App() {
       <button onClick={() => dispatch(newTodo())}>new task</button>
       <h2>
         <Emoji emoji="🔗" />
-        Shortcuts
-        <Emoji emoji="➕" onClick={() => dispatch(newShortcut())} />
+        Bookmarks
+        <Emoji emoji="➕" onClick={() => dispatch(newBookmark())} />
       </h2>
       <ul>
-        {task.shortcuts.map(shortcut => (
-          <li key={shortcut.id}>
+        {task.bookmarks.map(bookmark => (
+          <li key={bookmark.id}>
             <input
               type="text"
               autoFocus={true}
-              value={shortcut.uri}
+              value={bookmark.uri}
               onChange={e =>
                 dispatch(
-                  updateShortcut({ id: shortcut.id, uri: e.target.value }),
+                  updateBookmark({ id: bookmark.id, uri: e.target.value }),
                 )
               }
             />
             <Emoji
               emoji="🗑"
-              onClick={() => dispatch(removeShortcut(shortcut))}
+              onClick={() => dispatch(removeBookmark(bookmark))}
             />
-            {!!shortcut.uri.match(/https?:\/\/.+\..+/) && (
-              <a href={shortcut.uri} target="_blank" rel="noopener noreferrer">
+            {!!bookmark.uri.match(/https?:\/\/.+\..+/) && (
+              <a href={bookmark.uri} target="_blank" rel="noopener noreferrer">
                 <Emoji emoji="↗️" />
               </a>
             )}

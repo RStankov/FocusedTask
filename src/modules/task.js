@@ -6,7 +6,7 @@ export const counterSlice = createSlice({
   initialState: {
     title: 'Focused Task',
     todos: [],
-    shortcuts: [],
+    bookmarks: [],
     note: '',
   },
   reducers: {
@@ -34,22 +34,22 @@ export const counterSlice = createSlice({
     removeTodo: (state, action) => {
       state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
     },
-    newShortcut: (state, action) => {
-      state.shortcuts.push({
-        id: uniqueId('shortcut_'),
+    newBookmark: (state, action) => {
+      state.bookmarks.push({
+        id: uniqueId('bookmark_'),
         uri: '',
       });
     },
-    updateShortcut: (state, action) => {
-      state.shortcuts.forEach(shortcut => {
-        if (shortcut.id === action.payload.id) {
-          shortcut.uri = action.payload.uri || '';
+    updateBookmark: (state, action) => {
+      state.bookmarks.forEach(bookmark => {
+        if (bookmark.id === action.payload.id) {
+          bookmark.uri = action.payload.uri || '';
         }
       });
     },
-    removeShortcut: (state, action) => {
-      state.shortcuts = state.shortcuts.filter(
-        shortcut => shortcut.id !== action.payload.id,
+    removeBookmark: (state, action) => {
+      state.bookmarks = state.bookmarks.filter(
+        bookmark => bookmark.id !== action.payload.id,
       );
     },
     updateTodo: (state, action) => {
@@ -71,9 +71,9 @@ export const {
   toggleTodo,
   updateTodo,
   removeTodo,
-  newShortcut,
-  updateShortcut,
-  removeShortcut,
+  newBookmark,
+  updateBookmark,
+  removeBookmark,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;
