@@ -10,16 +10,59 @@ export const counterSlice = createSlice({
     note: '',
   },
   reducers: {
-    addTask: (state, action) => {
+    newTask: (state, action) => {
       state.todos.push({
         id: uniqueId('task_'),
-        text: action.text || '',
+        text: '',
         isCompleted: false,
       });
+    },
+    toggleTodo: (state, action) => {
+      state.todos.forEach(todo => {
+        if (todo.id === action.payload.id) {
+          todo.isCompleted = !todo.isCompleted;
+        }
+      });
+    },
+    newShortcut: (state, action) => {
+      state.shortcuts.push({
+        id: uniqueId('shortcut_'),
+        uri: 'https://',
+      });
+    },
+    updateShortcut: (state, action) => {
+      state.shortcuts.forEach(shortcut => {
+        if (shortcut.id === action.payload.id) {
+          shortcut.uri = action.payload.uri || '';
+        }
+      });
+    },
+    removeShortcut: (state, action) => {
+      state.shortcuts = state.shortcuts.filter(
+        shortcut => shortcut.id !== action.payload.id,
+      );
+    },
+    updateTodo: (state, action) => {
+      state.todos.forEach(todo => {
+        if (todo.id === action.payload.id) {
+          todo.text = action.payload.text || '';
+        }
+      });
+    },
+    updateNote: (state, action) => {
+      state.note = action.payload;
     },
   },
 });
 
-export const { addTask } = counterSlice.actions;
+export const {
+  newTask,
+  updateNote,
+  toggleTodo,
+  updateTodo,
+  newShortcut,
+  updateShortcut,
+  removeShortcut,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;
