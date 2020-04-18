@@ -17,7 +17,6 @@ export default function App() {
   const task = useSelector(store => store.task);
   const dispatch = useDispatch();
 
-  console.log(task);
   return (
     <div>
       <h1>
@@ -69,7 +68,7 @@ export default function App() {
               onClick={() => dispatch(removeShortcut(shortcut))}
             />
             {!!shortcut.uri.match(/https?:\/\/.+\..+/) && (
-              <a href={shortcut.uri} target="_blank">
+              <a href={shortcut.uri} target="_blank" rel="noopener noreferrer">
                 <Emoji emoji="↗️" />
               </a>
             )}
