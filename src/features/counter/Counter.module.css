@@ -40,7 +40,8 @@
   margin-right: 8px;
 }
 
-.button:hover, .button:focus {
+.button:hover,
+.button:focus {
   border: 2px solid rgba(112, 76, 182, 0.4);
 }
 
@@ -55,7 +56,7 @@
 }
 
 .asyncButton:after {
-  content: "";
+  content: '';
   background-color: rgba(112, 76, 182, 0.15);
   display: block;
   position: absolute;
@@ -70,5 +71,5 @@
 .asyncButton:active:after {
   width: 0%;
   opacity: 1;
-  transition: 0s
+  transition: 0s;
 }
