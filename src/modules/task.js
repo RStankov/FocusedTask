@@ -24,6 +24,9 @@ export const counterSlice = createSlice({
         }
       });
     },
+    removeTodo: (state, action) => {
+      state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
+    },
     newShortcut: (state, action) => {
       state.shortcuts.push({
         id: uniqueId('shortcut_'),
@@ -60,6 +63,7 @@ export const {
   updateNote,
   toggleTodo,
   updateTodo,
+  removeTodo,
   newShortcut,
   updateShortcut,
   removeShortcut,

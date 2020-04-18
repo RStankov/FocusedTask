@@ -8,6 +8,7 @@ import {
   newTask,
   toggleTodo,
   updateTodo,
+  removeTodo,
   newShortcut,
   updateShortcut,
   removeShortcut,
@@ -37,6 +38,13 @@ export default function App() {
               type="text"
               autoFocus={true}
               value={todo.text}
+              onKeyDown={e => {
+                if (e.target.value === '' && e.keyCode === 8) {
+                  dispatch(removeTodo(todo));
+                } else if (e.keyCode === 13) {
+                  dispatch(newTask());
+                }
+              }}
               onChange={e =>
                 dispatch(updateTodo({ id: todo.id, text: e.target.value }))
               }
