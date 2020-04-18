@@ -5,7 +5,7 @@ import Emoji from './components/Emoji';
 
 import {
   updateNote,
-  newTask,
+  newTodo,
   toggleTodo,
   updateTodo,
   removeTodo,
@@ -45,7 +45,7 @@ export default function App() {
                   const el = document.getElementById(`todo-text-${i - 1}`);
                   el && el.focus();
                 } else if (e.target.value !== '' && e.keyCode === 13) {
-                  dispatch(newTask());
+                  dispatch(newTodo({ after: todo }));
                 }
               }}
               onChange={e =>
@@ -55,7 +55,7 @@ export default function App() {
           </li>
         ))}
       </ul>
-      <button onClick={() => dispatch(newTask())}>new task</button>
+      <button onClick={() => dispatch(newTodo())}>new task</button>
       <h2>
         <Emoji emoji="🔗" />
         Shortcuts

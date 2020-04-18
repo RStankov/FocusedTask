@@ -10,12 +10,19 @@ export const counterSlice = createSlice({
     note: '',
   },
   reducers: {
-    newTask: (state, action) => {
-      state.todos.push({
+    newTodo: (state, action) => {
+      const todo = {
         id: uniqueId('task_'),
         text: '',
         isCompleted: false,
-      });
+      };
+
+      const insertAt =
+        action.payload && action.payload.after
+          ? state.todos.findIndex(t => t.id === action.payload.after.id)
+          : -1;
+
+      state.todos.splice(insertAt + 1, 0, todo);
     },
     toggleTodo: (state, action) => {
       state.todos.forEach(todo => {
@@ -59,7 +66,7 @@ export const counterSlice = createSlice({
 });
 
 export const {
-  newTask,
+  newTodo,
   updateNote,
   toggleTodo,
   updateTodo,
