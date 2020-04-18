@@ -28,20 +28,23 @@ export default function App() {
         Todos
       </h2>
       <ul>
-        {task.todos.map(todo => (
+        {task.todos.map((todo, i) => (
           <li key={todo.id}>
             <Emoji
               emoji={todo.isCompleted ? '✅' : '⏹'}
               onClick={() => dispatch(toggleTodo(todo))}
             />
             <input
+              id={`todo-text-${i}`}
               type="text"
               autoFocus={true}
               value={todo.text}
               onKeyDown={e => {
                 if (e.target.value === '' && e.keyCode === 8) {
                   dispatch(removeTodo(todo));
-                } else if (e.keyCode === 13) {
+                  const el = document.getElementById(`todo-text-${i - 1}`);
+                  el && el.focus();
+                } else if (e.target.value !== '' && e.keyCode === 13) {
                   dispatch(newTask());
                 }
               }}
