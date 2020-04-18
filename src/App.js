@@ -57,7 +57,7 @@ export default function App() {
       </ul>
       <button onClick={() => dispatch(newTodo())}>new task</button>
       <h2>
-        <Emoji emoji="🔗" />
+        <Emoji emoji="📌" />
         Bookmarks
         <Emoji emoji="➕" onClick={() => dispatch(newBookmark())} />
       </h2>
