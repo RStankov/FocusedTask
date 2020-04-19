@@ -51,6 +51,7 @@ export default function App() {
               onChange={e =>
                 dispatch(updateTodo({ id: todo.id, text: e.target.value }))
               }
+              onBlur={() => todo.text || dispatch(removeTodo(todo))}
             />
           </li>
         ))}
