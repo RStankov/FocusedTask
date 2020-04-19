@@ -59,7 +59,7 @@ export const counterSlice = createSlice({
     },
     newBookmark: (state, action) => {
       state.bookmarks.push({
-        id: uniqueId('bookmark_'),
+        id: uniqueId('bookmark_') + new Date(),
         uri: '',
       });
     },
