@@ -1,8 +1,16 @@
 const { menubar } = require('menubar');
 const electron = require('electron');
+const url = require('url');
+const path = require('path');
 
 const mb = menubar({
-  index: 'http://localhost:3000',
+  index:
+    process.env.ELECTRON_START_URL ||
+    url.format({
+      pathname: path.join(__dirname, '/../build/index.html'),
+      protocol: 'file:',
+      slashes: true,
+    }),
   browserWindow: {
     webPreferences: {
       nodeIntegration: true,
