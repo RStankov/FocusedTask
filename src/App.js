@@ -7,7 +7,8 @@ import {
   updateNote,
   newTodo,
   toggleTodo,
-  updateTodo,
+  updateTodoIdent,
+  updateTodoText,
   removeTodo,
   newBookmark,
   updateBookmark,
@@ -34,7 +35,7 @@ export default function App() {
       </h2>
       <ul>
         {task.todos.map((todo, i) => (
-          <li key={todo.id}>
+          <li key={todo.id} style={{ marginLeft: 20 * todo.ident }}>
             <Emoji
               emoji={todo.isCompleted ? '✅' : '[  ]'}
               onClick={() => dispatch(toggleTodo(todo))}
@@ -55,12 +56,21 @@ export default function App() {
                   focusOnTodoWithIndex(i - 1);
                 } else if (e.keyCode === 40) {
                   focusOnTodoWithIndex(i + 1);
+                } else if (
+                  e.keyCode === 37 ||
+                  (e.metaKey && e.keyCode === 219)
+                ) {
+                  dispatch(updateTodoIdent({ id: todo.id, by: -1 }));
+                } else if (
+                  e.keyCode === 39 ||
+                  (e.metaKey && e.keyCode === 221)
+                ) {
+                  dispatch(updateTodoIdent({ id: todo.id, by: 1 }));
                 }
               }}
               onChange={e =>
-                dispatch(updateTodo({ id: todo.id, text: e.target.value }))
+                dispatch(updateTodoText({ id: todo.id, text: e.target.value }))
               }
-              onBlur={() => todo.text || dispatch(removeTodo(todo))}
             />
           </li>
         ))}

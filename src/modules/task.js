@@ -11,23 +11,43 @@ export const counterSlice = createSlice({
   },
   reducers: {
     newTodo: (state, action) => {
+      const after = action.payload && action.payload.after;
+
       const todo = {
         id: uniqueId('task_') + new Date(),
         text: '',
         isCompleted: false,
+        ident: after ? after.ident : 0,
       };
 
-      const insertAt =
-        action.payload && action.payload.after
-          ? state.todos.findIndex(t => t.id === action.payload.after.id)
-          : -1;
+      const insertAt = after
+        ? state.todos.findIndex(t => t.id === action.payload.after.id)
+        : -1;
 
-      state.todos.splice(insertAt + 1, 0, todo);
+      if (insertAt === -1) {
+        state.todos.push(todo);
+      } else {
+        state.todos.splice(insertAt + 1, 0, todo);
+      }
     },
     toggleTodo: (state, action) => {
       state.todos.forEach(todo => {
         if (todo.id === action.payload.id) {
           todo.isCompleted = !todo.isCompleted;
+        }
+      });
+    },
+    updateTodoIdent: (state, action) => {
+      state.todos.forEach(todo => {
+        if (todo.id === action.payload.id) {
+          todo.ident = Math.max(0, todo.ident + action.payload.by);
+        }
+      });
+    },
+    updateTodoText: (state, action) => {
+      state.todos.forEach(todo => {
+        if (todo.id === action.payload.id) {
+          todo.text = action.payload.text || '';
         }
       });
     },
@@ -52,13 +72,6 @@ export const counterSlice = createSlice({
         bookmark => bookmark.id !== action.payload.id,
       );
     },
-    updateTodo: (state, action) => {
-      state.todos.forEach(todo => {
-        if (todo.id === action.payload.id) {
-          todo.text = action.payload.text || '';
-        }
-      });
-    },
     updateNote: (state, action) => {
       state.note = action.payload;
     },
@@ -69,7 +82,8 @@ export const {
   newTodo,
   updateNote,
   toggleTodo,
-  updateTodo,
+  updateTodoText,
+  updateTodoIdent,
   removeTodo,
   newBookmark,
   updateBookmark,
