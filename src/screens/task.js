@@ -34,10 +34,16 @@ export default function App() {
       </h2>
       <ul>
         {task.todos.map((todo, i) => (
-          <li key={todo.id} style={{ marginLeft: 20 * todo.ident }}>
+          <li
+            key={todo.id}
+            style={{ marginLeft: 20 * todo.ident }}
+            onClick={() => focusOnTodoWithIndex(i)}>
             <Emoji
               emoji={todo.isCompleted ? '✅' : '[  ]'}
-              onClick={() => dispatch(toggleTodo(todo))}
+              onClick={e => {
+                e.stopPropagation();
+                dispatch(toggleTodo(todo));
+              }}
             />
             <input
               id={`todo-text-${i}`}
