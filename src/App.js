@@ -14,6 +14,11 @@ import {
   removeBookmark,
 } from './modules/task';
 
+function focusOnTodoWithIndex(index) {
+  const el = document.getElementById(`todo-text-${index}`);
+  el && el.focus();
+}
+
 export default function App() {
   const task = useSelector(store => store.task);
   const dispatch = useDispatch();
@@ -46,6 +51,10 @@ export default function App() {
                   el && el.focus();
                 } else if (e.target.value !== '' && e.keyCode === 13) {
                   dispatch(newTodo({ after: todo }));
+                } else if (e.keyCode === 38) {
+                  focusOnTodoWithIndex(i - 1);
+                } else if (e.keyCode === 40) {
+                  focusOnTodoWithIndex(i + 1);
                 }
               }}
               onChange={e =>
