@@ -62,12 +62,12 @@ export default function App() {
                 } else if (e.keyCode === 40) {
                   focusOnTodoWithIndex(i + 1);
                 } else if (
-                  e.keyCode === 37 ||
+                  (!e.metaKey && e.keyCode === 37) ||
                   (e.metaKey && e.keyCode === 219)
                 ) {
                   dispatch(updateTodoIdent({ id: todo.id, by: -1 }));
                 } else if (
-                  e.keyCode === 39 ||
+                  (!e.metaKey && e.keyCode === 39) ||
                   (e.metaKey && e.keyCode === 221)
                 ) {
                   dispatch(updateTodoIdent({ id: todo.id, by: 1 }));
