@@ -21,7 +21,7 @@ export default function App() {
   return (
     <div>
       <h1>
-        <Emoji emoji="📋" /> {task.title}
+        <Emoji emoji="🎯" /> {task.title}
       </h1>
       <h2>
         <Emoji emoji="🔜" />
