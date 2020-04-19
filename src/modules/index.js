@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import task from './task';
-import storage from '../utils/storage';
+import storage from 'utils/storage';
 import { throttle } from 'lodash';
 
 const store = configureStore({

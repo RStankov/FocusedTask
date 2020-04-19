@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Textarea from './components/Textarea';
-import Emoji from './components/Emoji';
+import Textarea from 'components/Textarea';
+import Emoji from 'components/Emoji';
 
 import {
   updateNote,
