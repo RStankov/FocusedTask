@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Textarea from 'components/Textarea';
 import Emoji from 'components/Emoji';
 import TaskTitle from 'components/TaskTitle';
+import AppClose from 'components/AppClose';
 
 import {
   updateNote,
@@ -27,6 +28,7 @@ export default function App() {
 
   return (
     <div>
+      <AppClose />
       <TaskTitle />
       <h2>
         <Emoji emoji="🔜" />
