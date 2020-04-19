@@ -17,13 +17,13 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "dev": "BROWSER=none concurrently \"yarn start\" \"yarn electron-dev\" --kill-others",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "electron .",
-    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron ."
+    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
+    "dev": "BROWSER=none concurrently \"yarn start\" \"yarn electron-dev\" --kill-others",
+    "app": "yarn build && electron ."
   },
   "eslintConfig": {
     "extends": "react-app"
