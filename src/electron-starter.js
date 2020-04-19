@@ -1,4 +1,5 @@
 const { menubar } = require('menubar');
+const electron = require('electron');
 
 const mb = menubar({
   index: 'http://localhost:3000',
@@ -15,3 +16,17 @@ mb.on('ready', () => {
 });
 
 mb.app.allowRendererProcessReuse = false;
+
+mb.app.on('web-contents-created', (e, contents) => {
+  const openExternal = (e, url) => {
+    e.preventDefault();
+    electron.shell.openExternal(url);
+  };
+
+  contents.on('new-window', openExternal);
+  contents.on('will-navigate', (e, url) => {
+    if (url !== contents.getURL()) {
+      openExternal(e, url);
+    }
+  });
+});
