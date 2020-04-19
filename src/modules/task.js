@@ -12,7 +12,7 @@ export const counterSlice = createSlice({
   reducers: {
     newTodo: (state, action) => {
       const todo = {
-        id: uniqueId('task_'),
+        id: uniqueId('task_') + new Date(),
         text: '',
         isCompleted: false,
       };
