@@ -16,7 +16,7 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "dev": "concurrently \"yarn start\" \"yarn electron\"",
+    "dev": "BROWSER=none concurrently \"yarn start\" \"yarn electron\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
