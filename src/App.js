@@ -31,7 +31,7 @@ export default function App() {
         {task.todos.map((todo, i) => (
           <li key={todo.id}>
             <Emoji
-              emoji={todo.isCompleted ? '✅' : '⏹'}
+              emoji={todo.isCompleted ? '✅' : '[  ]'}
               onClick={() => dispatch(toggleTodo(todo))}
             />
             <input
