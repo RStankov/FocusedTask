@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Textarea from 'components/Textarea';
 import Emoji from 'components/Emoji';
+import TaskTitle from 'components/TaskTitle';
 
 import {
   updateNote,
@@ -13,7 +14,7 @@ import {
   newBookmark,
   updateBookmark,
   removeBookmark,
-} from './modules/task';
+} from 'modules/task';
 
 function focusOnTodoWithIndex(index) {
   const el = document.getElementById(`todo-text-${index}`);
@@ -26,9 +27,7 @@ export default function App() {
 
   return (
     <div>
-      <h1>
-        <Emoji emoji="🎯" /> {task.title}
-      </h1>
+      <TaskTitle />
       <h2>
         <Emoji emoji="🔜" />
         Todos

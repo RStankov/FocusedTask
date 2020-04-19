@@ -10,6 +10,9 @@ export const counterSlice = createSlice({
     note: '',
   },
   reducers: {
+    updateTaskTitle: (state, action) => {
+      state.title = action.payload;
+    },
     newTodo: (state, action) => {
       const after = action.payload && action.payload.after;
 
@@ -79,6 +82,7 @@ export const counterSlice = createSlice({
 });
 
 export const {
+  updateTaskTitle,
   newTodo,
   updateNote,
   toggleTodo,
