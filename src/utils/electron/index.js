@@ -30,7 +30,7 @@ export function resizeBasedOnContent(height) {
       .webContents.getOwnerBrowserWindow()
       .getBounds();
 
-    if (height < 900 || bounds.height === height) {
+    if (height > 900 || bounds.height === height) {
       return;
     }
 

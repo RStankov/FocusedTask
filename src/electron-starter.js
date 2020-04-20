@@ -12,6 +12,8 @@ const mb = menubar({
       slashes: true,
     }),
   browserWindow: {
+    width: 400,
+    height: 500,
     maxHeight: 900,
     webPreferences: {
       nodeIntegration: true,
