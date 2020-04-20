@@ -4,6 +4,9 @@ import './index.css';
 import App from './screens/task';
 import store from './modules';
 import { Provider } from 'react-redux';
+import { resizeBasedOnContent } from 'utils/electron';
+
+resizeBasedOnContent();
 
 ReactDOM.render(
   <React.StrictMode>

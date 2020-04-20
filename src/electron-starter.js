@@ -12,15 +12,16 @@ const mb = menubar({
       slashes: true,
     }),
   browserWindow: {
+    maxHeight: 900,
     webPreferences: {
       nodeIntegration: true,
+      scrollBounce: true,
     },
   },
 });
 
 mb.on('ready', () => {
   console.log('app is ready');
-  // your app code here
 });
 
 mb.app.allowRendererProcessReuse = false;
@@ -37,4 +38,8 @@ mb.app.on('web-contents-created', (e, contents) => {
       openExternal(e, url);
     }
   });
+});
+
+electron.ipcMain.on('resize', function(_e, width, height) {
+  mb.window.setSize(width, height);
 });
