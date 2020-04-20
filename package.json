@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "autosize": "^4.0.2",
+    "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "menubar": "^8.0.1",
     "react": "^16.13.1",
@@ -30,7 +31,11 @@
   },
   "main": "src/electron-starter.js",
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

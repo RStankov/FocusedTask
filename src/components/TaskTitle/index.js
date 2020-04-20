@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Emoji from 'components/Emoji';
-
+import Stack from 'components/Stack';
+import styles from './styles.module.css';
 import { updateTaskTitle } from 'modules/task';
 
 export default function TaskTitle() {
@@ -10,8 +11,8 @@ export default function TaskTitle() {
   const dispatch = useDispatch();
 
   return (
-    <h1 onDoubleClick={() => setEditing(true)}>
-      <Emoji emoji="🎯" />
+    <Stack.Row gap="s" align="start" onDoubleClick={() => setEditing(true)}>
+      <Emoji emoji="🎯" size="xxl" />
       {editing ? (
         <input
           autoFocus={true}
@@ -27,8 +28,8 @@ export default function TaskTitle() {
           }}
         />
       ) : (
-        task.title
+        <Stack.Expand className={styles.title}>{task.title}</Stack.Expand>
       )}
-    </h1>
+    </Stack.Row>
   );
 }

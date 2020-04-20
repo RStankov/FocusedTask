@@ -1,0 +1,14 @@
+.container {
+  padding-left: 17px;
+}
+
+.content {
+  padding-left: 30px;
+  padding-top: 10px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 5px 0;
+}
