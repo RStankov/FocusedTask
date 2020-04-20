@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import AppClose from 'components/AppClose';
 import Section from 'components/Section';
 import Stack from 'components/Stack';
 import TaskTitle from 'components/TaskTitle';
@@ -14,7 +13,6 @@ export default function App() {
 
   return (
     <Stack.Column gap="m">
-      <AppClose />
       <TaskTitle />
       <Section emoji="🔜" title="Todos">
         <TaskTodos />

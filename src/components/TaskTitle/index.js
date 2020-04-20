@@ -3,33 +3,32 @@ import { useSelector, useDispatch } from 'react-redux';
 import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
+import AppClose from 'components/AppClose';
 import { updateTaskTitle } from 'modules/task';
+import InputText from 'components/InputText';
 
 export default function TaskTitle() {
-  const [editing, setEditing] = React.useState(false);
-  const task = useSelector(store => store.task);
+  const title = useSelector(store => store.task.title);
   const dispatch = useDispatch();
 
   return (
-    <Stack.Row gap="s" align="start" onDoubleClick={() => setEditing(true)}>
+    <Stack.Row gap="xs">
       <Emoji emoji="🎯" size="xxl" />
-      {editing ? (
-        <input
-          autoFocus={true}
-          type="text"
-          defaultValue={task.title}
-          onKeyDown={e => {
-            if (e.keyCode === 27) {
-              setEditing(false);
-            } else if (e.target.value !== '' && e.keyCode === 13) {
-              dispatch(updateTaskTitle(e.target.value));
-              setEditing(false);
-            }
-          }}
-        />
-      ) : (
-        <Stack.Expand className={styles.title}>{task.title}</Stack.Expand>
-      )}
+      <InputText
+        autoFocus={true}
+        type="text"
+        className={styles.title}
+        value={title}
+        onChange={e => dispatch(updateTaskTitle(e.target.value))}
+        onKeyDown={e => {
+          if (e.keyCode === 27 || e.keyCode === 13) {
+            e.target.blur();
+          }
+        }}
+      />
+      <div>
+        <AppClose />
+      </div>
     </Stack.Row>
   );
 }

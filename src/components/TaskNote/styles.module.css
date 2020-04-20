@@ -1,6 +1,6 @@
 .textarea {
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   margin-left: -11px;
   background: none;
   font-size: 16px;
@@ -9,6 +9,7 @@
   border-radius: 5px;
   resize: none !important;
   outline: none;
+  margin-left: 23px;
 }
 
 .textarea:focus {

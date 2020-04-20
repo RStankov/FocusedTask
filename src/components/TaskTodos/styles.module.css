@@ -14,3 +14,8 @@
   color: grey;
   text-decoration: line-through;
 }
+
+.actions {
+  padding-left: 27px;
+  padding-top: 5px;
+}

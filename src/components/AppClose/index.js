@@ -8,7 +8,7 @@ export default function AppClose() {
 
   return (
     <button style={{ float: 'right' }} onClick={closeApp}>
-      close
+      x
     </button>
   );
 }

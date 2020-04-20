@@ -22,7 +22,6 @@ export default function TaskTodos() {
     <Stack.Column>
       {todos.map((todo, i) => (
         <Stack.Row
-          gap="s"
           key={todo.id}
           style={{ marginLeft: 20 * (todo.ident || 0) }}
           onClick={() => focusOnTodoWithIndex(i)}>
@@ -44,7 +43,10 @@ export default function TaskTodos() {
             />
           )}
           <InputText
-            className={classNames(styles.input, todo.isCompleted && styles.completed)}
+            className={classNames(
+              styles.input,
+              todo.isCompleted && styles.completed,
+            )}
             id={`todo-text-${i}`}
             type="text"
             autoFocus={true}
@@ -59,6 +61,8 @@ export default function TaskTodos() {
                 focusOnTodoWithIndex(i - 1);
               } else if (e.target.value !== '' && e.keyCode === 13) {
                 dispatch(newTodo({ after: todo }));
+              } else if (e.keyCode === 27) {
+                e.target.blur();
               } else if (e.keyCode === 38) {
                 focusOnTodoWithIndex(i - 1);
               } else if (e.keyCode === 40) {
@@ -78,7 +82,7 @@ export default function TaskTodos() {
           />
         </Stack.Row>
       ))}
-      <div>
+      <div className={styles.actions}>
         <button onClick={() => dispatch(newTodo())}>new task</button>
       </div>
     </Stack.Column>

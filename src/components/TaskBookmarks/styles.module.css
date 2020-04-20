@@ -25,10 +25,9 @@
 
 .link {
   position: absolute;
-  left: -45px;
+  left: -20px;
   top: 0px;
-  width: 20px;
-  padding: 2px 10px;
+  padding: 2px 5px 7px;
 }
 
 .link > span {
