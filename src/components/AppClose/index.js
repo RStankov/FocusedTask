@@ -1,15 +1,8 @@
 import * as React from 'react';
-
-let closeApp = null;
-if (window.require) {
-  const remote = window.require('electron').remote;
-  closeApp = () => {
-    remote.getCurrentWindow().close();
-  };
-}
+import { isElectron, closeApp } from 'utils/electron';
 
 export default function AppClose() {
-  if (!closeApp) {
+  if (!isElectron) {
     return null;
   }
 
