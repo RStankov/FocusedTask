@@ -1,0 +1,15 @@
+.button {
+  cursor: pointer;
+  width: 18px;
+  width: 18px;
+}
+
+.button path,
+.button circle {
+  fill: grey;
+}
+
+.button:hover path,
+.button:hover circle {
+  fill: black;
+}

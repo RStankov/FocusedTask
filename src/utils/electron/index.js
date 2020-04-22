@@ -103,3 +103,15 @@ export async function readStoreFromFile() {
     alert(`An error occurred while reading the file: ${e.message}`);
   }
 }
+
+export function openMenu(items) {
+  const remote = electron.remote;
+  const Menu = remote.Menu;
+  const MenuItem = remote.MenuItem;
+
+  const menu = new Menu();
+
+  items.forEach(item => menu.append(new MenuItem(item)));
+
+  menu.popup(remote.getCurrentWindow());
+}

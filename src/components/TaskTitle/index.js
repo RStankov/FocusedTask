@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
-import AppClose from 'components/AppClose';
+import AppMenu from 'components/AppMenu';
 import { updateTaskTitle } from 'modules/task';
 import InputText from 'components/InputText';
 
@@ -27,7 +27,7 @@ export default function TaskTitle() {
         }}
       />
       <div>
-        <AppClose />
+        <AppMenu />
       </div>
     </Stack.Row>
   );

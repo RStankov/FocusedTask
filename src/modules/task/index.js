@@ -2,14 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import { uniqueId } from 'lodash';
 import { insertAfter, update } from './utils';
 
-export const counterSlice = createSlice({
+const INITIAL_STATE = {
+  title: 'Task',
+  todos: [],
+  bookmarks: [],
+  note: '',
+};
+
+export const slice = createSlice({
   name: 'task',
-  initialState: {
-    title: 'Focused Task',
-    todos: [],
-    bookmarks: [],
-    note: '',
-  },
+  initialState: INITIAL_STATE,
   reducers: {
     updateTaskTitle: (state, action) => {
       state.title = action.payload;
@@ -76,6 +78,10 @@ export const counterSlice = createSlice({
     updateNote: (state, action) => {
       state.note = action.payload;
     },
+    set: (state, action) => ({
+      ...INITIAL_STATE,
+      ...action.payload,
+    }),
   },
 });
 
@@ -90,6 +96,6 @@ export const {
   newBookmark,
   updateBookmark,
   removeBookmark,
-} = counterSlice.actions;
+} = slice.actions;
 
-export default counterSlice.reducer;
+export default slice.reducer;
