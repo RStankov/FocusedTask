@@ -13,8 +13,8 @@ const mb = menubar({
     }),
   browserWindow: {
     width: 400,
-    height: 500,
     maxHeight: 900,
+    minHeight: 500,
     webPreferences: {
       nodeIntegration: true,
       scrollBounce: true,
