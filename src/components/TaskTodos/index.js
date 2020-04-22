@@ -23,7 +23,7 @@ export default function TaskTodos() {
       {todos.map((todo, i) => (
         <Stack.Row
           key={todo.id}
-          style={{ marginLeft: 20 * (todo.ident || 0) }}
+          style={{ paddingLeft: 20 * (todo.ident || 0) }}
           onClick={() => focusOnTodoWithIndex(i)}>
           {todo.isCompleted ? (
             <Emoji

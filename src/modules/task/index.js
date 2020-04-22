@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { uniqueId } from 'lodash';
+import { insertAfter, update } from './utils';
 
 export const counterSlice = createSlice({
   name: 'task',
@@ -15,7 +16,6 @@ export const counterSlice = createSlice({
     },
     newTodo: (state, action) => {
       const after = action.payload && action.payload.after;
-
       const todo = {
         id: uniqueId('task_') + new Date(),
         text: '',
@@ -23,52 +23,50 @@ export const counterSlice = createSlice({
         ident: after ? after.ident : 0,
       };
 
-      const insertAt = after
-        ? state.todos.findIndex(t => t.id === action.payload.after.id)
-        : -1;
-
-      if (insertAt === -1) {
-        state.todos.push(todo);
-      } else {
-        state.todos.splice(insertAt + 1, 0, todo);
-      }
+      insertAfter(state.todos, after, todo);
     },
     toggleTodo: (state, action) => {
-      state.todos.forEach(todo => {
-        if (todo.id === action.payload.id) {
-          todo.isCompleted = !todo.isCompleted;
-        }
-      });
+      update(
+        state.todos,
+        action,
+        todo => (todo.isCompleted = !todo.isCompleted),
+      );
     },
     updateTodoIdent: (state, action) => {
-      state.todos.forEach(todo => {
-        if (todo.id === action.payload.id) {
-          todo.ident = Math.max(0, todo.ident + action.payload.by);
-        }
-      });
+      update(
+        state.todos,
+        action,
+        todo => (todo.ident = Math.max(0, todo.ident + action.payload.by)),
+      );
     },
     updateTodoText: (state, action) => {
-      state.todos.forEach(todo => {
-        if (todo.id === action.payload.id) {
-          todo.text = action.payload.text || '';
-        }
-      });
+      update(
+        state.todos,
+        action,
+        todo => (todo.text = action.payload.text || ''),
+      );
     },
     removeTodo: (state, action) => {
       state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
     },
     newBookmark: (state, action) => {
-      state.bookmarks.push({
+      const bookmark = {
         id: uniqueId('bookmark_') + new Date(),
         uri: '',
-      });
+      };
+
+      insertAfter(
+        state.bookmark,
+        action.payload && action.payload.after,
+        bookmark,
+      );
     },
     updateBookmark: (state, action) => {
-      state.bookmarks.forEach(bookmark => {
-        if (bookmark.id === action.payload.id) {
-          bookmark.uri = action.payload.uri || '';
-        }
-      });
+      update(
+        state.bookmarks,
+        action,
+        bookmark => (bookmark.uri = action.payload.uri || ''),
+      );
     },
     removeBookmark: (state, action) => {
       state.bookmarks = state.bookmarks.filter(
