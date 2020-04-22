@@ -6,3 +6,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #fafafa;
 }
+
+#root {
+  max-width: 600px;
+}
