@@ -7,9 +7,12 @@ import TaskTodos from 'components/TaskTodos';
 import TaskBookmarks from 'components/TaskBookmarks';
 import TaskNote from 'components/TaskNote';
 import { newBookmark } from 'modules/task';
+import useGlobalShortcuts from 'hooks/useGlobalShortcuts';
 
 export default function App() {
   const dispatch = useDispatch();
+
+  useGlobalShortcuts();
 
   return (
     <Stack.Column gap="m">

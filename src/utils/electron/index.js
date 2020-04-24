@@ -119,3 +119,15 @@ export function openMenu(items) {
 
   menu.popup(remote.getCurrentWindow());
 }
+
+export function openURI(uri) {
+  if (!isElectron) {
+    return;
+  }
+
+  if (!uri) {
+    return;
+  }
+
+  electron.remote.shell.openExternal(uri);
+}

@@ -10,6 +10,7 @@ export default function TaskNote() {
 
   return (
     <InputTextarea
+      id="note-text"
       className={styles.textarea}
       value={note}
       onChange={e => dispatch(updateNote(e.target.value))}
