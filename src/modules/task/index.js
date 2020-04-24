@@ -51,6 +51,9 @@ export const slice = createSlice({
     removeTodo: (state, action) => {
       state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
     },
+    removeCompletedTodos: state => {
+      state.todos = state.todos.filter(todo => !todo.isCompleted);
+    },
     newBookmark: (state, action) => {
       const bookmark = {
         id: uniqueId('bookmark_') + new Date(),
@@ -87,6 +90,7 @@ export const slice = createSlice({
 
 export const {
   updateTaskTitle,
+  removeCompletedTodos,
   newTodo,
   updateNote,
   toggleTodo,

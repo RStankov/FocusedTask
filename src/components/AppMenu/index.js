@@ -3,6 +3,8 @@ import store from 'modules';
 import { ReactComponent as PreferencesIcon } from 'icons/preferences.svg';
 import styles from './styles.module.css';
 
+import { set, removeCompletedTodos } from 'modules/task';
+
 import {
   isElectron,
   openMenu,
@@ -27,13 +29,20 @@ function openAppMenu() {
         const newStore = await readStoreFromFile();
 
         if (newStore) {
-          store.dispatch({ type: 'task/set', payload: newStore.task });
+          store.dispatch(set(newStore.task));
         }
       },
     },
     {
       label: 'Task Save As...',
       click: () => writeStoreToFile(store.getState()),
+    },
+    {
+      type: 'separator',
+    },
+    {
+      label: 'Clear completed todos',
+      click: () => store.dispatch(removeCompletedTodos()),
     },
     {
       type: 'separator',
