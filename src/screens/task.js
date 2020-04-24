@@ -8,6 +8,7 @@ import TaskBookmarks from 'components/TaskBookmarks';
 import TaskNote from 'components/TaskNote';
 import { newBookmark } from 'modules/task';
 import useGlobalShortcuts from 'hooks/useGlobalShortcuts';
+import AppMenu from 'components/AppMenu';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -15,20 +16,23 @@ export default function App() {
   useGlobalShortcuts();
 
   return (
-    <Stack.Column gap="m">
-      <TaskTitle />
-      <Section emoji="🔜" title="Todos">
-        <TaskTodos />
-      </Section>
-      <Section
-        emoji="📌"
-        title="Bookmarks"
-        actions={<button onClick={() => dispatch(newBookmark())}>+</button>}>
-        <TaskBookmarks />
-      </Section>
-      <Section emoji="📝" title="Notes">
-        <TaskNote />
-      </Section>
-    </Stack.Column>
+    <>
+      <AppMenu />
+      <Stack.Column gap="m">
+        <TaskTitle />
+        <Section emoji="🔜" title="Todos">
+          <TaskTodos />
+        </Section>
+        <Section
+          emoji="📌"
+          title="Bookmarks"
+          actions={<button onClick={() => dispatch(newBookmark())}>+</button>}>
+          <TaskBookmarks />
+        </Section>
+        <Section emoji="📝" title="Notes">
+          <TaskNote />
+        </Section>
+      </Stack.Column>
+    </>
   );
 }

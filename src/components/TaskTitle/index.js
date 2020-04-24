@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
-import AppMenu from 'components/AppMenu';
 import { updateTaskTitle } from 'modules/task';
 import InputText from 'components/InputText';
 
@@ -26,9 +25,6 @@ export default function TaskTitle() {
           }
         }}
       />
-      <div>
-        <AppMenu />
-      </div>
     </Stack.Row>
   );
 }

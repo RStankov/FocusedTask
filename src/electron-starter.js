@@ -13,6 +13,7 @@ const mb = menubar({
     }),
   browserWindow: {
     width: 400,
+    minWidth: 300,
     maxHeight: 900,
     minHeight: 500,
     webPreferences: {
