@@ -105,6 +105,10 @@ export async function readStoreFromFile() {
 }
 
 export function openMenu(items) {
+  if (!isElectron) {
+    return;
+  }
+
   const remote = electron.remote;
   const Menu = remote.Menu;
   const MenuItem = remote.MenuItem;
