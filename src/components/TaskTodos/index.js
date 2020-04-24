@@ -73,10 +73,7 @@ export default function TaskTodos() {
               if (e.target.value === '' && e.keyCode === keyCodes.backspace) {
                 dispatch(removeTodo(todo));
                 focusOnTodoWithIndex(i - 1);
-              } else if (
-                e.target.value !== '' &&
-                e.keyCode === keyCodes.enter
-              ) {
+              } else if (e.keyCode === keyCodes.enter) {
                 dispatch(newTodo({ after: todo }));
               } else if (e.keyCode === keyCodes.esc) {
                 e.target.blur();

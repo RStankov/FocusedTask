@@ -54,10 +54,7 @@ export default function TaskBookmarks() {
               if (e.target.value === '' && e.keyCode === keyCodes.backspace) {
                 dispatch(removeBookmark(bookmark));
                 focusOnBookmarkWithIndex(i - 1);
-              } else if (
-                e.target.value !== '' &&
-                e.keyCode === keyCodes.enter
-              ) {
+              } else if (e.keyCode === keyCodes.enter) {
                 dispatch(newBookmark({ after: bookmark }));
               } else if (e.keyCode === keyCodes.esc) {
                 e.target.blur();
