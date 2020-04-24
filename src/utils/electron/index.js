@@ -23,14 +23,14 @@ export function resizeBasedOnContent(height) {
     parseInt(bodyStyle['padding-bottom'], 10);
 
   const observer = new ResizeObserver(() => {
-    const height = document.body.offsetHeight + padding;
+    const height = Math.min(900, document.body.offsetHeight + padding);
 
     const bounds = electron.remote
       .getCurrentWindow()
       .webContents.getOwnerBrowserWindow()
       .getBounds();
 
-    if (height > 900 || bounds.height === height) {
+    if (bounds.height === height) {
       return;
     }
 
