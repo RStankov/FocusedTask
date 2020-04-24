@@ -10,6 +10,14 @@ export function closeApp() {
   electron.remote.getCurrentWindow().close();
 }
 
+export function hideApp() {
+  if (!isElectron) {
+    return null;
+  }
+
+  electron.remote.getCurrentWindow().hide();
+}
+
 export function resizeBasedOnContent(height) {
   if (!isElectron) {
     return;

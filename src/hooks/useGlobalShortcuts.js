@@ -1,7 +1,7 @@
 import useEventListener from 'hooks/useEventListener';
 import { useSelector, useDispatch } from 'react-redux';
 import keyCodes from 'utils/keyCodes';
-import { openURI } from 'utils/electron';
+import { openURI, hideApp } from 'utils/electron';
 import focusOn from 'utils/focusOn';
 
 import { newTodo, newBookmark } from 'modules/task';
@@ -37,6 +37,8 @@ export default function useGlobalShortcuts() {
       openURI(bookmarks[8]?.uri);
     } else if (e.metaKey && e.keyCode === keyCodes['0']) {
       openURI(bookmarks[bookmarks.length - 1]?.uri);
+    } else if (e.keyCode === keyCodes.esc && e.target.tagName !== 'INPUT') {
+      hideApp();
     }
   });
 }

@@ -23,8 +23,18 @@ const mb = menubar({
   },
 });
 
-mb.on('ready', () => {
-  console.log('app is ready');
+mb.app.on('ready', () => {
+  const ret = electron.globalShortcut.register('CommandOrControl+/', () => {
+    mb.showWindow();
+  });
+
+  if (!ret) {
+    console.warn('global shortcut setup failed');
+  }
+});
+
+mb.app.on('will-quit', () => {
+  globalShortcut.unregisterAll();
 });
 
 mb.app.allowRendererProcessReuse = false;
