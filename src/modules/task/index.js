@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { uniqueId } from 'lodash';
-import { insertAfter, update } from './utils';
+
+import {
+  insertAfter,
+  update,
+  paste,
+  createTodo,
+  createBookmark,
+} from './utils';
 
 const INITIAL_STATE = {
   title: 'Task',
@@ -18,14 +24,16 @@ export const slice = createSlice({
     },
     newTodo: (state, action) => {
       const after = action.payload && action.payload.after;
-      const todo = {
-        id: uniqueId('task_') + new Date(),
-        text: '',
-        isCompleted: false,
-        ident: after ? after.ident : 0,
-      };
 
-      insertAfter(state.todos, after, todo);
+      insertAfter(state.todos, after, createTodo({ after }));
+    },
+    pasteTasks: (state, action) => {
+      paste(
+        state.todos,
+        action,
+        (todo, text) => (todo.text = text),
+        createTodo,
+      );
     },
     toggleTodo: (state, action) => {
       update(
@@ -55,15 +63,18 @@ export const slice = createSlice({
       state.todos = state.todos.filter(todo => !todo.isCompleted);
     },
     newBookmark: (state, action) => {
-      const bookmark = {
-        id: uniqueId('bookmark_') + new Date(),
-        uri: '',
-      };
-
       insertAfter(
-        state.bookmark,
+        state.bookmarks,
         action.payload && action.payload.after,
-        bookmark,
+        createBookmark(),
+      );
+    },
+    pasteBookmarks: (state, action) => {
+      paste(
+        state.bookmarks,
+        action,
+        (bookmark, text) => (bookmark.uri = text),
+        ({ text }) => createBookmark({ uri: text }),
       );
     },
     updateBookmark: (state, action) => {
@@ -89,9 +100,11 @@ export const slice = createSlice({
 });
 
 export const {
+  set,
   updateTaskTitle,
   removeCompletedTodos,
   newTodo,
+  pasteTasks,
   updateNote,
   toggleTodo,
   updateTodoText,
@@ -100,6 +113,7 @@ export const {
   newBookmark,
   updateBookmark,
   removeBookmark,
+  pasteBookmarks,
 } = slice.actions;
 
 export default slice.reducer;

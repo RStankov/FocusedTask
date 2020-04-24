@@ -5,9 +5,12 @@ import Stack from 'components/Stack';
 import styles from './styles.module.css';
 import classNames from 'classnames';
 import InputText from 'components/InputText';
+import keyCodes from 'utils/keyCodes';
+import focusOn from 'utils/focusOn';
 
 import {
   newTodo,
+  pasteTasks,
   toggleTodo,
   updateTodoIdent,
   updateTodoText,
@@ -55,30 +58,41 @@ export default function TaskTodos() {
             onChange={e =>
               dispatch(updateTodoText({ id: todo.id, text: e.target.value }))
             }
+            onPaste={e => {
+              const clipboard = e.clipboardData.getData('Text');
+
+              if (clipboard.indexOf('\n') === -1) {
+                return;
+              }
+
+              e.preventDefault();
+
+              dispatch(pasteTasks({ id: todo.id, clipboard }));
+            }}
             onKeyDown={e => {
-              if (e.target.value === '' && e.keyCode === 8) {
+              if (e.target.value === '' && e.keyCode === keyCodes.backspace) {
                 dispatch(removeTodo(todo));
                 focusOnTodoWithIndex(i - 1);
-              } else if (e.target.value !== '' && e.keyCode === 13) {
+              } else if (
+                e.target.value !== '' &&
+                e.keyCode === keyCodes.enter
+              ) {
                 dispatch(newTodo({ after: todo }));
-              } else if (e.keyCode === 27) {
+              } else if (e.keyCode === keyCodes.esc) {
                 e.target.blur();
-              } else if (e.keyCode === 38) {
+              } else if (e.keyCode === keyCodes.up) {
                 focusOnTodoWithIndex(i - 1);
-              } else if (e.keyCode === 40) {
+              } else if (e.keyCode === keyCodes.down) {
                 focusOnTodoWithIndex(i + 1);
-              } else if (
-                (!e.metaKey && e.keyCode === 37) ||
-                (e.metaKey && e.keyCode === 219)
-              ) {
+              } else if (e.metaKey && e.keyCode === keyCodes['[']) {
                 dispatch(updateTodoIdent({ id: todo.id, by: -1 }));
-              } else if (
-                (!e.metaKey && e.keyCode === 39) ||
-                (e.metaKey && e.keyCode === 221)
-              ) {
+              } else if (e.metaKey && e.keyCode === keyCodes[']']) {
                 dispatch(updateTodoIdent({ id: todo.id, by: 1 }));
+              } else if (e.metaKey && e.keyCode === keyCodes.c) {
+                dispatch(toggleTodo(todo));
               }
             }}
+            onBlur={() => !todo.text && dispatch(removeTodo(todo))}
           />
         </Stack.Row>
       ))}
@@ -90,6 +104,5 @@ export default function TaskTodos() {
 }
 
 function focusOnTodoWithIndex(index) {
-  const el = document.getElementById(`todo-text-${index}`);
-  el && el.focus();
+  focusOn(`todo-text-${index}`);
 }

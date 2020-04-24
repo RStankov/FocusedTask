@@ -1,3 +1,5 @@
+import { uniqueId } from 'lodash';
+
 export function insertAfter(collection, after, item) {
   const insertAt = after ? collection.findIndex(t => t.id === after.id) : -1;
 
@@ -14,4 +16,32 @@ export function update(collection, action, update) {
       update(item);
     }
   });
+}
+
+export function paste(collection, action, fnUpdate, fnNew) {
+  // TODO(rstankov): clear markdown
+  const [first, ...rest] = action.payload.clipboard.split('\n');
+
+  update(collection, action, item => fnUpdate(item, first));
+
+  let after = collection.find(i => i.id === action.payload.id);
+  rest.forEach(text => {
+    insertAfter(collection, after, fnNew({ after, text }));
+  });
+}
+
+export function createTodo({ after, text = '' } = {}) {
+  return {
+    id: uniqueId('todo_') + new Date(),
+    text: text || '',
+    isCompleted: false,
+    ident: after ? after.ident : 0,
+  };
+}
+
+export function createBookmark({ uri = '' } = {}) {
+  return {
+    id: uniqueId('bookmark_') + new Date(),
+    uri,
+  };
 }
