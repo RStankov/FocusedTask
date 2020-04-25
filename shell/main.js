@@ -7,7 +7,7 @@ const mb = menubar({
   index:
     process.env.ELECTRON_START_URL ||
     url.format({
-      pathname: path.join(__dirname, '/../build/index.html'),
+      pathname: path.join(__dirname, '../app/build/index.html'),
       protocol: 'file:',
       slashes: true,
     }),
