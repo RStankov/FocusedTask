@@ -1,3 +1,6 @@
 #!/bin/bash
 
-cd app && yarn build
+
+if [ -d "./shell/build" ]; then rm -r ./shell/build; fi
+
+cd app && yarn build && mv ./build ../shell

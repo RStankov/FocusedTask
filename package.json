@@ -1,5 +1,5 @@
 {
-  "name": "focused-tasks",
+  "name": "focused-task",
   "version": "0.1.0",
   "private": true,
   "license": "UNLICENSED",
@@ -8,13 +8,15 @@
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
-    "electron": "^8.2.3"
+    "electron-packager": "^14.2.1",
+    "electron-packager-languages": "^0.4.0"
   },
   "main": "./main.js",
   "scripts": {
     "dev-react": "./bin/react-start",
     "dev-electron": "ELECTRON_START_URL=http://localhost:3000 ./bin/electron-start .",
     "dev": "BROWSER=none concurrently \"yarn dev-react\" \"yarn dev-electron\" --kill-others",
-    "app": "./bin/react-build && ./bin/electron-start"
+    "app": "./bin/react-build && ./bin/electron-start",
+    "build": "./bin/react-build && node ./bin/electron-package.js"
   }
 }
