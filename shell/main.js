@@ -21,6 +21,7 @@ const mb = menubar({
       scrollBounce: true,
     },
   },
+  icon: 'assets/MenuBarIcon.png',
 });
 
 mb.app.on('ready', () => {
