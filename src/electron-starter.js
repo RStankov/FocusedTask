@@ -34,7 +34,7 @@ mb.app.on('ready', () => {
 });
 
 mb.app.on('will-quit', () => {
-  globalShortcut.unregisterAll();
+  electron.globalShortcut.unregisterAll();
 });
 
 mb.app.allowRendererProcessReuse = false;
