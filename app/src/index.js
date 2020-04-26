@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './screens/task';
+import App from './screens';
 import store from './modules';
 import { Provider } from 'react-redux';
 import { resizeBasedOnContent } from 'utils/electron';

@@ -10,7 +10,7 @@ import { newBookmark } from 'modules/task';
 import useGlobalShortcuts from 'hooks/useGlobalShortcuts';
 import AppMenu from 'components/AppMenu';
 
-export default function App() {
+export default function Task() {
   const dispatch = useDispatch();
 
   useGlobalShortcuts();

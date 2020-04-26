@@ -2,6 +2,7 @@ import * as React from 'react';
 import store from 'modules';
 import { ReactComponent as PreferencesIcon } from 'icons/preferences.svg';
 import styles from './styles.module.css';
+import { openShortcuts } from 'modules/selectedScreen';
 
 import { set, removeCompletedTodos } from 'modules/task';
 
@@ -41,8 +42,12 @@ function openAppMenu() {
       type: 'separator',
     },
     {
-      label: 'Clear completed todos',
+      label: 'Clear Completed Todos',
       click: () => store.dispatch(removeCompletedTodos()),
+    },
+    {
+      label: 'Show Shortcuts',
+      click: () => store.dispatch(openShortcuts()),
     },
     {
       type: 'separator',
