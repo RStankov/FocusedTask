@@ -14,7 +14,6 @@ export default function TaskTitle() {
     <Stack.Row gap="xs">
       <Emoji emoji="🎯" size="xxl" />
       <InputText
-        autoFocus={true}
         type="text"
         className={styles.title}
         value={title}
