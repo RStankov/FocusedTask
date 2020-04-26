@@ -1,11 +1,23 @@
 const packager = require('electron-packager');
 const setLanguages = require('electron-packager-languages');
+const createDMG = require('electron-installer-dmg');
+
+const version = '0.1.0';
+const distPath = './dist';
+const name = 'FocusedTask';
 
 packager({
   dir: './shell',
   overwrite: true,
-  out: './dist',
+  out: distPath,
   afterCopy: [setLanguages(['en', 'en_GB'])],
+  name,
+  productName: 'Focused Task',
+  appBundleId: 'com.rstankov.focused-task',
+  appCopyright: 'Copyright (C) 2020 Radoslav Stankov',
+  appVersion: version,
+  appCategoryType: 'public.app-category.productivity',
+  // icon: '',
   // osxSign: {
   //   identity: '[?]',
   //   'hardened-runtime': true,
@@ -17,11 +29,21 @@ packager({
   //   appleId: '[?]',
   //   appleIdPassword: '[?]',
   // },
-  name: 'Focused Task',
-  appBundleId: 'com.rstankov.focused-task',
-  appCopyright: 'Copyright (C) 2020 Radoslav Stankov',
-  appVersion: 'Version 0.1',
-  buildVersion: 'Build 1',
-  appCategoryType: 'public.app-category.productivity',
-  // icon: '',
+}).then(() => {
+  console.log('Creating the dmg package');
+  createDMG(
+    {
+      appPath: `${distPath}/${name}-darwin-x64/${name}.app`,
+      name: `${name}-${version}`,
+      out: './dist',
+      overwrite: 'true',
+    },
+    error => {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log('Packaging completed successfully');
+      }
+    },
+  );
 });
