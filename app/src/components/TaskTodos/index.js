@@ -16,6 +16,7 @@ import {
   updateTodoText,
   removeTodo,
   moveTodo,
+  removeTodoAutoFocus,
 } from 'modules/task';
 
 export default function TaskTodos() {
@@ -53,7 +54,7 @@ export default function TaskTodos() {
             )}
             id={`todo-text-${i}`}
             type="text"
-            autoFocus={true}
+            autoFocus={!!todo.autoFocus}
             value={todo.text}
             placeholder="..."
             onChange={e =>
@@ -94,7 +95,7 @@ export default function TaskTodos() {
                 dispatch(toggleTodo(todo));
               }
             }}
-            onBlur={() => !todo.text && dispatch(removeTodo(todo))}
+            onBlur={() => dispatch(removeTodoAutoFocus(todo))}
           />
         </Stack.Row>
       ))}

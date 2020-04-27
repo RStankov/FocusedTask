@@ -60,6 +60,15 @@ export const slice = createSlice({
     removeTodo: (state, action) => {
       state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
     },
+    removeTodoAutoFocus: (state, action) => {
+      if (action.payload.text) {
+        update(state.todos, action, todo =>
+          Reflect.deleteProperty(todo, 'autoFocus'),
+        );
+      } else {
+        state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
+      }
+    },
     moveTodo: (state, action) => {
       move(state.todos, action.payload, action.payload.by);
     },
@@ -87,6 +96,18 @@ export const slice = createSlice({
         action,
         bookmark => (bookmark.uri = action.payload.uri || ''),
       );
+    },
+    removeBookmarkAutoFocus: (state, action) => {
+      if (action.payload.uri) {
+        console.log('?');
+        update(state.bookmarks, action, bookmark =>
+          Reflect.deleteProperty(bookmark, 'autoFocus'),
+        );
+      } else {
+        state.bookmarks = state.bookmarks.filter(
+          bookmark => bookmark.id !== action.payload.id,
+        );
+      }
     },
     removeBookmark: (state, action) => {
       state.bookmarks = state.bookmarks.filter(
@@ -118,11 +139,13 @@ export const {
   updateTodoIdent,
   removeTodo,
   moveTodo,
+  removeTodoAutoFocus,
   newBookmark,
   updateBookmark,
   removeBookmark,
   pasteBookmarks,
   moveBookmark,
+  removeBookmarkAutoFocus,
 } = slice.actions;
 
 export default slice.reducer;

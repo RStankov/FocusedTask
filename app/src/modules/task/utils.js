@@ -48,6 +48,7 @@ export function createTodo({ after, text = '' } = {}) {
     id: uniqueId('todo_') + new Date(),
     text: text || '',
     isCompleted: false,
+    autoFocus: true,
     ident: after ? after.ident : 0,
   };
 }
@@ -55,6 +56,7 @@ export function createTodo({ after, text = '' } = {}) {
 export function createBookmark({ uri = '' } = {}) {
   return {
     id: uniqueId('bookmark_') + new Date(),
+    autoFocus: true,
     uri,
   };
 }

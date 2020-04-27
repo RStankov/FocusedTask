@@ -14,6 +14,7 @@ import {
   newBookmark,
   pasteBookmarks,
   moveBookmark,
+  removeBookmarkAutoFocus,
 } from 'modules/task';
 
 export default function TaskBookmarks() {
@@ -34,7 +35,7 @@ export default function TaskBookmarks() {
           <InputText
             type="text"
             id={`bookmark-${i}`}
-            autoFocus={true}
+            autoFocus={!!bookmark.autoFocus}
             value={bookmark.uri}
             placeholder="https://example.com"
             onChange={e =>
@@ -69,7 +70,7 @@ export default function TaskBookmarks() {
                 dispatch(moveBookmark({ id: bookmark.id, by: +1 }));
               }
             }}
-            onBlur={() => !bookmark.uri && dispatch(removeBookmark(bookmark))}
+            onBlur={() => dispatch(removeBookmarkAutoFocus(bookmark))}
           />
           {isUrl(bookmark) && (
             <ExternalLink href={bookmark.uri} className={styles.link}>
