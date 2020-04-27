@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
-  insertAfter,
-  move,
-  update,
-  paste,
-  findIndex,
   createTodo,
   createBookmark,
+  find,
+  findIndex,
+  insertAfter,
+  move,
+  paste,
 } from './utils';
 
 const INITIAL_STATE = {
@@ -21,24 +21,24 @@ export const slice = createSlice({
   name: 'task',
   initialState: INITIAL_STATE,
   reducers: {
-    updateTaskTitle: (state, action) => {
-      state.title = action.payload;
+    updateTaskTitle: (state, { payload }) => {
+      state.title = payload;
     },
-    newTodo: (state, action) => {
-      const after = action.payload && action.payload.after;
+    newTodo: (state, { payload }) => {
+      const after = payload && payload.after;
 
       insertAfter(state.todos, after, createTodo({ after }));
     },
-    pasteTasks: (state, action) => {
+    pasteTasks: (state, { payload }) => {
       paste(
         state.todos,
-        action,
+        payload,
         (todo, text) => (todo.text = text),
         createTodo,
       );
     },
-    toggleTodo: (state, action) => {
-      const index = findIndex(state.todos, action.payload);
+    toggleTodo: (state, { payload }) => {
+      const index = findIndex(state.todos, payload);
 
       if (index === -1) {
         return;
@@ -52,7 +52,7 @@ export const slice = createSlice({
       state.todos.slice(index + 1).forEach(other => {
         if (
           other.ident <= todo.ident ||
-          todo.isCompleted == other.isCompleted
+          todo.isCompleted === other.isCompleted
         ) {
           return;
         }
@@ -66,86 +66,76 @@ export const slice = createSlice({
         }
       });
     },
-    updateTodoIdent: (state, action) => {
-      update(
-        state.todos,
-        action,
-        todo => (todo.ident = Math.max(0, todo.ident + action.payload.by)),
-      );
+    updateTodoIdent: (state, { payload }) => {
+      const todo = find(state.todos, payload);
+      todo.ident = Math.max(0, todo.ident + payload.by);
     },
-    updateTodoText: (state, action) => {
-      update(
-        state.todos,
-        action,
-        todo => (todo.text = action.payload.text || ''),
-      );
+    updateTodoText: (state, { payload }) => {
+      const todo = find(state.todos, payload);
+      todo.text = payload.text || '';
     },
-    removeTodo: (state, action) => {
-      state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
+    removeTodo: (state, { payload }) => {
+      state.todos = state.todos.filter(todo => todo.id !== payload.id);
     },
-    removeTodoAutoFocus: (state, action) => {
-      if (action.payload.text) {
-        update(state.todos, action, todo =>
-          Reflect.deleteProperty(todo, 'autoFocus'),
-        );
+    removeTodoAutoFocus: (state, { payload }) => {
+      const todo = find(state.todos, payload);
+      if (!todo) {
+        return;
+      }
+
+      if (todo.text) {
+        Reflect.deleteProperty(todo, 'autoFocus');
       } else {
-        state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
+        state.todos = state.todos.filter(t => t.id !== todo.id);
       }
     },
-    moveTodo: (state, action) => {
-      move(state.todos, action.payload, action.payload.by);
+    moveTodo: (state, { payload }) => {
+      move(state.todos, payload, payload.by);
     },
     removeCompletedTodos: state => {
       state.todos = state.todos.filter(todo => !todo.isCompleted);
     },
-    newBookmark: (state, action) => {
-      insertAfter(
-        state.bookmarks,
-        action.payload && action.payload.after,
-        createBookmark(),
-      );
+    newBookmark: (state, { payload }) => {
+      insertAfter(state.bookmarks, payload && payload.after, createBookmark());
     },
-    pasteBookmarks: (state, action) => {
+    pasteBookmarks: (state, { payload }) => {
       paste(
         state.bookmarks,
-        action,
+        payload,
         (bookmark, text) => (bookmark.uri = text),
         ({ text }) => createBookmark({ uri: text }),
       );
     },
-    updateBookmark: (state, action) => {
-      update(
-        state.bookmarks,
-        action,
-        bookmark => (bookmark.uri = action.payload.uri || ''),
-      );
+    updateBookmark: (state, { payload }) => {
+      const bookmark = find(state.bookmarks, payload);
+      bookmark.uri = payload.uri || '';
     },
-    removeBookmarkAutoFocus: (state, action) => {
-      if (action.payload.uri) {
-        console.log('?');
-        update(state.bookmarks, action, bookmark =>
-          Reflect.deleteProperty(bookmark, 'autoFocus'),
-        );
+    removeBookmarkAutoFocus: (state, { payload }) => {
+      const bookmark = find(state.bookmarks, payload);
+      if (!bookmark) {
+        return;
+      }
+
+      if (bookmark.uri) {
+        Reflect.deleteProperty(bookmark, 'autoFocus');
       } else {
-        state.bookmarks = state.bookmarks.filter(
-          bookmark => bookmark.id !== action.payload.id,
-        );
+        state.bookmarks = state.bookmarks.filter(b => b.id !== bookmark.id);
       }
     },
-    removeBookmark: (state, action) => {
+    removeBookmark: (state, { payload }) => {
       state.bookmarks = state.bookmarks.filter(
-        bookmark => bookmark.id !== action.payload.id,
+        bookmark => bookmark.id !== payload.id,
       );
     },
-    moveBookmark: (state, action) => {
-      move(state.bookmarks, action.payload, action.payload.by);
+    moveBookmark: (state, { payload }) => {
+      move(state.bookmarks, payload, payload.by);
     },
-    updateNote: (state, action) => {
-      state.note = action.payload;
+    updateNote: (state, { payload }) => {
+      state.note = payload;
     },
-    set: (state, action) => ({
+    set: (state, { payload }) => ({
       ...INITIAL_STATE,
-      ...action.payload,
+      ...payload,
     }),
   },
 });

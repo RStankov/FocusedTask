@@ -1,5 +1,32 @@
 import { uniqueId } from 'lodash';
 
+export function createTodo({ after, text = '' } = {}) {
+  return {
+    id: uniqueId('todo_') + new Date(),
+    text: text || '',
+    isCompleted: false,
+    autoFocus: true,
+    autoCompleted: false,
+    ident: after ? after.ident : 0,
+  };
+}
+
+export function createBookmark({ uri = '' } = {}) {
+  return {
+    id: uniqueId('bookmark_') + new Date(),
+    autoFocus: true,
+    uri,
+  };
+}
+
+export function findIndex(collection, item) {
+  return collection.findIndex(({ id }) => id === item.id);
+}
+
+export function find(collection, item) {
+  return collection.find(({ id }) => id === item.id);
+}
+
 export function insertAfter(collection, after, item) {
   const insertAt = after ? findIndex(collection, after) : -1;
 
@@ -23,44 +50,17 @@ export function move(collection, item, by) {
   collection[newIndex] = temp;
 }
 
-export function update(collection, action, update) {
-  const item = collection.find(({ id }) => id === action.payload.id);
-  if (item) {
-    update(item);
-  }
-}
+export function paste(collection, payload, fnUpdate, fnNew) {
+  const [first, ...rest] = payload.clipboard
+    .split('\n')
+    .map(s => s.replace(/^[\W]*(-|\*) (\[( |x)\] )?/, ''));
 
-export function findIndex(collection, item) {
-  return collection.findIndex(({ id }) => id === item.id);
-}
+  const item = collection.find(({ id }) => id === payload.id);
 
-export function paste(collection, action, fnUpdate, fnNew) {
-  // TODO(rstankov): clear markdown
-  const [first, ...rest] = action.payload.clipboard.split('\n');
+  fnUpdate(item, first);
 
-  update(collection, action, item => fnUpdate(item, first));
-
-  let after = collection.find(i => i.id === action.payload.id);
-  rest.forEach(text => {
+  let after = find(collection, payload);
+  rest.reverse().forEach(text => {
     insertAfter(collection, after, fnNew({ after, text }));
   });
-}
-
-export function createTodo({ after, text = '' } = {}) {
-  return {
-    id: uniqueId('todo_') + new Date(),
-    text: text || '',
-    isCompleted: false,
-    autoFocus: true,
-    autoCompleted: false,
-    ident: after ? after.ident : 0,
-  };
-}
-
-export function createBookmark({ uri = '' } = {}) {
-  return {
-    id: uniqueId('bookmark_') + new Date(),
-    autoFocus: true,
-    uri,
-  };
 }
