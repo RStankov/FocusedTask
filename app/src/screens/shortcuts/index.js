@@ -106,7 +106,9 @@ function ShortcutsTable({ children }) {
 function Shortcut({ description, children }) {
   return (
     <tr>
-      <td width="120px">{children}</td>
+      <td width="120px" align="right">
+        {children}
+      </td>
       <td>{description}</td>
     </tr>
   );
