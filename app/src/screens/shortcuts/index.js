@@ -60,6 +60,12 @@ export default function Shortcuts() {
             <Shortcut description="Focus next todo">
               <Key>↓</Key>
             </Shortcut>
+            <Shortcut description="Move todo up">
+              <Cmd /> + <Key>↑</Key>
+            </Shortcut>
+            <Shortcut description="Move todo down">
+              <Cmd /> + <Key>↓</Key>
+            </Shortcut>
             <Shortcut description="Increase todo indentation">
               <Cmd /> + <Key>[</Key>
             </Shortcut>
@@ -87,6 +93,12 @@ export default function Shortcuts() {
             </Shortcut>
             <Shortcut description="Focus next bookmark">
               <Key>↓</Key>
+            </Shortcut>
+            <Shortcut description="Move bookmark up">
+              <Cmd /> + <Key>↑</Key>
+            </Shortcut>
+            <Shortcut description="Move bookmark down">
+              <Cmd /> + <Key>↓</Key>
             </Shortcut>
           </ShortcutsTable>
         </Section>

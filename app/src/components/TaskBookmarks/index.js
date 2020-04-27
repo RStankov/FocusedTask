@@ -13,6 +13,7 @@ import {
   removeBookmark,
   newBookmark,
   pasteBookmarks,
+  moveBookmark,
 } from 'modules/task';
 
 export default function TaskBookmarks() {
@@ -58,10 +59,14 @@ export default function TaskBookmarks() {
                 dispatch(newBookmark({ after: bookmark }));
               } else if (e.keyCode === keyCodes.esc) {
                 e.target.blur();
-              } else if (e.keyCode === keyCodes.up) {
+              } else if (!e.metaKey && e.keyCode === keyCodes.up) {
                 focusOnBookmarkWithIndex(i - 1);
-              } else if (e.keyCode === keyCodes.down) {
+              } else if (!e.metaKey && e.keyCode === keyCodes.down) {
                 focusOnBookmarkWithIndex(i + 1);
+              } else if (e.metaKey && e.keyCode === keyCodes.up) {
+                dispatch(moveBookmark({ id: bookmark.id, by: -1 }));
+              } else if (e.metaKey && e.keyCode === keyCodes.down) {
+                dispatch(moveBookmark({ id: bookmark.id, by: +1 }));
               }
             }}
             onBlur={() => !bookmark.uri && dispatch(removeBookmark(bookmark))}

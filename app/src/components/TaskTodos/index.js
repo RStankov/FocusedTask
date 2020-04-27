@@ -15,6 +15,7 @@ import {
   updateTodoIdent,
   updateTodoText,
   removeTodo,
+  moveTodo,
 } from 'modules/task';
 
 export default function TaskTodos() {
@@ -77,10 +78,14 @@ export default function TaskTodos() {
                 dispatch(newTodo({ after: todo }));
               } else if (e.keyCode === keyCodes.esc) {
                 e.target.blur();
-              } else if (e.keyCode === keyCodes.up) {
+              } else if (!e.metaKey && e.keyCode === keyCodes.up) {
                 focusOnTodoWithIndex(i - 1);
-              } else if (e.keyCode === keyCodes.down) {
+              } else if (!e.metaKey && e.keyCode === keyCodes.down) {
                 focusOnTodoWithIndex(i + 1);
+              } else if (e.metaKey && e.keyCode === keyCodes.up) {
+                dispatch(moveTodo({ id: todo.id, by: -1 }));
+              } else if (e.metaKey && e.keyCode === keyCodes.down) {
+                dispatch(moveTodo({ id: todo.id, by: +1 }));
               } else if (e.metaKey && e.keyCode === keyCodes['[']) {
                 dispatch(updateTodoIdent({ id: todo.id, by: -1 }));
               } else if (e.metaKey && e.keyCode === keyCodes[']']) {

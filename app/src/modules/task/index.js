@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   insertAfter,
+  move,
   update,
   paste,
   createTodo,
@@ -59,6 +60,9 @@ export const slice = createSlice({
     removeTodo: (state, action) => {
       state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
     },
+    moveTodo: (state, action) => {
+      move(state.todos, action.payload, action.payload.by);
+    },
     removeCompletedTodos: state => {
       state.todos = state.todos.filter(todo => !todo.isCompleted);
     },
@@ -89,6 +93,9 @@ export const slice = createSlice({
         bookmark => bookmark.id !== action.payload.id,
       );
     },
+    moveBookmark: (state, action) => {
+      move(state.bookmarks, action.payload, action.payload.by);
+    },
     updateNote: (state, action) => {
       state.note = action.payload;
     },
@@ -110,10 +117,12 @@ export const {
   updateTodoText,
   updateTodoIdent,
   removeTodo,
+  moveTodo,
   newBookmark,
   updateBookmark,
   removeBookmark,
   pasteBookmarks,
+  moveBookmark,
 } = slice.actions;
 
 export default slice.reducer;

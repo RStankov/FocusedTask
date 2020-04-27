@@ -10,6 +10,19 @@ export function insertAfter(collection, after, item) {
   }
 }
 
+export function move(collection, item, by) {
+  const index = collection.findIndex(t => t.id === item.id);
+  const newIndex = index + by;
+
+  if (!collection[index] || !collection[newIndex]) {
+    return;
+  }
+
+  const temp = collection[index];
+  collection[index] = collection[newIndex];
+  collection[newIndex] = temp;
+}
+
 export function update(collection, action, update) {
   collection.forEach(item => {
     if (item.id === action.payload.id) {
