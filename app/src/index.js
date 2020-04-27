@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './screens';
+import Screen from './screens';
 import store from './modules';
 import { Provider } from 'react-redux';
 import { resizeBasedOnContent } from 'utils/electron';
+import AppDrag from './components/AppDrag';
 
 resizeBasedOnContent();
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <AppDrag />
+      <Screen />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
