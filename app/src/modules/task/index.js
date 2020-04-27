@@ -5,6 +5,7 @@ import {
   move,
   update,
   paste,
+  findIndex,
   createTodo,
   createBookmark,
 } from './utils';
@@ -37,11 +38,33 @@ export const slice = createSlice({
       );
     },
     toggleTodo: (state, action) => {
-      update(
-        state.todos,
-        action,
-        todo => (todo.isCompleted = !todo.isCompleted),
-      );
+      const index = findIndex(state.todos, action.payload);
+
+      if (index === -1) {
+        return;
+      }
+
+      const todo = state.todos[index];
+
+      todo.isCompleted = !todo.isCompleted;
+      todo.autoCompleted = false;
+
+      state.todos.slice(index + 1).forEach(other => {
+        if (
+          other.ident <= todo.ident ||
+          todo.isCompleted == other.isCompleted
+        ) {
+          return;
+        }
+
+        if (todo.isCompleted) {
+          other.isCompleted = true;
+          other.autoCompleted = true;
+        } else if (other.autoCompleted) {
+          other.isCompleted = false;
+          other.autoCompleted = false;
+        }
+      });
     },
     updateTodoIdent: (state, action) => {
       update(

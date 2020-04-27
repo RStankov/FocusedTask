@@ -1,7 +1,7 @@
 import { uniqueId } from 'lodash';
 
 export function insertAfter(collection, after, item) {
-  const insertAt = after ? collection.findIndex(t => t.id === after.id) : -1;
+  const insertAt = after ? findIndex(collection, after) : -1;
 
   if (insertAt === -1) {
     collection.push(item);
@@ -11,7 +11,7 @@ export function insertAfter(collection, after, item) {
 }
 
 export function move(collection, item, by) {
-  const index = collection.findIndex(t => t.id === item.id);
+  const index = findIndex(collection, item);
   const newIndex = index + by;
 
   if (!collection[index] || !collection[newIndex]) {
@@ -24,11 +24,14 @@ export function move(collection, item, by) {
 }
 
 export function update(collection, action, update) {
-  collection.forEach(item => {
-    if (item.id === action.payload.id) {
-      update(item);
-    }
-  });
+  const item = collection.find(({ id }) => id === action.payload.id);
+  if (item) {
+    update(item);
+  }
+}
+
+export function findIndex(collection, item) {
+  return collection.findIndex(({ id }) => id === item.id);
 }
 
 export function paste(collection, action, fnUpdate, fnNew) {
@@ -49,6 +52,7 @@ export function createTodo({ after, text = '' } = {}) {
     text: text || '',
     isCompleted: false,
     autoFocus: true,
+    autoCompleted: false,
     ident: after ? after.ident : 0,
   };
 }
