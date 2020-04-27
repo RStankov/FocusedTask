@@ -26,7 +26,11 @@ const mb = menubar({
 
 mb.app.on('ready', () => {
   const ret = electron.globalShortcut.register('CommandOrControl+/', () => {
-    mb.showWindow();
+    if (mb.window && mb.window.isVisible()) {
+      mb.hideWindow();
+    } else {
+      mb.showWindow();
+    }
   });
 
   if (!ret) {
