@@ -25,7 +25,7 @@ const mb = menubar({
 });
 
 mb.app.on('ready', () => {
-  const ret = electron.globalShortcut.register('CommandOrControl+/', () => {
+  const ret = electron.globalShortcut.register("CommandOrControl+'", () => {
     if (mb.window && mb.window.isVisible()) {
       mb.hideWindow();
     } else {

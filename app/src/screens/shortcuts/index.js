@@ -24,7 +24,7 @@ export default function Shortcuts() {
         <Section emoji="🌎" title="Global">
           <ShortcutsTable>
             <Shortcut description="Open Focused Task (global)">
-              <Cmd /> + <Key>/</Key>
+              <Cmd /> + <Key>'</Key>
             </Shortcut>
             <Shortcut description="New task">
               <Cmd /> + <Key>t</Key>
