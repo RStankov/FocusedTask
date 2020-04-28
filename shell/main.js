@@ -21,7 +21,7 @@ const mb = menubar({
       scrollBounce: true,
     },
   },
-  icon: 'assets/MenuBarIcon.png',
+  icon: path.join(__dirname, 'assets/MenuBarIcon.png'),
 });
 
 mb.app.on('ready', () => {
