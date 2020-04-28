@@ -49,12 +49,15 @@ export const slice = createSlice({
       todo.isCompleted = !todo.isCompleted;
       todo.autoCompleted = false;
 
-      state.todos.slice(index + 1).forEach(other => {
-        if (
-          other.ident <= todo.ident ||
-          todo.isCompleted === other.isCompleted
-        ) {
-          return;
+      for (let i = index + 1; i < state.todos.length; i += 1) {
+        const other = state.todos[i];
+
+        if (other.ident <= todo.ident) {
+          break;
+        }
+
+        if (todo.isCompleted === other.isCompleted) {
+          continue;
         }
 
         if (todo.isCompleted) {
@@ -64,7 +67,7 @@ export const slice = createSlice({
           other.isCompleted = false;
           other.autoCompleted = false;
         }
-      });
+      }
     },
     updateTodoIdent: (state, { payload }) => {
       const todo = find(state.todos, payload);
