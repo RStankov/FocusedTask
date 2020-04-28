@@ -6,7 +6,7 @@ import focusOn from 'utils/focusOn';
 
 import { newTodo, newBookmark } from 'modules/task';
 
-export default function useGlobalShortcuts() {
+export default function useShortcuts() {
   const dispatch = useDispatch();
   const bookmarks = useSelector(store => store.task.bookmarks);
 

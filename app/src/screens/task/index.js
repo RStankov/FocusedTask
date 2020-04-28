@@ -7,13 +7,13 @@ import TaskTodos from 'components/TaskTodos';
 import TaskBookmarks from 'components/TaskBookmarks';
 import TaskNote from 'components/TaskNote';
 import { newBookmark } from 'modules/task';
-import useGlobalShortcuts from 'hooks/useGlobalShortcuts';
+import useShortcuts from 'hooks/useShortcuts';
 import AppMenu from 'components/AppMenu';
 
 export default function Task() {
   const dispatch = useDispatch();
 
-  useGlobalShortcuts();
+  useShortcuts();
 
   return (
     <>
