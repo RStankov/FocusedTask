@@ -66,10 +66,10 @@ export default function Shortcuts() {
             <Shortcut description="Move todo down">
               <Cmd /> + <Key>↓</Key>
             </Shortcut>
-            <Shortcut description="Increase todo indentation">
+            <Shortcut description="Decrease todo indentation">
               <Cmd /> + <Key>[</Key>
             </Shortcut>
-            <Shortcut description="Decrease todo indentation">
+            <Shortcut description="Increase todo indentation">
               <Cmd /> + <Key>]</Key>
             </Shortcut>
             <Shortcut description="Toggle completion of todo">
