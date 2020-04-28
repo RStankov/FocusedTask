@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+yarn install
+
+cd app && yarn install && cd ..
+
+cd shell && yarn install && cd ..
+

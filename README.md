@@ -7,3 +7,18 @@ It lets you focus on one task at the time and split it into minor todos and keep
 > This is just an experiment, don't take it too seriously 😅
 >
 > *Rado Stankov*
+
+
+### Installation
+
+Have `yarn` installed
+
+```
+./bin/bootstrap
+```
+
+### Running
+
+```
+yarn dev
+```
