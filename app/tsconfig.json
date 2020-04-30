@@ -1,0 +1,44 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": "./src",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types/"
+    ],
+    "lib": [
+      "dom",
+      "es2015",
+      "es2016",
+      "esnext.asynciterable"
+    ],
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
+  },
+  "include": [
+    "./src"
+  ],
+  "exclude": [
+    "node_modules/**/*"
+  ]
+}

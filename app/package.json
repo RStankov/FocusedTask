@@ -9,27 +9,35 @@
     "autosize": "^4.0.2",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
-    "menubar": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.1.3",
     "react-scripts": "3.4.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/autosize": "^3.0.7",
+    "@types/classnames": "^2.2.10",
+    "@types/lodash": "^4.14.150",
+    "@types/react": "^16.9.34",
+    "@types/react-redux": "^7.1.7",
+    "typescript": "^3.8.3"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "ELECTRON_START_URL=http://localhost:3000 electron .",
-    "dev": "BROWSER=none concurrently \"yarn start\" \"yarn electron-dev\" --kill-others",
-    "app": "yarn build && electron ."
+    "lint:types": "tsc --noEmit"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
