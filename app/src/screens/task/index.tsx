@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import Section from 'components/Section';
 import Stack from 'components/Stack';
 import TaskTitle from 'components/TaskTitle';
@@ -8,6 +7,7 @@ import TaskBookmarks from 'components/TaskBookmarks';
 import TaskNote from 'components/TaskNote';
 import { newBookmark } from 'modules/task';
 import useShortcuts from 'hooks/useShortcuts';
+import useDispatch from 'hooks/useDispatch';
 import AppMenu from 'components/AppMenu';
 
 export default function Task() {

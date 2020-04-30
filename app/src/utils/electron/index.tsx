@@ -1,4 +1,5 @@
 import electron from './shim';
+import { IStoreState } from 'modules';
 
 export const isElectron = !!electron;
 
@@ -18,12 +19,12 @@ export function hideApp() {
   electron.remote.getCurrentWindow().hide();
 }
 
-export function resizeBasedOnContent(height) {
+export function resizeBasedOnContent() {
   if (!isElectron) {
     return;
   }
 
-  const bodyStyle = window.getComputedStyle(document.body);
+  const bodyStyle = window.getComputedStyle(document.body) as any;
   const padding =
     parseInt(bodyStyle['margin-top'], 10) +
     parseInt(bodyStyle['margin-bottom'], 10) +
@@ -51,7 +52,7 @@ const fs = window.require && window.require('fs').promises;
 
 const FILE_VERSION = 1;
 
-export async function writeStoreToFile(store) {
+export async function writeStoreToFile(store: IStoreState) {
   if (!isElectron) {
     return;
   }
@@ -112,7 +113,14 @@ export async function readStoreFromFile() {
   }
 }
 
-export function openMenu(items) {
+type IMenuItem =
+  | {
+      label: string;
+      click: () => void;
+    }
+  | { type: 'separator' };
+
+export function openMenu(items: IMenuItem[]) {
   if (!isElectron) {
     return;
   }
@@ -128,7 +136,7 @@ export function openMenu(items) {
   menu.popup(remote.getCurrentWindow());
 }
 
-export function openURI(uri) {
+export function openURI(uri: string) {
   if (!isElectron) {
     return;
   }

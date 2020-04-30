@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import * as types from './types';
 
 import {
   createTodo,
@@ -10,12 +11,19 @@ import {
   paste,
 } from './utils';
 
+type IWithId = types.IWithId;
+
+export type ITodo = types.ITodo;
+export type IBookmark = types.IBookmark;
+
 const INITIAL_STATE = {
-  title: 'Task',
+  title: 'Focus',
   todos: [],
   bookmarks: [],
   note: '',
-};
+} as types.ITask;
+
+type IOptionalPayload<T> = { payload: T | undefined };
 
 export const slice = createSlice({
   name: 'task',
@@ -24,8 +32,13 @@ export const slice = createSlice({
     updateTaskTitle: (state, { payload }) => {
       state.title = payload;
     },
-    newTodo: (state, { payload }) => {
-      const after = payload && payload.after;
+    newTodo: (
+      state,
+      {
+        payload = {},
+      }: IOptionalPayload<{ after?: { id: string; ident: number } }>,
+    ) => {
+      const after = payload.after;
 
       insertAfter(state.todos, after, createTodo({ after }));
     },
@@ -34,7 +47,7 @@ export const slice = createSlice({
         state.todos,
         payload,
         (todo, text) => (todo.text = text),
-        createTodo,
+        (after, text) => createTodo({ after, text }),
       );
     },
     toggleTodo: (state, { payload }) => {
@@ -98,15 +111,18 @@ export const slice = createSlice({
     removeCompletedTodos: state => {
       state.todos = state.todos.filter(todo => !todo.isCompleted);
     },
-    newBookmark: (state, { payload }) => {
-      insertAfter(state.bookmarks, payload && payload.after, createBookmark());
+    newBookmark: (
+      state,
+      { payload = {} }: IOptionalPayload<{ after?: IWithId; uri?: string }>,
+    ) => {
+      insertAfter(state.bookmarks, payload.after, createBookmark());
     },
     pasteBookmarks: (state, { payload }) => {
       paste(
         state.bookmarks,
         payload,
         (bookmark, text) => (bookmark.uri = text),
-        ({ text }) => createBookmark({ uri: text }),
+        (_, text) => createBookmark({ uri: text }),
       );
     },
     updateBookmark: (state, { payload }) => {
@@ -136,7 +152,7 @@ export const slice = createSlice({
     updateNote: (state, { payload }) => {
       state.note = payload;
     },
-    set: (state, { payload }) => ({
+    set: (_state, { payload }) => ({
       ...INITIAL_STATE,
       ...payload,
     }),

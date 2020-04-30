@@ -1,10 +1,12 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
 import { updateTaskTitle } from 'modules/task';
 import InputText from 'components/InputText';
+import useSelector from 'hooks/useSelector';
+import useDispatch from 'hooks/useDispatch';
+import keyCodes from 'utils/keyCodes';
 
 export default function TaskTitle() {
   const title = useSelector(store => store.task.title);
@@ -19,7 +21,7 @@ export default function TaskTitle() {
         value={title}
         onChange={e => dispatch(updateTaskTitle(e.target.value))}
         onKeyDown={e => {
-          if (e.keyCode === 27 || e.keyCode === 13) {
+          if (e.keyCode === keyCodes.enter) {
             e.target.blur();
           }
         }}

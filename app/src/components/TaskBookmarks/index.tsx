@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import InputText from 'components/InputText';
@@ -7,6 +6,8 @@ import styles from './styles.module.css';
 import ExternalLink from 'components/ExternalLink';
 import keyCodes from 'utils/keyCodes';
 import focusOn from 'utils/focusOn';
+import useSelector from 'hooks/useSelector';
+import useDispatch from 'hooks/useDispatch';
 
 import {
   updateBookmark,
@@ -15,6 +16,7 @@ import {
   pasteBookmarks,
   moveBookmark,
   removeBookmarkAutoFocus,
+  IBookmark,
 } from 'modules/task';
 
 export default function TaskBookmarks() {
@@ -83,10 +85,10 @@ export default function TaskBookmarks() {
   );
 }
 
-function isUrl(bookmark) {
+function isUrl(bookmark: IBookmark) {
   return bookmark.uri && !!bookmark.uri.match(/https?:\/\/.+\..+/);
 }
 
-function focusOnBookmarkWithIndex(index) {
+function focusOnBookmarkWithIndex(index: number) {
   focusOn(`bookmark-${index}`);
 }

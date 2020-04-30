@@ -1,8 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import autosize from 'autosize';
 
-export default class Textarea extends React.Component {
-  textareaRef = React.createRef();
+type IProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+
+export default class Textarea extends React.Component<IProps> {
+  textareaRef = React.createRef<HTMLTextAreaElement>();
 
   componentDidMount() {
     const textarea = this.textareaRef.current;

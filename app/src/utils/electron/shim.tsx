@@ -1,4 +1,4 @@
-let electron = null;
+let electron: any = null;
 
 if (window.require) {
   electron = window.require('electron');

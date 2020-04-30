@@ -3,7 +3,14 @@ import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
 
-export default function Section({ title, emoji, actions, children }) {
+interface IProps {
+  title: string;
+  emoji: string;
+  actions?: React.ReactNode;
+  children: React.ReactNode;
+}
+
+export default function Section({ title, emoji, actions, children }: IProps) {
   return (
     <div className={styles.container}>
       <Stack.Row gap="xs">

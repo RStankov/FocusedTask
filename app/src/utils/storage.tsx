@@ -1,5 +1,5 @@
 export default {
-  get(key, defaultValue = {}) {
+  get(key: string, defaultValue: any = {}): any {
     const value = window.localStorage.getItem(key);
 
     if (value) {
@@ -9,7 +9,7 @@ export default {
     return defaultValue;
   },
 
-  set(key, value) {
-    window.localStorage.setItem('reduxStore', JSON.stringify(value));
+  set(key: string, value: any) {
+    window.localStorage.setItem(key, JSON.stringify(value));
   },
 };

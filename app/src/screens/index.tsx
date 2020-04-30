@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import useSelector from 'hooks/useSelector';
 import { getSelectedScreen } from 'modules/selectedScreen';
 
 import shortcuts from './shortcuts';
@@ -11,8 +11,8 @@ const SCREENS = {
 };
 
 export default function App() {
-  const selectedScreen = useSelector(getSelectedScreen());
-  const Screen = SCREENS[selectedScreen] || SCREENS.task;
+  const selectedScreen = useSelector(getSelectedScreen);
+  const Screen = (SCREENS as any)[selectedScreen] || SCREENS.task;
 
   return <Screen />;
 }

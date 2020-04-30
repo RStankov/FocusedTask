@@ -3,6 +3,10 @@
   font-weight: 700;
 }
 
+.keys {
+  width: 120px;
+}
+
 .key {
   display: inline-block;
   padding: 0px 6px;

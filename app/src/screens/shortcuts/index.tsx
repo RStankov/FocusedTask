@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import useDispatch from 'hooks/useDispatch';
 import Section from 'components/Section';
 import Stack from 'components/Stack';
 import Emoji from 'components/Emoji';
@@ -107,7 +107,7 @@ export default function Shortcuts() {
   );
 }
 
-function ShortcutsTable({ children }) {
+function ShortcutsTable({ children }: { children: React.ReactNode }) {
   return (
     <table className={styles.table}>
       <tbody>{children}</tbody>
@@ -115,10 +115,16 @@ function ShortcutsTable({ children }) {
   );
 }
 
-function Shortcut({ description, children }) {
+function Shortcut({
+  description,
+  children,
+}: {
+  description: string;
+  children: React.ReactNode;
+}) {
   return (
     <tr>
-      <td width="120px" align="right">
+      <td className={styles.keys} align="right">
         {children}
       </td>
       <td>{description}</td>
@@ -130,6 +136,6 @@ function Cmd() {
   return <Key>⌘ Cmd</Key>;
 }
 
-function Key({ children }) {
+function Key({ children }: { children: React.ReactNode }) {
   return <span className={styles.key}>{children}</span>;
 }

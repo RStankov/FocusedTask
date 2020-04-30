@@ -19,4 +19,6 @@ store.subscribe(
   }),
 );
 
+export type IStoreState = ReturnType<typeof store.getState>;
+
 export default store;
