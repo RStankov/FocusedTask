@@ -8,6 +8,7 @@ import keyCodes from 'utils/keyCodes';
 import focusOn from 'utils/focusOn';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
+import { openURI } from 'utils/electron';
 
 import {
   updateBookmark,
@@ -26,7 +27,15 @@ export default function TaskBookmarks() {
   return (
     <Stack.Column gap="xs">
       {bookmarks.map((bookmark, i) => (
-        <Stack.Row key={bookmark.id} className={styles.row}>
+        <Stack.Row
+          key={bookmark.id}
+          className={styles.row}
+          onClick={e => {
+            if (e.metaKey && isUrl(bookmark)) {
+              e.preventDefault();
+              openURI(bookmark.uri);
+            }
+          }}>
           {isUrl(bookmark) ? (
             <ExternalLink href={bookmark.uri} className={styles.number}>
               {i < 9 ? i + 1 : i === bookmarks.length - 1 ? 0 : ''}

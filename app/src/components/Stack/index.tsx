@@ -9,15 +9,16 @@ interface IProps {
   align: 'start' | 'center' | 'end';
   justify: 'start' | 'center' | 'end';
   gap?: 'xs' | 's' | 'm' | 'l' | 'xl' | 'xl';
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 function Stack({
-  children,
   className,
   direction,
   align,
   justify,
   gap,
+  ...props
 }: IProps) {
   const combinedClassName = classNames(
     className,
@@ -28,15 +29,16 @@ function Stack({
     gap && styles[`gap-${direction}-${gap}`],
   );
 
-  return <div className={combinedClassName}>{children}</div>;
+  return <div className={combinedClassName} {...props} />;
 }
 
 type ISubProps = {
-  children: React.ReactNode,
-  className?: string,
-  align?: 'start' | 'center' | 'end',
-  justify?: 'start' | 'center' | 'end',
-  gap?: 'xs' | 's' | 'm' | 'l' | 'xl' | 'xl',
+  children: React.ReactNode;
+  className?: string;
+  align?: 'start' | 'center' | 'end';
+  justify?: 'start' | 'center' | 'end';
+  gap?: 'xs' | 's' | 'm' | 'l' | 'xl' | 'xl';
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 export default {
@@ -50,7 +52,7 @@ export default {
     className,
     ...props
   }: {
-    className?: string,
-    children: React.ReactNode,
+    className?: string;
+    children: React.ReactNode;
   }) => <div className={classNames(styles.expand, className)} {...props} />,
 };

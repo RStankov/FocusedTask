@@ -100,6 +100,9 @@ export default function Shortcuts() {
             <Shortcut description="Move bookmark down">
               <Cmd /> + <Key>↓</Key>
             </Shortcut>
+            <Shortcut description="Open bookmark">
+              <Cmd /> + <Key>click</Key>
+            </Shortcut>
           </ShortcutsTable>
         </Section>
       </Stack.Column>
