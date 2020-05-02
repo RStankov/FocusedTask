@@ -6,6 +6,6 @@
 
 * __[feature]__ cmd + click on bookmarks opens them (@rstankov)
 
-### Build 1
+### Build 1 (2020/04/29)
 
 * Initial release (@rstankov)
