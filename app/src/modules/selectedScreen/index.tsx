@@ -4,12 +4,13 @@ export const slice = createSlice({
   name: 'selectedScreen',
   initialState: 'task',
   reducers: {
-    openShortcuts: () => 'shortcuts',
     openTask: () => 'task',
+    openShortcuts: () => 'shortcuts',
+    openChangelog: () => 'changelog',
   },
 });
 
-export const { openShortcuts, openTask } = slice.actions;
+export const { openTask, openShortcuts, openChangelog } = slice.actions;
 
 export default slice.reducer;
 

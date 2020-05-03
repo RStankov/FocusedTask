@@ -2,8 +2,7 @@ import * as React from 'react';
 import store from 'modules';
 import { ReactComponent as PreferencesIcon } from 'icons/preferences.svg';
 import styles from './styles.module.css';
-import { openShortcuts } from 'modules/selectedScreen';
-
+import { openShortcuts, openChangelog } from 'modules/selectedScreen';
 import { set, removeCompletedTodos, reset } from 'modules/task';
 
 import {
@@ -58,6 +57,10 @@ function openAppMenu() {
     {
       label: 'Show Shortcuts',
       click: () => store.dispatch(openShortcuts()),
+    },
+    {
+      label: 'Show Changelog',
+      click: () => store.dispatch(openChangelog()),
     },
     {
       type: 'separator',
