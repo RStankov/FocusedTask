@@ -147,3 +147,27 @@ export function openURI(uri: string) {
 
   electron.remote.shell.openExternal(uri);
 }
+
+export async function confirm({
+  message,
+  detail,
+  fn,
+}: {
+  message: string;
+  detail?: string;
+  fn: () => void;
+}) {
+  if (!isElectron) {
+    return;
+  }
+
+  const { response } = await electron.remote.dialog.showMessageBox({
+    buttons: ['Yes', 'No', 'Cancel'],
+    message,
+    detail,
+  });
+
+  if (response === 0) {
+    fn();
+  }
+}

@@ -4,7 +4,7 @@ import { ReactComponent as PreferencesIcon } from 'icons/preferences.svg';
 import styles from './styles.module.css';
 import { openShortcuts } from 'modules/selectedScreen';
 
-import { set, removeCompletedTodos } from 'modules/task';
+import { set, removeCompletedTodos, reset } from 'modules/task';
 
 import {
   isElectron,
@@ -12,6 +12,7 @@ import {
   closeApp,
   readStoreFromFile,
   writeStoreToFile,
+  confirm,
 } from 'utils/electron';
 
 export default function AppClose() {
@@ -24,6 +25,15 @@ export default function AppClose() {
 
 function openAppMenu() {
   openMenu([
+    {
+      label: 'New Task',
+      click: () =>
+        confirm({
+          message: 'Are you sure?',
+          detail: 'Your current task data will be erased.',
+          fn: () => store.dispatch(reset()),
+        }),
+    },
     {
       label: 'Task Open...',
       click: async () => {

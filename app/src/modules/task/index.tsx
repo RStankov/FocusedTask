@@ -156,11 +156,13 @@ export const slice = createSlice({
       ...INITIAL_STATE,
       ...payload,
     }),
+    reset: () => INITIAL_STATE,
   },
 });
 
 export const {
   set,
+  reset,
   updateTaskTitle,
   removeCompletedTodos,
   newTodo,
