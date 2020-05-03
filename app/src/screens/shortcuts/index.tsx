@@ -1,26 +1,16 @@
 import React from 'react';
-import useDispatch from 'hooks/useDispatch';
 import Section from 'components/Section';
 import Stack from 'components/Stack';
-import Emoji from 'components/Emoji';
 import styles from './styles.module.css';
-import { ReactComponent as CloseIcon } from 'icons/close.svg';
-import { openTask } from 'modules/selectedScreen';
+import BackButton from 'components/BackButton';
+import Title from 'components/Title';
 
 export default function Shortcuts() {
-  const dispatch = useDispatch();
-
   return (
     <>
-      <CloseIcon
-        className={styles.close}
-        onClick={() => dispatch(openTask())}
-      />
+      <BackButton />
       <Stack.Column gap="m">
-        <Stack.Row gap="xs">
-          <Emoji emoji="⌨️" size="xxl" />
-          <div className={styles.title}>Shortcuts</div>
-        </Stack.Row>
+        <Title emoji="⌨️" title="Shortcuts" />
         <Section emoji="🌎" title="Global">
           <ShortcutsTable>
             <Shortcut description="Open Focused Task (global)">
