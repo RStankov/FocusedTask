@@ -2,8 +2,7 @@ import React from 'react';
 import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
-import classNames from 'classnames';
-import InputText from 'components/InputText';
+import InputTextarea from 'components/InputTextarea';
 import keyCodes from 'utils/keyCodes';
 import focusOn from 'utils/focusOn';
 import useSelector from 'hooks/useSelector';
@@ -27,40 +26,41 @@ export default function TaskTodos() {
   return (
     <Stack.Column>
       {todos.map((todo, i) => (
-        <div
-          key={todo.id}
-          style={{ paddingLeft: 20 * (todo.ident || 0) }}
-          onClick={() => focusOnTodoWithIndex(i)}>
-          <Stack.Row>
-            {todo.isCompleted ? (
-              <Emoji
-                emoji={'✅'}
-                onClick={e => {
-                  e.stopPropagation();
-                  dispatch(toggleTodo(todo));
-                }}
-              />
-            ) : (
-              <div
-                className={styles.checkbox}
-                onClick={e => {
-                  e.stopPropagation();
-                  dispatch(toggleTodo(todo));
-                }}
-              />
-            )}
-            <InputText
-              className={classNames(
-                styles.input,
-                todo.isCompleted && styles.completed,
+        <div key={todo.id} style={{ paddingLeft: 20 * (todo.ident || 0) }}>
+          <Stack.Row align="start">
+            <div className={styles.box}>
+              {todo.isCompleted ? (
+                <Emoji
+                  emoji={'✅'}
+                  onClick={e => {
+                    e.stopPropagation();
+                    dispatch(toggleTodo(todo));
+                  }}
+                />
+              ) : (
+                <div
+                  className={styles.checkbox}
+                  onClick={e => {
+                    e.stopPropagation();
+                    dispatch(toggleTodo(todo));
+                  }}
+                />
               )}
+            </div>
+            <InputTextarea
+              className={todo.isCompleted ? styles.completed : undefined}
               id={`todo-text-${i}`}
-              type="text"
               autoFocus={!!todo.autoFocus}
+              multiline={false}
               value={todo.text}
               placeholder="..."
               onChange={e =>
-                dispatch(updateTodoText({ id: todo.id, text: e.target.value }))
+                dispatch(
+                  updateTodoText({
+                    id: todo.id,
+                    text: e.target.value,
+                  }),
+                )
               }
               onPaste={e => {
                 const clipboard = e.clipboardData.getData('Text');
@@ -78,6 +78,7 @@ export default function TaskTodos() {
                   dispatch(removeTodo(todo));
                   focusOnTodoWithIndex(i - 1);
                 } else if (e.keyCode === keyCodes.enter) {
+                  e.preventDefault();
                   dispatch(newTodo({ after: todo }));
                 } else if (e.keyCode === keyCodes.esc) {
                   e.target.blur();

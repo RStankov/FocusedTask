@@ -1,10 +1,28 @@
 import * as React from 'react';
 import autosize from 'autosize';
+import { Omit } from 'utility-types';
+import classNames from 'classnames';
+import styles from './styles.module.css';
 
-type IProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+interface IKeyDownEvent {
+  target: HTMLInputElement | HTMLTextAreaElement;
+  metaKey: boolean;
+  keyCode: number;
+  shiftKey: boolean;
+  preventDefault: () => void;
+}
 
-export default class Textarea extends React.Component<IProps> {
+interface IProps  // NOTE(rstankov): have to overwrite IKeyDownEvent because target wasn't recognised
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onKeyDown'> {
+  onKeyDown?: (e: IKeyDownEvent) => void;
+  multiline?: boolean;
+}
+export default class InputTextarea extends React.Component<IProps> {
   textareaRef = React.createRef<HTMLTextAreaElement>();
+
+  static defaultProps = {
+    multiline: true,
+  };
 
   componentDidMount() {
     const textarea = this.textareaRef.current;
@@ -27,6 +45,17 @@ export default class Textarea extends React.Component<IProps> {
   }
 
   render() {
-    return <textarea ref={this.textareaRef} {...this.props} />;
+    const { onKeyDown, multiline, className, value, ...props } = this.props;
+
+    return (
+      <textarea
+        className={classNames(styles.textarea, className)}
+        onKeyDown={onKeyDown as any}
+        ref={this.textareaRef}
+        rows={multiline ? undefined : 1}
+        value={value}
+        {...props}
+      />
+    );
   }
 }

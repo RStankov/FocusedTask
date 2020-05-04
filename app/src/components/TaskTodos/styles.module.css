@@ -1,16 +1,21 @@
+.box {
+  padding-top: 3px;
+  padding-right: 5px;
+}
+
 .checkbox {
   border: 1px solid silver;
   border-radius: 3px;
   width: 17px;
   height: 17px;
-  margin-right: 5px;
+  margin-right: px;
   margin-top: 4px;
   margin-bottom: 5px;
   box-sizing: border-box;
   cursor: pointer;
 }
 
-.input.completed {
+.completed {
   color: grey;
   text-decoration: line-through;
 }
