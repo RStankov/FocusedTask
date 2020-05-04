@@ -2,6 +2,7 @@ const { menubar } = require('menubar');
 const electron = require('electron');
 const url = require('url');
 const path = require('path');
+const settings = require('./utils/settings');
 
 const mb = menubar({
   index:
@@ -11,20 +12,29 @@ const mb = menubar({
       protocol: 'file:',
       slashes: true,
     }),
+  icon: path.join(__dirname, 'assets/MenuBarIcon.png'),
   browserWindow: {
-    width: 500,
+    x: settings.bounds.x,
+    y: settings.bounds.y,
+    width: settings.bounds.width || 500,
+    height: settings.bounds.height || 600,
     minWidth: 300,
     maxHeight: 900,
-    minHeight: 500,
+    minHeight: 600,
     webPreferences: {
       nodeIntegration: true,
       scrollBounce: true,
     },
   },
-  icon: path.join(__dirname, 'assets/MenuBarIcon.png'),
+});
+
+mb.on('after-create-window', () => {
+  settings.trackWindowBounds(mb);
 });
 
 mb.app.on('ready', () => {
+  settings.setWindowBounds(mb);
+
   const ret = electron.globalShortcut.register("CommandOrControl+'", () => {
     if (mb.window && mb.window.isVisible()) {
       mb.hideWindow();
