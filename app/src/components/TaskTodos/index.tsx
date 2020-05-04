@@ -93,7 +93,11 @@ export default function TaskTodos() {
                   dispatch(updateTodoIdent({ id: todo.id, by: -1 }));
                 } else if (e.metaKey && e.keyCode === keyCodes[']']) {
                   dispatch(updateTodoIdent({ id: todo.id, by: 1 }));
-                } else if (e.metaKey && e.keyCode === keyCodes.c) {
+                } else if (
+                  e.metaKey &&
+                  e.shiftKey &&
+                  e.keyCode === keyCodes.c
+                ) {
                   dispatch(toggleTodo(todo));
                 }
               }}
