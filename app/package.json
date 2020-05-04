@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "autosize": "^4.0.2",
     "classnames": "^2.2.6",
+    "electron-is-accelerator": "^0.2.0",
     "lodash": "^4.17.15",
     "raw.macro": "^0.3.0",
     "react": "^16.13.1",

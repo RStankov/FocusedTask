@@ -4,6 +4,10 @@ import Stack from 'components/Stack';
 import styles from './styles.module.css';
 import BackButton from 'components/BackButton';
 import Title from 'components/Title';
+import keyCodes from 'utils/keyCodes';
+import { updateGlobalShortcutKey, getGlobalShortcutKey } from 'utils/electron';
+import isAccelerator from 'electron-is-accelerator';
+import classNames from 'classnames';
 
 export default function Shortcuts() {
   return (
@@ -13,9 +17,7 @@ export default function Shortcuts() {
         <Title emoji="⌨️" title="Shortcuts" />
         <Section emoji="🌎" title="Global">
           <ShortcutsTable>
-            <Shortcut description="Open Focused Task (global)">
-              <Cmd /> + <Key>'</Key>
-            </Shortcut>
+            <ShortcutGlobal />
             <Shortcut description="New task">
               <Cmd /> + <Key>t</Key>
             </Shortcut>
@@ -112,7 +114,7 @@ function Shortcut({
   description,
   children,
 }: {
-  description: string;
+  description: string | React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -131,4 +133,78 @@ function Cmd() {
 
 function Key({ children }: { children: React.ReactNode }) {
   return <span className={styles.key}>{children}</span>;
+}
+
+function ShortcutGlobal() {
+  const {
+    key,
+    setKey,
+    isEditing,
+    edit,
+    cancelChanges,
+    saveChanges,
+  } = useGlobalShortcutForm();
+
+  return (
+    <Shortcut
+      description={
+        isEditing ? (
+          <Stack.Row gap="s">
+            <input
+              value={key}
+              onChange={setKey}
+              autoFocus={true}
+              maxLength={1}
+              className={classNames(
+                styles.input,
+                !isKeyAcceptable(key) && styles.error,
+              )}
+              onKeyDown={e => {
+                if (e.keyCode === keyCodes.enter) {
+                  saveChanges();
+                }
+              }}
+            />
+            <button onClick={saveChanges}>Save</button>
+            <button onClick={cancelChanges}>Cancel</button>
+          </Stack.Row>
+        ) : (
+          <>
+            Open Focused Task (global) <button onClick={edit}>change</button>
+          </>
+        )
+      }>
+      <Cmd /> + <Key>{key}</Key>
+    </Shortcut>
+  );
+}
+
+export function useGlobalShortcutForm() {
+  const [isEditing, setIsEditing] = React.useState(false);
+  const [key, setKey] = React.useState(getGlobalShortcutKey);
+
+  return {
+    key,
+    setKey(e: any) {
+      setKey(e.target.value);
+    },
+    isEditing,
+    edit() {
+      setIsEditing(true);
+    },
+    cancelChanges() {
+      setKey(getGlobalShortcutKey());
+      setIsEditing(true);
+    },
+    saveChanges() {
+      if (isKeyAcceptable(key)) {
+        updateGlobalShortcutKey(key);
+        setIsEditing(false);
+      }
+    },
+  };
+}
+
+function isKeyAcceptable(key: string) {
+  return isAccelerator(`CommandOrControl+${key}`);
 }

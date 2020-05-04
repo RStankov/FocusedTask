@@ -171,3 +171,24 @@ export async function confirm({
     fn();
   }
 }
+
+export function getGlobalShortcutKey() {
+  if (!isElectron) {
+    return;
+  }
+  console.log('call');
+
+  return electron.remote.getGlobal('globalShortcutKey');
+}
+
+export function updateGlobalShortcutKey(key: string) {
+  if (!isElectron) {
+    return;
+  }
+
+  if (key.length !== 1) {
+    return;
+  }
+
+  electron.ipcRenderer.send('updateGlobalShortcutKey', key);
+}

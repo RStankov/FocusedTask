@@ -1,7 +1,9 @@
 const settings = require('electron-settings');
+const electron = require('electron');
 const _ = require('lodash');
 
 const BOUNDS_KEY = 'windowBounds';
+const SHORTCUT_KEY = 'globalShortcut';
 
 module.exports = {
   setWindowBounds(menubar) {
@@ -25,5 +27,25 @@ module.exports = {
 
     win.on('resize', handler);
     win.on('move', handler);
+  },
+
+  setGlobalShortcut(menubar) {
+    const key = settings.get(SHORTCUT_KEY) || "'";
+
+    global.globalShortcutKey = key;
+
+    electron.globalShortcut.register(`CommandOrControl+${key}`, () => {
+      if (menubar.window && menubar.window.isVisible()) {
+        menubar.hideWindow();
+      } else {
+        menubar.showWindow();
+      }
+    });
+  },
+
+  updateGlobalShortcutKey(menubar, key) {
+    settings.set(SHORTCUT_KEY, key);
+    electron.globalShortcut.unregisterAll();
+    this.setGlobalShortcut(menubar);
   },
 };

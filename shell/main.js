@@ -14,10 +14,8 @@ const mb = menubar({
     }),
   icon: path.join(__dirname, 'assets/MenuBarIcon.png'),
   browserWindow: {
-    x: settings.bounds.x,
-    y: settings.bounds.y,
-    width: settings.bounds.width || 500,
-    height: settings.bounds.height || 600,
+    width: 500,
+    height: 600,
     minWidth: 300,
     maxHeight: 900,
     minHeight: 600,
@@ -34,18 +32,7 @@ mb.on('after-create-window', () => {
 
 mb.app.on('ready', () => {
   settings.setWindowBounds(mb);
-
-  const ret = electron.globalShortcut.register("CommandOrControl+'", () => {
-    if (mb.window && mb.window.isVisible()) {
-      mb.hideWindow();
-    } else {
-      mb.showWindow();
-    }
-  });
-
-  if (!ret) {
-    console.warn('global shortcut setup failed');
-  }
+  settings.setGlobalShortcut(mb);
 });
 
 mb.app.on('will-quit', () => {
@@ -70,4 +57,8 @@ mb.app.on('web-contents-created', (e, contents) => {
 
 electron.ipcMain.on('resize', function(_e, width, height) {
   mb.window.setSize(width, height);
+});
+
+electron.ipcMain.on('updateGlobalShortcutKey', function(_e, key) {
+  settings.updateGlobalShortcutKey(mb, key);
 });

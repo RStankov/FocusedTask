@@ -3801,6 +3801,11 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
+electron-is-accelerator@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/electron-is-accelerator/-/electron-is-accelerator-0.2.0.tgz#8768feb2eb64ded6bcb98936853a4a6dcf6bfb46"
+  integrity sha512-jml8EDK0x1xuPCr8ZWr+tuCL9RwfR4lee+WhLID2WZ0ygGSlnkumF6K1zw05CgnkDvHuKhFV6/NrSDI87QWAfA==
+
 electron-to-chromium@^1.3.378:
   version "1.3.379"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.379.tgz#81dc5e82a3e72bbb830d93e15bc35eda2bbc910e"

@@ -29,3 +29,12 @@
 .table td + td {
   border-left: 1px solid #c6cbd1;
 }
+
+.input {
+  width: 30px;
+  text-align: center;
+}
+
+.input.error {
+  outline: 1px solid red;
+}
