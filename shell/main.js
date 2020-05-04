@@ -12,7 +12,7 @@ const mb = menubar({
       slashes: true,
     }),
   browserWindow: {
-    width: 400,
+    width: 500,
     minWidth: 300,
     maxHeight: 900,
     minHeight: 500,
