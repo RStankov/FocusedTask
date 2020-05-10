@@ -4,6 +4,8 @@
 
 ### Build (Next)
 
+* __bug fix__ Allow localhost to be used for bookmarks (@rstankov)
+* __feature__ Drag & drop sorting of todos and bookmarks (@rstankov)
 * __feature__ Allow global shortcut to be configured (@rstankov)
 * __feature__ Remember window bounds (@rstankov)
 * __feature__ Show whole todo text even when longer than one line (@rstankov)
