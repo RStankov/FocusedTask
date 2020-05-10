@@ -21,6 +21,10 @@
 }
 
 .actions {
-  padding-left: 27px;
+  padding-left: 42px;
   padding-top: 5px;
+}
+
+.handle {
+  margin-top: 7px;
 }

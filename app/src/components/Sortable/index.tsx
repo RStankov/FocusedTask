@@ -6,6 +6,7 @@ import {
 } from './SortableHOC';
 import { ReactComponent as DragIcon } from 'icons/drag.svg';
 import styles from './styles.module.css';
+import classNames from 'classnames';
 
 export default {
   List: sortableContainer(
@@ -13,14 +14,23 @@ export default {
   ),
 
   Item: sortableElement(
-    React.forwardRef(({ as, ...props }: any, ref: any) =>
-      React.createElement(as || 'div', { ref, ...props }),
+    React.forwardRef(({ as, className, ...props }: any, ref: any) =>
+      React.createElement(as || 'div', {
+        ref,
+        className: classNames(styles.item, className),
+        ...props,
+      }),
     ),
   ),
 
   Handle: sortableHandle(
-    React.forwardRef((_props: any, ref: any) => (
-      <DragIcon className={styles.handle} ref={ref} width={18} height={18} />
+    React.forwardRef(({ className }: any, ref: any) => (
+      <DragIcon
+        className={classNames(styles.handle, className)}
+        ref={ref}
+        width={18}
+        height={18}
+      />
     )),
   ),
 };

@@ -12,8 +12,8 @@ interface IProps {
 
 export default function Section({ title, emoji, actions, children }: IProps) {
   return (
-    <div className={styles.container}>
-      <Stack.Row gap="xs">
+    <div>
+      <Stack.Row gap="s" className={styles.header}>
         <Emoji emoji={emoji} size="l" />
         <Stack.Expand className={styles.title}>{title}</Stack.Expand>
         {actions && <div>{actions}</div>}

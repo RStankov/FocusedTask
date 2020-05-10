@@ -44,7 +44,7 @@ export default function TaskTodos() {
               as={Stack.Row}
               key={todo.id}
               style={{ paddingLeft: 20 * (todo.ident || 0) }}>
-              <Sortable.Handle />
+              <Sortable.Handle className={styles.handle} />
               <div className={styles.box}>
                 {todo.isCompleted ? (
                   <Emoji

@@ -1,3 +1,16 @@
 .handle {
   cursor: pointer;
+  visibility: hidden;
+}
+
+.handle path {
+  fill: silver;
+}
+
+.handle:hover path {
+  fill: black;
+}
+
+.item:hover .handle {
+  visibility: visible;
 }

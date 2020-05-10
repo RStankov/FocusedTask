@@ -1,13 +1,13 @@
-.container {
-  padding-left: 18px;
-}
-
-.content {
-  padding-top: 5px;
+.header {
+  padding-left: 14px;
 }
 
 .title {
   font-size: 20px;
   font-weight: 700;
-  padding: 5px 0;
+}
+
+.content {
+  padding-top: 10px;
+  padding-left: 6px;
 }

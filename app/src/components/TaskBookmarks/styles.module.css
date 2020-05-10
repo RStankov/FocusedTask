@@ -1,49 +1,37 @@
-.number {
+.link {
   border: 1px solid silver;
   border-radius: 3px;
-  min-width: 17px;
+  width: 18px;
   height: 17px;
   margin-right: 5px;
   box-sizing: border-box;
   cursor: pointer;
-  text-align: center;
-  padding-top: 1px;
   font-size: 10px;
   color: inherit;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.number:hover {
+.link:hover {
   border-color: black;
+}
+
+.link:hover .label {
+  display: none;
+}
+
+.link:hover .emoji {
+  display: inline-block;
+}
+
+.emoji {
+  display: none;
 }
 
 .inactive {
   min-width: 18px;
   box-sizing: border-box;
   margin-right: 5px;
-}
-
-.row {
-  position: relative;
-}
-
-.link {
-  position: absolute;
-  left: -20px;
-  top: 0px;
-  padding: 2px 5px 7px;
-  text-decoration: none;
-  color: grey;
-}
-
-.link:hover {
-  color: black;
-}
-
-.link > span {
-  visibility: hidden;
-}
-
-.row:hover .link > span {
-  visibility: visible;
 }

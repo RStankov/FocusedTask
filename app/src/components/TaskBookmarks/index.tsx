@@ -41,7 +41,6 @@ export default function TaskBookmarks() {
             index={i}
             key={bookmark.id}
             as={Stack.Row}
-            className={styles.row}
             onClick={(e: any) => {
               if (e.metaKey && isUrl(bookmark)) {
                 e.preventDefault();
@@ -50,15 +49,18 @@ export default function TaskBookmarks() {
             }}>
             <Sortable.Handle />
             {isUrl(bookmark) ? (
-              <ExternalLink href={bookmark.uri} className={styles.number}>
-                {i < 9 ? i + 1 : i === bookmarks.length - 1 ? 0 : ''}
+              <ExternalLink href={bookmark.uri} className={styles.link}>
+                <span className={styles.label}>
+                  {i < 9 ? i + 1 : i === bookmarks.length - 1 ? 0 : ''}
+                </span>
+                <Emoji emoji="↗️" className={styles.emoji} />
               </ExternalLink>
             ) : (
               <div className={styles.inactive} />
             )}
             <InputText
               type="text"
-              id={`bookmark-${i}`}
+              id={'bookmark-' + i}
               autoFocus={!!bookmark.autoFocus}
               value={bookmark.uri}
               placeholder="https://example.com"
@@ -98,11 +100,6 @@ export default function TaskBookmarks() {
               }}
               onBlur={() => dispatch(removeBookmarkAutoFocus(bookmark))}
             />
-            {isUrl(bookmark) && (
-              <ExternalLink href={bookmark.uri} className={styles.link}>
-                <Emoji emoji="↗️" />
-              </ExternalLink>
-            )}
           </Sortable.Item>
         ))}
       </Sortable.List>
