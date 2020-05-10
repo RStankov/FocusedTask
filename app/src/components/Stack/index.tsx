@@ -12,25 +12,23 @@ interface IProps {
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-function Stack({
-  className,
-  direction,
-  align,
-  justify,
-  gap,
-  ...props
-}: IProps) {
-  const combinedClassName = classNames(
-    className,
-    styles.stack,
-    styles[`align-${align}`],
-    styles[`direction-${direction}`],
-    styles[`justify-${justify}`],
-    gap && styles[`gap-${direction}-${gap}`],
-  );
+const Stack = React.forwardRef(
+  (
+    { className, direction, align, justify, gap, ...props }: IProps,
+    ref: any,
+  ) => {
+    const combinedClassName = classNames(
+      className,
+      styles.stack,
+      styles[`align-${align}`],
+      styles[`direction-${direction}`],
+      styles[`justify-${justify}`],
+      gap && styles[`gap-${direction}-${gap}`],
+    );
 
-  return <div className={combinedClassName} {...props} />;
-}
+    return <div ref={ref} className={combinedClassName} {...props} />;
+  },
+);
 
 type ISubProps = {
   children: React.ReactNode;
@@ -42,12 +40,24 @@ type ISubProps = {
 };
 
 export default {
-  Column: (props: ISubProps) => (
-    <Stack direction="column" align="start" justify="center" {...props} />
-  ),
-  Row: (props: ISubProps) => (
-    <Stack direction="row" align="center" justify="start" {...props} />
-  ),
+  Column: React.forwardRef((props: ISubProps, ref) => (
+    <Stack
+      direction="column"
+      align="start"
+      justify="center"
+      ref={ref}
+      {...props}
+    />
+  )),
+  Row: React.forwardRef((props: ISubProps, ref) => (
+    <Stack
+      direction="row"
+      align="center"
+      justify="start"
+      ref={ref}
+      {...props}
+    />
+  )),
   Expand: ({
     className,
     ...props
