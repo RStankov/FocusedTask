@@ -55,8 +55,9 @@ export function move<T extends IWithId>(collection: T[], item: T, by: number) {
   }
 
   const temp = collection[index];
-  collection[index] = collection[newIndex];
-  collection[newIndex] = temp;
+
+  collection.splice(index, 1);
+  collection.splice(newIndex, 0, temp);
 }
 
 export function paste<T extends IWithId>(
