@@ -108,7 +108,11 @@ export default function TaskBookmarks() {
 }
 
 function isUrl(bookmark: IBookmark) {
-  return bookmark.uri && !!bookmark.uri.match(/https?:\/\/.+\..+/);
+  return (
+    bookmark.uri &&
+    (!!bookmark.uri.match(/https?:\/\/.+\..+/) ||
+      !!bookmark.uri.match(/https?:\/\/localhost.*/))
+  );
 }
 
 function focusOnBookmarkWithIndex(index: number) {
