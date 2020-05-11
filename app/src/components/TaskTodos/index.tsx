@@ -27,6 +27,7 @@ export default function TaskTodos() {
   return (
     <Stack.Column>
       <Sortable.List
+        useDragHandle={true}
         onSort={({ oldIndex, newIndex }: any) =>
           dispatch(
             moveTodo({

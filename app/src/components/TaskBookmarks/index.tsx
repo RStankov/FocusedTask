@@ -28,6 +28,7 @@ export default function TaskBookmarks() {
   return (
     <Stack.Column gap="xs">
       <Sortable.List
+        useDragHandle={true}
         onSort={({ oldIndex, newIndex }: any) =>
           dispatch(
             moveBookmark({
