@@ -3,7 +3,9 @@ import { useRef, useEffect } from 'react';
 interface IKeyDownEvent {
   target: Element;
   metaKey: boolean;
+  shiftKey: boolean;
   keyCode: number;
+  preventDefault: () => void;
 }
 
 type IHandle = (e: IKeyDownEvent) => void;
