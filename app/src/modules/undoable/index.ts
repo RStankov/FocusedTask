@@ -5,6 +5,8 @@ interface IAction {
   payload?: any;
 }
 
+const MAX_PAST_SIZE = 100;
+
 const SKIP_ACTIONS = {
   'task/updateTodoText': 'task/newTodo',
   'task/updateBookmark': 'task/newBookmark',
@@ -68,7 +70,12 @@ export default function undoable<T extends IReducer>(reducer: T) {
 
         return {
           pastAction: action.type,
-          past: [...past, present],
+          past: [
+            ...(past.length > MAX_PAST_SIZE
+              ? past.slice(1, MAX_PAST_SIZE)
+              : past),
+            present,
+          ],
           present: newPresent,
           future: [],
         };
