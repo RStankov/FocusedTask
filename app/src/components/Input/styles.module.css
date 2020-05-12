@@ -1,0 +1,10 @@
+.text {
+  padding-left: 5px;
+  padding-top: 6px;
+  padding-bottom: 7px;
+  cursor: pointer;
+  flex: 1;
+  white-space: pre;
+  font-size: 16px;
+  line-height: 1.2;
+}

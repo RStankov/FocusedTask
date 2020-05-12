@@ -87,23 +87,15 @@ export const slice = createSlice({
       todo.ident = Math.max(0, todo.ident + payload.by);
     },
     updateTodoText: (state, { payload }) => {
-      const todo = find(state.todos, payload);
-      todo.text = payload.text || '';
+      if (payload.text) {
+        const todo = find(state.todos, payload);
+        todo.text = payload.text;
+      } else {
+        state.todos = state.todos.filter(t => t.id !== payload.id);
+      }
     },
     removeTodo: (state, { payload }) => {
       state.todos = state.todos.filter(todo => todo.id !== payload.id);
-    },
-    removeTodoAutoFocus: (state, { payload }) => {
-      const todo = find(state.todos, payload);
-      if (!todo) {
-        return;
-      }
-
-      if (todo.text) {
-        Reflect.deleteProperty(todo, 'autoFocus');
-      } else {
-        state.todos = state.todos.filter(t => t.id !== todo.id);
-      }
     },
     moveTodo: (state, { payload }) => {
       move(state.todos, payload, payload.by);
@@ -126,19 +118,11 @@ export const slice = createSlice({
       );
     },
     updateBookmark: (state, { payload }) => {
-      const bookmark = find(state.bookmarks, payload);
-      bookmark.uri = payload.uri || '';
-    },
-    removeBookmarkAutoFocus: (state, { payload }) => {
-      const bookmark = find(state.bookmarks, payload);
-      if (!bookmark) {
-        return;
-      }
-
-      if (bookmark.uri) {
-        Reflect.deleteProperty(bookmark, 'autoFocus');
+      if (payload.uri) {
+        const bookmark = find(state.bookmarks, payload);
+        bookmark.uri = payload.uri;
       } else {
-        state.bookmarks = state.bookmarks.filter(b => b.id !== bookmark.id);
+        state.bookmarks = state.bookmarks.filter(b => b.id !== payload.id);
       }
     },
     removeBookmark: (state, { payload }) => {
@@ -173,29 +157,33 @@ export const {
   updateTodoIdent,
   removeTodo,
   moveTodo,
-  removeTodoAutoFocus,
   newBookmark,
   updateBookmark,
   removeBookmark,
   pasteBookmarks,
   moveBookmark,
-  removeBookmarkAutoFocus,
 } = slice.actions;
 
 export default slice.reducer;
 
-export function getTitle(store: { task: types.ITask }) {
-  return store.task.title;
+interface IStore {
+  task: {
+    present: types.ITask;
+  };
 }
 
-export function getTodos(store: { task: types.ITask }) {
-  return store.task.todos;
+export function getTitle(store: IStore) {
+  return store.task.present.title;
 }
 
-export function getBookmarks(store: { task: types.ITask }) {
-  return store.task.bookmarks;
+export function getTodos(store: IStore) {
+  return store.task.present.todos;
 }
 
-export function getNote(store: { task: types.ITask }) {
-  return store.task.note;
+export function getBookmarks(store: IStore) {
+  return store.task.present.bookmarks;
+}
+
+export function getNote(store: IStore) {
+  return store.task.present.note;
 }

@@ -3,10 +3,9 @@ import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
 import { updateTaskTitle, getTitle } from 'modules/task';
-import InputText from 'components/InputText';
+import Input from 'components/Input';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
-import keyCodes from 'utils/keyCodes';
 
 export default function TaskTitle() {
   const title = useSelector(getTitle);
@@ -15,16 +14,10 @@ export default function TaskTitle() {
   return (
     <Stack.Row gap="xs">
       <Emoji emoji="🎯" size="xxl" />
-      <InputText
-        type="text"
+      <Input
         className={styles.title}
         value={title}
-        onChange={e => dispatch(updateTaskTitle(e.target.value))}
-        onKeyDown={e => {
-          if (e.keyCode === keyCodes.enter) {
-            e.target.blur();
-          }
-        }}
+        onChange={value => dispatch(updateTaskTitle(value))}
       />
     </Stack.Row>
   );

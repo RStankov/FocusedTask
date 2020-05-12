@@ -9,7 +9,6 @@ export function createTodo({
     id: uniqueId('todo_') + +new Date(),
     text: text || '',
     isCompleted: false,
-    autoFocus: true,
     autoCompleted: false,
     ident: after ? after.ident : 0,
   };
@@ -18,7 +17,6 @@ export function createTodo({
 export function createBookmark({ uri = '' }: { uri?: string } = {}): IBookmark {
   return {
     id: uniqueId('bookmark_') + +new Date(),
-    autoFocus: true,
     uri,
   };
 }

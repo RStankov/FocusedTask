@@ -1,7 +1,6 @@
 import React from 'react';
 import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
-import InputText from 'components/InputText';
 import styles from './styles.module.css';
 import ExternalLink from 'components/ExternalLink';
 import keyCodes from 'utils/keyCodes';
@@ -10,6 +9,7 @@ import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 import { openURI } from 'utils/electron';
 import Sortable from 'components/Sortable';
+import Input from 'components/Input';
 
 import {
   updateBookmark,
@@ -17,7 +17,6 @@ import {
   newBookmark,
   pasteBookmarks,
   moveBookmark,
-  removeBookmarkAutoFocus,
   getBookmarks,
   IBookmark,
 } from 'modules/task';
@@ -60,26 +59,14 @@ export default function TaskBookmarks() {
             ) : (
               <div className={styles.inactive} />
             )}
-            <InputText
-              type="text"
+            <Input
               id={'bookmark-' + i}
-              autoFocus={!!bookmark.autoFocus}
               value={bookmark.uri}
               placeholder="https://example.com"
-              onChange={e =>
-                dispatch(
-                  updateBookmark({ id: bookmark.id, uri: e.target.value }),
-                )
+              onChange={value =>
+                dispatch(updateBookmark({ id: bookmark.id, uri: value }))
               }
-              onPaste={e => {
-                const clipboard = e.clipboardData.getData('Text');
-
-                if (clipboard.indexOf('\n') === -1) {
-                  return;
-                }
-
-                e.preventDefault();
-
+              onPaste={clipboard => {
                 dispatch(pasteBookmarks({ id: bookmark.id, clipboard }));
               }}
               onKeyDown={e => {
@@ -100,7 +87,6 @@ export default function TaskBookmarks() {
                   dispatch(moveBookmark({ id: bookmark.id, by: +1 }));
                 }
               }}
-              onBlur={() => dispatch(removeBookmarkAutoFocus(bookmark))}
             />
           </Sortable.Item>
         ))}

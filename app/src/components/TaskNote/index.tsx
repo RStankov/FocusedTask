@@ -1,5 +1,5 @@
 import React from 'react';
-import InputTextarea from 'components/InputTextarea';
+import Input from 'components/Input';
 import { updateNote, getNote } from 'modules/task';
 import styles from './styles.module.css';
 import useSelector from 'hooks/useSelector';
@@ -10,11 +10,12 @@ export default function TaskNote() {
   const dispatch = useDispatch();
 
   return (
-    <InputTextarea
+    <Input
       id="note-text"
       className={styles.textarea}
       value={note}
-      onChange={e => dispatch(updateNote(e.target.value))}
+      multiline={true}
+      onChange={value => dispatch(updateNote(value))}
     />
   );
 }

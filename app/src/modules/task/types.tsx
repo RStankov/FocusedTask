@@ -3,14 +3,12 @@ export interface ITodo {
   text: string;
   isCompleted: boolean;
   ident: number;
-  autoFocus?: boolean;
   autoCompleted: boolean;
 }
 
 export interface IBookmark {
   id: string;
   uri: string;
-  autoFocus?: boolean;
 }
 
 export interface ITask {
