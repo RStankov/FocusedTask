@@ -4,13 +4,15 @@ import { throttle } from 'lodash';
 
 import task from './task';
 import selectedScreen from './selectedScreen';
+import undoable from './undoable';
 
 const store = configureStore({
   reducer: {
-    task,
+    task: undoable(task),
     selectedScreen,
   },
-  preloadedState: storage.get('reduxStore', {}),
+  // TODO(rstankov): Restore when format is restored
+  // preloadedState: storage.get('reduxStore', {}),
 });
 
 store.subscribe(

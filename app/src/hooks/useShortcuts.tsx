@@ -6,6 +6,7 @@ import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 
 import { newTodo, newBookmark, getBookmarks } from 'modules/task';
+import { undo, redo } from 'modules/undoable';
 
 export default function useShortcuts() {
   const dispatch = useDispatch();
@@ -40,6 +41,17 @@ export default function useShortcuts() {
       openURI(bookmarks[bookmarks.length - 1]?.uri);
     } else if (e.keyCode === keyCodes.esc && e.target.tagName !== 'INPUT') {
       hideApp();
+    } else if (e.metaKey && e.keyCode === keyCodes.z) {
+      if (
+        e.target.tagName.toUpperCase() !== 'TEXTAREA' &&
+        e.target.tagName.toUpperCase() !== 'INPUT'
+      ) {
+        if (e.shiftKey) {
+          dispatch(redo());
+        } else {
+          dispatch(undo());
+        }
+      }
     }
   });
 }
