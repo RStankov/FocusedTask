@@ -176,7 +176,6 @@ export function getGlobalShortcutKey() {
   if (!isElectron) {
     return;
   }
-  console.log('call');
 
   return electron.remote.getGlobal('globalShortcutKey');
 }
