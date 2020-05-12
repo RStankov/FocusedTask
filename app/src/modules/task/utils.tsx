@@ -6,7 +6,7 @@ export function createTodo({
   text = '',
 }: { after?: { ident: number }; text?: string } = {}): ITodo {
   return {
-    id: uniqueId('todo_') + new Date(),
+    id: uniqueId('todo_') + +new Date(),
     text: text || '',
     isCompleted: false,
     autoFocus: true,
@@ -17,7 +17,7 @@ export function createTodo({
 
 export function createBookmark({ uri = '' }: { uri?: string } = {}): IBookmark {
   return {
-    id: uniqueId('bookmark_') + new Date(),
+    id: uniqueId('bookmark_') + +new Date(),
     autoFocus: true,
     uri,
   };
