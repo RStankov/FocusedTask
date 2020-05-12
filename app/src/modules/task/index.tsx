@@ -183,3 +183,19 @@ export const {
 } = slice.actions;
 
 export default slice.reducer;
+
+export function getTitle(store: { task: types.ITask }) {
+  return store.task.title;
+}
+
+export function getTodos(store: { task: types.ITask }) {
+  return store.task.todos;
+}
+
+export function getBookmarks(store: { task: types.ITask }) {
+  return store.task.bookmarks;
+}
+
+export function getNote(store: { task: types.ITask }) {
+  return store.task.note;
+}

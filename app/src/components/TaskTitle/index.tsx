@@ -2,14 +2,14 @@ import React from 'react';
 import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
-import { updateTaskTitle } from 'modules/task';
+import { updateTaskTitle, getTitle } from 'modules/task';
 import InputText from 'components/InputText';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 import keyCodes from 'utils/keyCodes';
 
 export default function TaskTitle() {
-  const title = useSelector(store => store.task.title);
+  const title = useSelector(getTitle);
   const dispatch = useDispatch();
 
   return (

@@ -5,11 +5,11 @@ import { openURI, hideApp } from 'utils/electron';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 
-import { newTodo, newBookmark } from 'modules/task';
+import { newTodo, newBookmark, getBookmarks } from 'modules/task';
 
 export default function useShortcuts() {
   const dispatch = useDispatch();
-  const bookmarks = useSelector(store => store.task.bookmarks);
+  const bookmarks = useSelector(getBookmarks);
 
   useEventListener('keydown', e => {
     if (e.metaKey && e.keyCode === keyCodes.t) {

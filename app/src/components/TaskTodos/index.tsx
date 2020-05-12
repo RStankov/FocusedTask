@@ -10,6 +10,7 @@ import useDispatch from 'hooks/useDispatch';
 import Sortable from 'components/Sortable';
 
 import {
+  getTodos,
   newTodo,
   pasteTasks,
   toggleTodo,
@@ -21,7 +22,7 @@ import {
 } from 'modules/task';
 
 export default function TaskTodos() {
-  const todos = useSelector(store => store.task.todos);
+  const todos = useSelector(getTodos);
   const dispatch = useDispatch();
 
   return (

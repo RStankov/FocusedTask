@@ -1,6 +1,5 @@
 .box {
   padding-top: 3px;
-  padding-right: 5px;
 }
 
 .checkbox {
@@ -8,7 +7,7 @@
   border-radius: 3px;
   width: 17px;
   height: 17px;
-  margin-right: px;
+  margin-right: 4px;
   margin-top: 4px;
   margin-bottom: 5px;
   box-sizing: border-box;

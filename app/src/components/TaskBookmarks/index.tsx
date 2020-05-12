@@ -18,11 +18,12 @@ import {
   pasteBookmarks,
   moveBookmark,
   removeBookmarkAutoFocus,
+  getBookmarks,
   IBookmark,
 } from 'modules/task';
 
 export default function TaskBookmarks() {
-  const bookmarks = useSelector(store => store.task.bookmarks);
+  const bookmarks = useSelector(getBookmarks);
   const dispatch = useDispatch();
 
   return (
