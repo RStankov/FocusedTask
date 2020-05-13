@@ -4,6 +4,7 @@
 
 ### Build (Next)
 
+* __feature__ Add undo/redo (@rstankov)
 * __bug fix__ Allow localhost to be used for bookmarks (@rstankov)
 * __feature__ Drag & drop sorting of todos and bookmarks (@rstankov)
 * __feature__ Allow global shortcut to be configured (@rstankov)

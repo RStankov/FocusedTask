@@ -12,7 +12,7 @@ const store = configureStore({
     selectedScreen,
   },
   // TODO(rstankov): Restore when format is restored
-  // preloadedState: storage.get('reduxStore', {}),
+  preloadedState: storage.get('reduxStore', {}),
 });
 
 store.subscribe(

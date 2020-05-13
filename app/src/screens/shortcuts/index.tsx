@@ -27,6 +27,12 @@ export default function Shortcuts() {
             <Shortcut description="Focus on note">
               <Cmd /> + <Key>n</Key>
             </Shortcut>
+            <Shortcut description="Undo">
+              <Cmd /> + <Key>z</Key>
+            </Shortcut>
+            <Shortcut description="Redo">
+              <Cmd /> + <Shift /> + <Key>z</Key>
+            </Shortcut>
             <Shortcut description="Open last bookmark">
               <Cmd /> + <Key>0</Key>
             </Shortcut>
@@ -129,6 +135,10 @@ function Shortcut({
 
 function Cmd() {
   return <Key>⌘ Cmd</Key>;
+}
+
+function Shift() {
+  return <Key>Shift</Key>;
 }
 
 function Key({ children }: { children: React.ReactNode }) {
