@@ -12,7 +12,7 @@ const mb = menubar({
       protocol: 'file:',
       slashes: true,
     }),
-  icon: path.join(__dirname, 'assets/MenuBarIcon.png'),
+  icon: path.join(__dirname, 'assets/MenuBarIconTemplate.png'),
   browserWindow: {
     width: 500,
     height: 600,

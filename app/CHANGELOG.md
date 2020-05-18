@@ -4,6 +4,7 @@
 
 ### Build (Next)
 
+* __feature__ Support Dark Appearance (@rstankov)
 * __feature__ Add undo/redo (@rstankov)
 * __bug fix__ Allow localhost to be used for bookmarks (@rstankov)
 * __feature__ Drag & drop sorting of todos and bookmarks (@rstankov)
