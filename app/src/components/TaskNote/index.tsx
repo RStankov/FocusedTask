@@ -15,6 +15,7 @@ export default function TaskNote() {
       className={styles.textarea}
       value={note}
       multiline={true}
+      autoFocus={false}
       onChange={value => dispatch(updateNote(value))}
     />
   );

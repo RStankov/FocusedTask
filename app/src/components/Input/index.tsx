@@ -13,10 +13,15 @@ interface IProps {
   className?: string;
   multiline?: boolean;
   placeholder?: string;
+  autoFocus?: boolean;
 }
 
-export default function Input({ onChange, ...props }: IProps) {
-  const [isEditing, setIsEditing] = React.useState(!props.value);
+export default function Input({
+  onChange,
+  autoFocus = true,
+  ...props
+}: IProps) {
+  const [isEditing, setIsEditing] = React.useState(autoFocus && !props.value);
 
   if (!isEditing) {
     return (
