@@ -1,38 +1,56 @@
 import storage from 'utils/storage';
 
-const VERSION = 2;
+export const VERSION = 2;
 
-export function preloadState() {
+export function preloadStore() {
   const version = storage.get('reduxStoreVersion', 1);
-  const state = storage.get('reduxStore', {});
+  const store = storage.get('reduxStore', {});
 
+  return convertStore(version, store);
+}
+
+export function saveStore(store: any) {
+  storage.set('reduxStoreVersion', VERSION);
+  storage.set('reduxStore', store);
+}
+
+export function exportStore(store: any) {
+  return JSON.stringify({
+    version: VERSION,
+    date: new Date(),
+    store,
+  });
+}
+
+export function importStore(data: any) {
+  const { version, store } = JSON.parse(data);
+
+  saveStore(convertStore(version, store));
+}
+
+function convertStore(version: number, store: any) {
   if (version === VERSION) {
-    return state;
+    return store;
   }
 
   const convert = STATE_CONVERT[version];
 
   if (convert) {
-    return convert(state);
+    return convert(store);
   }
 
   return {};
 }
 
-export function storeState(state: any) {
-  storage.set('reduxStoreVersion', VERSION);
-  storage.set('reduxStore', state);
-}
-
 const STATE_CONVERT = {
-  1: (state: any) => {
+  1: (store: any) => {
     return {
-      selectedScreen: state.selectedScreen || 'task',
+      selectedScreen: store.selectedScreen || 'task',
       task: {
         future: [],
         past: [],
         lastAction: null,
-        present: state.task || {},
+        present: store.task || {},
       },
     };
   },

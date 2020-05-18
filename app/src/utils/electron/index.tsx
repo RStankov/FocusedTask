@@ -1,5 +1,6 @@
 import electron from './shim';
 import { IStoreState } from 'modules';
+import { exportStore, importStore } from 'utils/stateRestore';
 
 export const isElectron = !!electron;
 
@@ -50,8 +51,6 @@ export function resizeBasedOnContent() {
 
 const fs = window.require && window.require('fs').promises;
 
-const FILE_VERSION = 1;
-
 export async function writeStoreToFile(store: IStoreState) {
   if (!isElectron) {
     return;
@@ -60,7 +59,7 @@ export async function writeStoreToFile(store: IStoreState) {
   const { filePath } = await electron.remote.dialog.showSaveDialog({
     defaultPath:
       '~/Desktop/' +
-      store.task.title.toLocaleLowerCase().replace(/\W+/g, '_') +
+      store.task.present.title.toLocaleLowerCase().replace(/\W+/g, '_') +
       '.json',
   });
 
@@ -68,14 +67,8 @@ export async function writeStoreToFile(store: IStoreState) {
     return;
   }
 
-  const content = JSON.stringify({
-    version: FILE_VERSION,
-    date: new Date(),
-    store,
-  });
-
   try {
-    await fs.writeFile(filePath, content);
+    await fs.writeFile(filePath, exportStore(store));
   } catch (e) {
     alert(`An error occurred while writing the file: ${e.message}`);
   }
@@ -100,14 +93,9 @@ export async function readStoreFromFile() {
   try {
     const data = await fs.readFile(filePath, 'utf-8');
 
-    const restore = JSON.parse(data);
+    importStore(data);
 
-    if (restore.version !== FILE_VERSION) {
-      alert(`Unsupported file version: ${restore.version}`);
-      return;
-    }
-
-    return restore.store;
+    window.location.reload();
   } catch (e) {
     alert(`An error occurred while reading the file: ${e.message}`);
   }

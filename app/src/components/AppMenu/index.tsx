@@ -3,7 +3,7 @@ import store from 'modules';
 import { ReactComponent as PreferencesIcon } from 'icons/preferences.svg';
 import styles from './styles.module.css';
 import { openShortcuts, openChangelog } from 'modules/selectedScreen';
-import { set, removeCompletedTodos, reset } from 'modules/task';
+import { removeCompletedTodos, reset } from 'modules/task';
 
 import {
   isElectron,
@@ -36,11 +36,7 @@ function openAppMenu() {
     {
       label: 'Task Open...',
       click: async () => {
-        const newStore = await readStoreFromFile();
-
-        if (newStore) {
-          store.dispatch(set(newStore.task));
-        }
+        await readStoreFromFile();
       },
     },
     {

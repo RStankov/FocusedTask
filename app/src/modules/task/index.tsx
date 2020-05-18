@@ -136,16 +136,11 @@ export const slice = createSlice({
     updateNote: (state, { payload }) => {
       state.note = payload;
     },
-    set: (_state, { payload }) => ({
-      ...INITIAL_STATE,
-      ...payload,
-    }),
     reset: () => INITIAL_STATE,
   },
 });
 
 export const {
-  set,
   reset,
   updateTaskTitle,
   removeCompletedTodos,
