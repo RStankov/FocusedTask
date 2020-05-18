@@ -1,4 +1,11 @@
-type IReducer = (a: any, b: any) => any;
+type IReducer<T> = (state: T, action: any) => T;
+
+type IState<T> = {
+  lastAction: string | null;
+  past: T[];
+  present: T;
+  future: T[];
+};
 
 interface IAction {
   type: string;
@@ -12,19 +19,19 @@ const SKIP_ACTIONS = {
   'task/updateBookmark': 'task/newBookmark',
 } as any;
 
-export default function undoable<T extends IReducer>(reducer: T) {
+export default function undoable<T>(reducer: IReducer<T>) {
   const initialState = {
     lastAction: null,
     past: [],
-    present: reducer(undefined, {}),
+    present: reducer(undefined as any, {}),
     future: [],
-  };
+  } as IState<T>;
 
-  return function(state = initialState, action: IAction): any {
+  return function(state = initialState, action: IAction): IState<T> {
     const { past, present, future } = state;
 
     switch (action.type) {
-      case 'undo':
+      case 'UNDO':
         if (past.length === 0) {
           return state;
         }
@@ -32,12 +39,12 @@ export default function undoable<T extends IReducer>(reducer: T) {
         const previous = past[past.length - 1];
         const newPast = past.slice(0, past.length - 1);
         return {
-          lastAction: null,
+          lastAction: action.type,
           past: newPast,
           present: previous,
           future: [present, ...future],
         };
-      case 'redo':
+      case 'REDO':
         if (future.length === 0) {
           return state;
         }
@@ -45,7 +52,7 @@ export default function undoable<T extends IReducer>(reducer: T) {
         const next = future[0];
         const newFuture = future.slice(1);
         return {
-          lastAction: 'redo',
+          lastAction: action.type,
           past: [...past, present],
           present: next,
           future: newFuture,
@@ -61,10 +68,10 @@ export default function undoable<T extends IReducer>(reducer: T) {
           SKIP_ACTIONS[action.type] === state.lastAction
         ) {
           return {
+            lastAction: action.type,
             past,
             present: newPresent,
             future,
-            lastAction: action.type,
           };
         }
 
@@ -84,9 +91,9 @@ export default function undoable<T extends IReducer>(reducer: T) {
 }
 
 export function redo() {
-  return { type: 'redo' };
+  return { type: 'REDO' };
 }
 
 export function undo() {
-  return { type: 'undo' };
+  return { type: 'UNDO' };
 }
