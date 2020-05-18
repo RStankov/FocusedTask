@@ -14,7 +14,7 @@ const SKIP_ACTIONS = {
 
 export default function undoable<T extends IReducer>(reducer: T) {
   const initialState = {
-    pastAction: null,
+    lastAction: null,
     past: [],
     present: reducer(undefined, {}),
     future: [],
@@ -32,7 +32,7 @@ export default function undoable<T extends IReducer>(reducer: T) {
         const previous = past[past.length - 1];
         const newPast = past.slice(0, past.length - 1);
         return {
-          pastAction: '',
+          lastAction: null,
           past: newPast,
           present: previous,
           future: [present, ...future],
@@ -45,7 +45,7 @@ export default function undoable<T extends IReducer>(reducer: T) {
         const next = future[0];
         const newFuture = future.slice(1);
         return {
-          pastAction: 'redo',
+          lastAction: 'redo',
           past: [...past, present],
           present: next,
           future: newFuture,
@@ -58,18 +58,18 @@ export default function undoable<T extends IReducer>(reducer: T) {
 
         if (
           SKIP_ACTIONS[action.type] &&
-          SKIP_ACTIONS[action.type] === state.pastAction
+          SKIP_ACTIONS[action.type] === state.lastAction
         ) {
           return {
             past,
             present: newPresent,
             future,
-            pastAction: action.type,
+            lastAction: action.type,
           };
         }
 
         return {
-          pastAction: action.type,
+          lastAction: action.type,
           past: [
             ...(past.length > MAX_PAST_SIZE
               ? past.slice(1, MAX_PAST_SIZE)
