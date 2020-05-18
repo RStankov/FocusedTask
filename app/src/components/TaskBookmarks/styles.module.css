@@ -1,17 +1,18 @@
 .link {
-  border: 1px solid silver;
-  border-radius: 3px;
-  width: 18px;
-  height: 17px;
-  margin-right: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-size: 10px;
-  color: inherit;
-  text-decoration: none;
-  display: inline-flex;
   align-items: center;
+  border-radius: 3px;
+  border: 1px solid silver;
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 10px;
+  height: 17px;
   justify-content: center;
+  margin-right: 5px;
+  margin-top: 7px;
+  text-decoration: none;
+  width: 18px;
 }
 
 .link:hover {
@@ -34,4 +35,8 @@
   min-width: 18px;
   box-sizing: border-box;
   margin-right: 5px;
+}
+
+.handle {
+  margin-top: 7px;
 }

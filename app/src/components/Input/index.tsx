@@ -26,7 +26,11 @@ export default function Input({
   if (!isEditing) {
     return (
       <div
-        className={classNames(styles.text, props.className)}
+        className={classNames(
+          styles.text,
+          props.multiline && styles.multiline,
+          props.className,
+        )}
         onClick={() => setIsEditing(true)}
         id={props.id}>
         {props.value}

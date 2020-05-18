@@ -40,6 +40,10 @@
   justify-content: flex-end;
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 .gap-row-xs > * + * {
   margin-left: 5px;
 }

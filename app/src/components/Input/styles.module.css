@@ -1,10 +1,33 @@
 .text {
-  padding-left: 5px;
-  padding-top: 6px;
-  padding-bottom: 7px;
+  padding: 6px;
   cursor: pointer;
-  flex: 1;
-  white-space: pre;
   font-size: 16px;
   line-height: 1.2;
+  flex: 1 1 100%;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.multiline {
+  white-space: pre;
+}
+
+.textarea {
+  width: 100%;
+  padding: 5px;
+  background: none;
+  font-size: 16px;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  resize: none !important;
+  outline: none;
+  height: 19px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.textarea:focus {
+  background: white;
+  border: 1px solid silver;
 }

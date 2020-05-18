@@ -40,6 +40,7 @@ export default function TaskBookmarks() {
         {bookmarks.map((bookmark, i) => (
           <Sortable.Item
             index={i}
+            align="start"
             key={bookmark.id}
             as={Stack.Row}
             onClick={(e: any) => {
@@ -48,7 +49,7 @@ export default function TaskBookmarks() {
                 openURI(bookmark.uri);
               }
             }}>
-            <Sortable.Handle />
+            <Sortable.Handle className={styles.handle} />
             {isUrl(bookmark) ? (
               <ExternalLink href={bookmark.uri} className={styles.link}>
                 <span className={styles.label}>
