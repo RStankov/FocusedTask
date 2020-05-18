@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import storage from 'utils/storage';
 import { throttle } from 'lodash';
+import { preloadState, storeState } from 'utils/stateRestore';
 
 import task from './task';
 import selectedScreen from './selectedScreen';
@@ -11,15 +11,10 @@ const store = configureStore({
     task: undoable(task),
     selectedScreen,
   },
-  // TODO(rstankov): Restore when format is restored
-  preloadedState: storage.get('reduxStore', {}),
+  preloadedState: preloadState(),
 });
 
-store.subscribe(
-  throttle(() => {
-    storage.set('reduxStore', store.getState());
-  }),
-);
+store.subscribe(throttle(() => storeState(store.getState())));
 
 export type IStoreState = ReturnType<typeof store.getState>;
 
