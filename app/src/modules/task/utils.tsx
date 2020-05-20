@@ -66,7 +66,9 @@ export function paste<T extends IWithId>(
 ) {
   const [first, ...rest] = payload.clipboard
     .split('\n')
-    .map(s => s.replace(/^[\W]*(-|\*) (\[( |x)\] )?/, ''));
+    .map(s => s.replace(/^[\W]*(-|\*) (\[( |x)\] )?/, ''))
+    .map(s => s.trim())
+    .filter(s => !!s);
 
   const item = find(collection, payload);
 
