@@ -10,15 +10,17 @@ import useShortcuts from 'hooks/useShortcuts';
 import useDispatch from 'hooks/useDispatch';
 import AppMenu from 'components/AppMenu';
 import useDragAndDropFiles from 'hooks/useDragAndDropFiles';
+import DragFileMessage from './DragFileMessage';
 
 export default function Task() {
   const dispatch = useDispatch();
 
   useShortcuts();
-  useDragAndDropFiles();
+  const isDragingFile = useDragAndDropFiles();
 
   return (
     <div>
+      {isDragingFile && <DragFileMessage />}
       <AppMenu />
       <Stack.Column gap="m">
         <TaskTitle />
