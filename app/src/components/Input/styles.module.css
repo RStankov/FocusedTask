@@ -1,11 +1,19 @@
 .text {
-  padding: 6px;
+  padding: 5px;
   cursor: pointer;
   font-size: 16px;
   line-height: 1.2;
   flex: 1 1 100%;
   word-wrap: break-word;
   word-break: break-all;
+  border: 1px solid transparent;
+  min-height: 19px;
+}
+
+.text:hover {
+  background: white;
+  border: 1px solid silver;
+  border-radius: 5px;
 }
 
 .multiline {
@@ -18,16 +26,12 @@
   background: none;
   font-size: 16px;
   line-height: 1.2;
-  border: 1px solid transparent;
+  border: 1px solid silver;
   border-radius: 5px;
   resize: none !important;
   outline: none;
   height: 19px;
   word-wrap: break-word;
   word-break: break-all;
-}
-
-.textarea:focus {
   background: white;
-  border: 1px solid silver;
 }
