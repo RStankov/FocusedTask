@@ -4,9 +4,13 @@
 
 ### Build (Next)
 
+* __feature__ Drag & Drop file to bookmark (@rstankov)
 * __feature__ Support Dark Appearance (@rstankov)
 * __feature__ Add undo/redo (@rstankov)
 * __bug fix__ Allow localhost to be used for bookmarks (@rstankov)
+
+### Build 3 (2020/05/12)
+
 * __feature__ Drag & drop sorting of todos and bookmarks (@rstankov)
 * __feature__ Allow global shortcut to be configured (@rstankov)
 * __feature__ Remember window bounds (@rstankov)

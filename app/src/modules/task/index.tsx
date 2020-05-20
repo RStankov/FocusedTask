@@ -109,6 +109,16 @@ export const slice = createSlice({
     ) => {
       insertAfter(state.bookmarks, payload.after, createBookmark());
     },
+    newBookmarkBatch: (
+      state,
+      { payload = { uris: [] } }: IOptionalPayload<{ uris: string[] }>,
+    ) => {
+      payload.uris.forEach(uri => {
+        if (uri) {
+          insertAfter(state.bookmarks, undefined, createBookmark({ uri }));
+        }
+      });
+    },
     pasteBookmarks: (state, { payload }) => {
       paste(
         state.bookmarks,
@@ -153,6 +163,7 @@ export const {
   removeTodo,
   moveTodo,
   newBookmark,
+  newBookmarkBatch,
   updateBookmark,
   removeBookmark,
   pasteBookmarks,

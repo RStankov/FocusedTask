@@ -1,6 +1,7 @@
 import electron from './shim';
 import { IStoreState } from 'modules';
 import { exportStore, importStore } from 'utils/stateRestore';
+import isURI, { isFilePathUri } from 'utils/isURI';
 
 export const isElectron = !!electron;
 
@@ -129,11 +130,15 @@ export function openURI(uri: string) {
     return;
   }
 
-  if (!uri) {
+  if (!isURI(uri)) {
     return;
   }
 
-  electron.remote.shell.openExternal(uri);
+  if (isFilePathUri(uri)) {
+    electron.remote.shell.openItem(uri);
+  } else {
+    electron.remote.shell.openExternal(uri);
+  }
 }
 
 export async function confirm({

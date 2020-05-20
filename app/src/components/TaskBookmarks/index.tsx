@@ -10,6 +10,7 @@ import useDispatch from 'hooks/useDispatch';
 import { openURI } from 'utils/electron';
 import Sortable from 'components/Sortable';
 import Input from 'components/Input';
+import isURI from 'utils/isURI';
 
 import {
   updateBookmark,
@@ -18,7 +19,6 @@ import {
   pasteBookmarks,
   moveBookmark,
   getBookmarks,
-  IBookmark,
 } from 'modules/task';
 
 export default function TaskBookmarks() {
@@ -44,13 +44,13 @@ export default function TaskBookmarks() {
             key={bookmark.id}
             as={Stack.Row}
             onClick={(e: any) => {
-              if (e.metaKey && isUrl(bookmark)) {
+              if (e.metaKey && isURI(bookmark.uri)) {
                 e.preventDefault();
                 openURI(bookmark.uri);
               }
             }}>
             <Sortable.Handle className={styles.handle} />
-            {isUrl(bookmark) ? (
+            {isURI(bookmark.uri) ? (
               <ExternalLink href={bookmark.uri} className={styles.link}>
                 <span className={styles.label}>
                   {i < 9 ? i + 1 : i === bookmarks.length - 1 ? 0 : ''}
@@ -93,14 +93,6 @@ export default function TaskBookmarks() {
         ))}
       </Sortable.List>
     </Stack.Column>
-  );
-}
-
-function isUrl(bookmark: IBookmark) {
-  return (
-    bookmark.uri &&
-    (!!bookmark.uri.match(/https?:\/\/.+\..+/) ||
-      !!bookmark.uri.match(/https?:\/\/localhost.*/))
   );
 }
 

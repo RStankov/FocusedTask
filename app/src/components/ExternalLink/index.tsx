@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { openURI } from 'utils/electron';
 
 interface IProps {
   children: React.ReactNode;
@@ -8,7 +9,14 @@ interface IProps {
 
 export default function ExternalLink({ children, ...props }: IProps) {
   return (
-    <a target="_blank" rel="noopener noreferrer" {...props}>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+      onClick={e => {
+        e.preventDefault();
+        openURI(props.href);
+      }}>
       {children}
     </a>
   );
