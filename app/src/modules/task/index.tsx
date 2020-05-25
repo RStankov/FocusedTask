@@ -179,17 +179,17 @@ interface IStore {
 }
 
 export function getTitle(store: IStore) {
-  return store.task.present.title;
+  return store.task.present.title || '';
 }
 
 export function getTodos(store: IStore) {
-  return store.task.present.todos;
+  return store.task.present.todos || [];
 }
 
 export function getBookmarks(store: IStore) {
-  return store.task.present.bookmarks;
+  return store.task.present.bookmarks || [];
 }
 
 export function getNote(store: IStore) {
-  return store.task.present.note;
+  return store.task.present.note || '';
 }
