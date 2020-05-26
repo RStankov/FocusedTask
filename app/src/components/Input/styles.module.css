@@ -11,9 +11,7 @@
 }
 
 .text:hover {
-  background: white;
-  border: 1px solid silver;
-  border-radius: 5px;
+  cursor: pointer;
 }
 
 .multiline {
