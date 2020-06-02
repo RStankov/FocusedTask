@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import styles from './styles.module.css';
 import raw from 'raw.macro';
 
-const markdown = raw('../../../CHANGELOG.md').replace(/^# .*\n\n/, '');
+const markdown = raw('../../../../CHANGELOG.md').replace(/^# .*\n\n/, '');
 
 export default function Shortcuts() {
   return (
