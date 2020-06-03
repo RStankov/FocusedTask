@@ -1,5 +1,5 @@
 {
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "./main.js",
   "dependencies": {
     "electron-settings": "^3.2.0",
