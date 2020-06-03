@@ -22,3 +22,7 @@ Have `yarn` installed
 ```
 yarn dev
 ```
+
+### Pre-release
+
+Beta is available <a href="https://focused-tasks.s3.eu-central-1.amazonaws.com/FocusedTask-0.1.0.dmg">here</a>. It still not signed for MacOS and auto-update doesn't work.
