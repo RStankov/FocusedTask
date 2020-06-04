@@ -4,6 +4,7 @@
 
 ### Build (Next)
 
+* __feature__ Update app icon (@rstankov)
 * __feature__ Drag & Drop file to bookmark (@rstankov)
 * __feature__ Support Dark Appearance (@rstankov)
 * __feature__ Add undo/redo (@rstankov)
