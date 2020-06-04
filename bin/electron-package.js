@@ -17,7 +17,7 @@ packager({
   appCopyright: 'Copyright (C) 2020 Radoslav Stankov',
   appVersion: version,
   appCategoryType: 'public.app-category.productivity',
-  icon: './shell/assets/Icon.icns',
+  icon: './assets/Icon.icns',
   // osxSign: {
   //   identity: '[?]',
   //   'hardened-runtime': true,

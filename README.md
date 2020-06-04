@@ -1,4 +1,4 @@
-# 🎯 Focused Task
+# <img src="assets/icon.png" width="24" height="24" /> Focused Task
 
 A macOS menu bar task app build with React/Redux and Electron.
 
@@ -8,6 +8,10 @@ It lets you focus on one task at the time and split it into minor todos and keep
 >
 > *Rado Stankov*
 
+
+### Screenshot
+
+<img src="assets/screenshot.png" />
 
 ### Installation
 
