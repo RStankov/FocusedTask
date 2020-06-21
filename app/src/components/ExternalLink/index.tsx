@@ -7,7 +7,7 @@ interface IProps {
   className?: string;
 }
 
-export default function ExternalLink(props: IProps) {
+export default function ExternalLink({ children, ...props }: IProps) {
   return (
     <a
       target="_blank"
@@ -16,7 +16,8 @@ export default function ExternalLink(props: IProps) {
       onClick={e => {
         e.preventDefault();
         openURI(props.href);
-      }}
-    />
+      }}>
+      {children}
+    </a>
   );
 }
