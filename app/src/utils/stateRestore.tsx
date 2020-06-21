@@ -4,7 +4,7 @@ export const VERSION = 2;
 
 export function preloadStore() {
   const version = storage.get('reduxStoreVersion', 1);
-  const store = storage.get('reduxStore', {});
+  const store = storage.get('reduxStore');
 
   return convertStore(version, store);
 }
@@ -29,6 +29,10 @@ export function importStore(data: any) {
 }
 
 function convertStore(version: number, store: any) {
+  if (!store) {
+    return undefined;
+  }
+
   if (version === VERSION) {
     return store;
   }
@@ -39,7 +43,7 @@ function convertStore(version: number, store: any) {
     return convert(store);
   }
 
-  return {};
+  return undefined;
 }
 
 const STATE_CONVERT = {

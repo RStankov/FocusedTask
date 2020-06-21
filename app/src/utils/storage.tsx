@@ -1,5 +1,5 @@
 export default {
-  get(key: string, defaultValue: any = {}): any {
+  get(key: string, defaultValue: any = undefined): any {
     const value = window.localStorage.getItem(key);
 
     if (value) {

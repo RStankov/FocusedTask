@@ -4,6 +4,7 @@
 
 ### Build (Next)
 
+* __bug fix__ Don't allow broke state when loading a task(@rstankov)
 * __feature__ Update app icon (@rstankov)
 * __feature__ Drag & Drop file to bookmark (@rstankov)
 * __feature__ Support Dark Appearance (@rstankov)
