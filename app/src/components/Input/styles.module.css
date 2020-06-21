@@ -1,13 +1,17 @@
-.text {
+.common {
+  flex: 1 1 100%;
   padding: 5px;
   cursor: pointer;
   font-size: 16px;
   line-height: 1.2;
-  flex: 1 1 100%;
   word-wrap: break-word;
   word-break: break-all;
-  border: 1px solid transparent;
   min-height: 19px;
+  border-radius: 5px;
+}
+
+.text {
+  border: 1px solid transparent;
 }
 
 .text:hover {
@@ -19,17 +23,9 @@
 }
 
 .textarea {
-  width: 100%;
-  padding: 5px;
-  background: none;
-  font-size: 16px;
-  line-height: 1.2;
   border: 1px solid silver;
-  border-radius: 5px;
   resize: none !important;
   outline: none;
   height: 19px;
-  word-wrap: break-word;
-  word-break: break-all;
   background: white;
 }

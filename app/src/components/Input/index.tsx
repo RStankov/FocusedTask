@@ -27,6 +27,7 @@ export default function Input({
     return (
       <div
         className={classNames(
+          styles.common,
           styles.text,
           props.multiline && styles.multiline,
           props.className,
