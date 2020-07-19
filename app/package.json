@@ -2,15 +2,15 @@
   "license": "MIT",
   "homepage": ".",
   "dependencies": {
-    "@reduxjs/toolkit": "^1.1.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "@reduxjs/toolkit": "1.4.0",
+    "@testing-library/jest-dom": "5.11.1",
+    "@testing-library/react": "10.4.7",
+    "@testing-library/user-event": "12.0.11",
     "autosize": "^4.0.2",
     "classnames": "^2.2.6",
     "electron-is-accelerator": "^0.2.0",
-    "lodash": "^4.17.15",
-    "raw.macro": "^0.3.0",
+    "lodash": "4.17.19",
+    "raw.macro": "0.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",
@@ -21,10 +21,11 @@
   "devDependencies": {
     "@types/autosize": "^3.0.7",
     "@types/classnames": "^2.2.10",
-    "@types/lodash": "^4.14.150",
-    "@types/react": "^16.9.34",
-    "@types/react-redux": "^7.1.7",
-    "typescript": "^3.8.3"
+    "@types/lodash": "4.14.157",
+    "@types/react": "16.9.43",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "7.1.9",
+    "typescript": "3.9.7"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,7 +38,11 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
