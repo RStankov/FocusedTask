@@ -14,6 +14,7 @@ import {
 
 type IWithId = types.IWithId;
 
+export type ITask = types.ITask;
 export type ITodo = types.ITodo;
 export type IBookmark = types.IBookmark;
 

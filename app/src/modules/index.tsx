@@ -2,13 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { throttle } from 'lodash';
 import { preloadStore, saveStore } from 'utils/stateRestore';
 
-import task from './task';
 import tasks from './tasks';
 import selectedScreen from './selectedScreen';
 
 const store = configureStore({
   reducer: {
-    tasks: tasks(task),
+    tasks,
     selectedScreen,
   },
   preloadedState: preloadStore(),
