@@ -15,8 +15,6 @@ const store = configureStore({
   preloadedState: preloadStore(),
 });
 
-store.subscribe(() => console.log(store.getState()));
-
 store.subscribe(throttle(() => saveStore(store.getState())));
 
 export type IStoreState = ReturnType<typeof store.getState>;
