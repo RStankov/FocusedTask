@@ -51,6 +51,32 @@ export default function tasks<T extends IUndoTask>(reducer: IReducer<T>) {
           tasks: state.tasks,
         };
 
+      case 'tasks/delete':
+        if (!state.tasks[action.payload.task.id]) {
+          return state;
+        }
+
+        const tasks = { ...state.tasks };
+
+        Reflect.deleteProperty(tasks, action.payload.task.id);
+
+        let selected = state.selected;
+
+        if (selected === action.payload.task.id) {
+          selected = Object.keys(tasks)[0];
+
+          if (!selected) {
+            const replaceTask = reducer(undefined as any, { type: 'reset' });
+            selected = replaceTask.present.id;
+            tasks[selected] = replaceTask;
+          }
+        }
+
+        return {
+          selected,
+          tasks,
+        };
+
       default:
         const task = state.tasks[state.selected];
 

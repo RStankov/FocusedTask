@@ -5,3 +5,7 @@ export function newTask() {
 export function selectTask(task: { id: string }) {
   return { type: 'tasks/select', payload: { task } };
 }
+
+export function deleteTask(task: { id: string }) {
+  return { type: 'tasks/delete', payload: { task } };
+}

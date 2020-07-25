@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { newTask, selectTask } from 'modules/actions';
+import { newTask, selectTask, deleteTask } from 'modules/actions';
 import Emoji from 'components/Emoji';
 import useDispatch from 'hooks/useDispatch';
 import useSelector from 'hooks/useSelector';
@@ -18,7 +18,8 @@ export default function TasksList() {
         {tasksList.map(task => (
           <li key={task.id}>
             {task.title}{' '}
-            <button onClick={() => dispatch(selectTask(task))}>select</button>
+            <button onClick={() => dispatch(selectTask(task))}>select</button>{' '}
+            <button onClick={() => dispatch(deleteTask(task))}>delete</button>
           </li>
         ))}
       </ul>
