@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import * as types from './types';
+import generateId from 'utils/generateId';
 
 import {
   createTodo,
@@ -17,6 +18,7 @@ export type ITodo = types.ITodo;
 export type IBookmark = types.IBookmark;
 
 const INITIAL_STATE = {
+  id: generateId('task'),
   title: 'Focus',
   todos: [],
   bookmarks: [],
@@ -146,7 +148,7 @@ export const slice = createSlice({
     updateNote: (state, { payload }) => {
       state.note = payload;
     },
-    reset: () => INITIAL_STATE,
+    reset: () => ({ ...INITIAL_STATE, id: generateId('task') }),
   },
 });
 
