@@ -2,6 +2,7 @@ import electron from './shim';
 import { IStoreState } from 'modules';
 import { exportStore, importStore } from 'utils/stateRestore';
 import isURI, { isFilePathUri } from 'utils/isURI';
+import { getTitle } from 'modules/task';
 
 export const isElectron = !!electron;
 
@@ -60,7 +61,9 @@ export async function writeStoreToFile(store: IStoreState) {
   const { filePath } = await electron.remote.dialog.showSaveDialog({
     defaultPath:
       '~/Desktop/' +
-      store.task.present.title.toLocaleLowerCase().replace(/\W+/g, '_') +
+      getTitle(store)
+        .toLocaleLowerCase()
+        .replace(/\W+/g, '_') +
       '.json',
   });
 
