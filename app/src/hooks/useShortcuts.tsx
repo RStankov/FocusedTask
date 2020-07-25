@@ -5,7 +5,8 @@ import { openURI, hideApp } from 'utils/electron';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 
-import { newTodo, newBookmark, getBookmarks } from 'modules/task';
+import { newTodo, newBookmark } from 'modules/task';
+import { getBookmarks } from 'modules/selectors';
 import { undo, redo } from 'modules/undoable';
 
 export default function useShortcuts() {

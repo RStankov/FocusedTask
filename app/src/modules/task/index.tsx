@@ -173,31 +173,3 @@ export const {
 } = slice.actions;
 
 export default slice.reducer;
-
-// TODO(rstankov): Use the new selector interface
-interface IStore {
-  tasks: {
-    selected: string;
-    tasks: {
-      [key: string]: {
-        present: types.ITask;
-      };
-    };
-  };
-}
-
-export function getTitle(store: IStore) {
-  return store.tasks.tasks[store.tasks.selected]!.present.title || '';
-}
-
-export function getTodos(store: IStore) {
-  return store.tasks.tasks[store.tasks.selected]!.present.todos || [];
-}
-
-export function getBookmarks(store: IStore) {
-  return store.tasks.tasks[store.tasks.selected]!.present.bookmarks || [];
-}
-
-export function getNote(store: IStore) {
-  return store.tasks.tasks[store.tasks.selected]!.present.note || '';
-}

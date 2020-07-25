@@ -2,7 +2,7 @@ import electron from './shim';
 import { IStoreState } from 'modules';
 import { exportStore, importStore } from 'utils/stateRestore';
 import isURI, { isFilePathUri } from 'utils/isURI';
-import { getTitle } from 'modules/task';
+import { getTitle } from 'modules/selectors';
 
 export const isElectron = !!electron;
 
