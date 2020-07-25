@@ -1,21 +1,25 @@
 import { IStoreState } from './index';
 
-export function getTask(store: IStoreState) {
+export function getSelectedTask(store: IStoreState) {
   return store.tasks.tasks[store.tasks.selected]!.present;
 }
 
+export function getAllTasks(store: IStoreState) {
+  return Object.values(store.tasks.tasks).map(t => t.present);
+}
+
 export function getTitle(store: IStoreState) {
-  return getTask(store).title || '';
+  return getSelectedTask(store).title || '';
 }
 
 export function getTodos(store: IStoreState) {
-  return getTask(store).todos || [];
+  return getSelectedTask(store).todos || [];
 }
 
 export function getBookmarks(store: IStoreState) {
-  return getTask(store).bookmarks || [];
+  return getSelectedTask(store).bookmarks || [];
 }
 
 export function getNote(store: IStoreState) {
-  return getTask(store).note || '';
+  return getSelectedTask(store).note || '';
 }

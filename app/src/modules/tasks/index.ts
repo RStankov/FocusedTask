@@ -30,6 +30,27 @@ export default function tasks<T extends IUndoTask>(reducer: IReducer<T>) {
 
   return function(state = initialState, action: IAction): IState<T> {
     switch (action.type) {
+      case 'tasks/new':
+        const newTask = reducer(undefined as any, { type: 'reset' });
+
+        return {
+          selected: newTask.present.id,
+          tasks: {
+            ...state.tasks,
+            [newTask.present.id]: newTask,
+          },
+        };
+
+      case 'tasks/select':
+        if (!state.tasks[action.payload.task.id]) {
+          return state;
+        }
+
+        return {
+          selected: action.payload.task.id,
+          tasks: state.tasks,
+        };
+
       default:
         const task = state.tasks[state.selected];
 
@@ -37,17 +58,17 @@ export default function tasks<T extends IUndoTask>(reducer: IReducer<T>) {
           return state;
         }
 
-        const newTask = reducer(task, action);
+        const updatedTask = reducer(task, action);
 
-        if (newTask === task) {
+        if (updatedTask === task) {
           return state;
         }
 
         return {
-          selected: newTask.present.id,
+          selected: updatedTask.present.id,
           tasks: {
             ...state.tasks,
-            [newTask.present.id]: newTask,
+            [updatedTask.present.id]: updatedTask,
           },
         };
     }
