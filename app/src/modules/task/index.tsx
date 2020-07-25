@@ -174,24 +174,30 @@ export const {
 
 export default slice.reducer;
 
+// TODO(rstankov): Use the new selector interface
 interface IStore {
-  task: {
-    present: types.ITask;
+  tasks: {
+    selected: string;
+    tasks: {
+      [key: string]: {
+        present: types.ITask;
+      };
+    };
   };
 }
 
 export function getTitle(store: IStore) {
-  return store.task.present.title || '';
+  return store.tasks.tasks[store.tasks.selected]!.present.title || '';
 }
 
 export function getTodos(store: IStore) {
-  return store.task.present.todos || [];
+  return store.tasks.tasks[store.tasks.selected]!.present.todos || [];
 }
 
 export function getBookmarks(store: IStore) {
-  return store.task.present.bookmarks || [];
+  return store.tasks.tasks[store.tasks.selected]!.present.bookmarks || [];
 }
 
 export function getNote(store: IStore) {
-  return store.task.present.note || '';
+  return store.tasks.tasks[store.tasks.selected]!.present.note || '';
 }
