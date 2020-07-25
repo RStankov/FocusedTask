@@ -1,12 +1,12 @@
-import { uniqueId } from 'lodash';
 import { ITodo, IBookmark, IWithId } from './types';
+import generateId from 'utils/generateId';
 
 export function createTodo({
   after,
   text = '',
 }: { after?: { ident: number }; text?: string } = {}): ITodo {
   return {
-    id: uniqueId('todo_') + +new Date(),
+    id: generateId('todo'),
     text: text || '',
     isCompleted: false,
     autoCompleted: false,
@@ -16,7 +16,7 @@ export function createTodo({
 
 export function createBookmark({ uri = '' }: { uri?: string } = {}): IBookmark {
   return {
-    id: uniqueId('bookmark_') + +new Date(),
+    id: generateId('bookmark'),
     uri,
   };
 }
