@@ -5,8 +5,13 @@ export interface IWithId {
 type IReducer<T> = (state: T, action: any) => T;
 
 type IState<T> = {
-  selected: string;
   tasks: { [key: string]: T };
+  selected: string;
+  undo: {
+    lastAction: string | null;
+    past: T[];
+    future: T[];
+  };
 };
 
 interface IAction {
@@ -14,31 +19,46 @@ interface IAction {
   payload?: any;
 }
 
-interface IUndoTask {
-  present: {
-    id: string;
-  };
+interface ITask {
+  id: string;
 }
 
-export default function tasks<T extends IUndoTask>(reducer: IReducer<T>) {
+const MAX_UNDO = 100;
+
+const UNDO_SKIP_ACTIONS = {
+  'task/updateTodoText': 'task/newTodo',
+  'task/updateBookmark': 'task/newBookmark',
+} as any;
+
+export default function tasks<T extends ITask>(reducer: IReducer<T>) {
   const task = reducer(undefined as any, {});
 
+  const emptyUndo = {
+    lastAction: null,
+    past: [],
+    future: [],
+  };
+
   const initialState: IState<T> = {
-    selected: task.present.id,
-    tasks: { [task.present.id]: task },
+    tasks: { [task.id]: task },
+    selected: task.id,
+    undo: emptyUndo,
   };
 
   return function(state = initialState, action: IAction): IState<T> {
+    const { past, future } = state.undo || {};
+
     switch (action.type) {
       case 'tasks/new':
         const newTask = reducer(undefined as any, { type: 'reset' });
 
         return {
-          selected: newTask.present.id,
+          selected: newTask.id,
           tasks: {
             ...state.tasks,
-            [newTask.present.id]: newTask,
+            [newTask.id]: newTask,
           },
+          undo: emptyUndo,
         };
 
       case 'tasks/select':
@@ -49,6 +69,7 @@ export default function tasks<T extends IUndoTask>(reducer: IReducer<T>) {
         return {
           selected: action.payload.task.id,
           tasks: state.tasks,
+          undo: emptyUndo,
         };
 
       case 'tasks/delete':
@@ -67,7 +88,7 @@ export default function tasks<T extends IUndoTask>(reducer: IReducer<T>) {
 
           if (!selected) {
             const replaceTask = reducer(undefined as any, { type: 'reset' });
-            selected = replaceTask.present.id;
+            selected = replaceTask.id;
             tasks[selected] = replaceTask;
           }
         }
@@ -75,6 +96,51 @@ export default function tasks<T extends IUndoTask>(reducer: IReducer<T>) {
         return {
           selected,
           tasks,
+          undo: emptyUndo,
+        };
+
+      case 'tasks/undo':
+        if (past.length === 0) {
+          return state;
+        }
+
+        const previous = past[past.length - 1];
+        const newPast = past.slice(0, past.length - 1);
+
+        return {
+          selected: state.selected,
+          tasks: {
+            ...state.tasks,
+            [state.selected]: previous,
+          },
+
+          undo: {
+            lastAction: action.type,
+            past: newPast,
+            future: [state.tasks[state.selected], ...future],
+          },
+        };
+
+      case 'tasks/redo':
+        if (future.length === 0) {
+          return state;
+        }
+
+        const next = future[0];
+        const newFuture = future.slice(1);
+
+        return {
+          selected: state.selected,
+          tasks: {
+            ...state.tasks,
+            [state.selected]: next,
+          },
+
+          undo: {
+            lastAction: action.type,
+            past: [...past, state.tasks[state.selected]],
+            future: newFuture,
+          },
         };
 
       default:
@@ -90,12 +156,34 @@ export default function tasks<T extends IUndoTask>(reducer: IReducer<T>) {
           return state;
         }
 
+        let undo = state.undo;
+        if (
+          UNDO_SKIP_ACTIONS[action.type] &&
+          UNDO_SKIP_ACTIONS[action.type] === state.undo.lastAction
+        ) {
+          undo = {
+            lastAction: action.type,
+            past,
+            future,
+          };
+        } else {
+          undo = {
+            lastAction: action.type,
+            past: [
+              ...(past.length > MAX_UNDO ? past.slice(1, MAX_UNDO) : past),
+              task,
+            ],
+            future: [],
+          };
+        }
+
         return {
-          selected: updatedTask.present.id,
+          selected: updatedTask.id,
           tasks: {
             ...state.tasks,
-            [updatedTask.present.id]: updatedTask,
+            [updatedTask.id]: updatedTask,
           },
+          undo,
         };
     }
   };

@@ -5,11 +5,10 @@ import { preloadStore, saveStore } from 'utils/stateRestore';
 import task from './task';
 import tasks from './tasks';
 import selectedScreen from './selectedScreen';
-import undoable from './undoable';
 
 const store = configureStore({
   reducer: {
-    tasks: tasks(undoable(task)),
+    tasks: tasks(task),
     selectedScreen,
   },
   preloadedState: preloadStore(),

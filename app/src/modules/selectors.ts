@@ -1,11 +1,11 @@
 import { IStoreState } from './index';
 
 export function getSelectedTask(store: IStoreState) {
-  return store.tasks.tasks[store.tasks.selected]!.present;
+  return store.tasks.tasks[store.tasks.selected]!;
 }
 
 export function getAllTasks(store: IStoreState) {
-  return Object.values(store.tasks.tasks).map(t => t.present);
+  return Object.values(store.tasks.tasks);
 }
 
 export function getTitle(store: IStoreState) {

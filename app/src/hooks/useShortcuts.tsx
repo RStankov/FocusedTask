@@ -7,7 +7,7 @@ import useDispatch from 'hooks/useDispatch';
 
 import { newTodo, newBookmark } from 'modules/task';
 import { getBookmarks } from 'modules/selectors';
-import { undo, redo } from 'modules/undoable';
+import { undo, redo } from 'modules/actions';
 
 export default function useShortcuts() {
   const dispatch = useDispatch();
