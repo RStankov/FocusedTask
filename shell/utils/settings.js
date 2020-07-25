@@ -6,10 +6,12 @@ const BOUNDS_KEY = 'windowBounds';
 const SHORTCUT_KEY = 'globalShortcut';
 
 module.exports = {
-  setWindowBounds(menubar) {
+  async setWindowBounds(menubar) {
+    const storedSettings = (await settings.get(BOUNDS_KEY)) || {};
+
     menubar.setOption('browserWindow', {
       ...menubar.getOption('browserWindow'),
-      ...(settings.get(BOUNDS_KEY) || {}),
+      ...(storedSettings || {}),
     });
   },
 
@@ -29,8 +31,8 @@ module.exports = {
     win.on('move', handler);
   },
 
-  setGlobalShortcut(menubar) {
-    const key = settings.get(SHORTCUT_KEY) || "'";
+  async setGlobalShortcut(menubar) {
+    const key = (await settings.get(SHORTCUT_KEY)) || "'";
 
     global.globalShortcutKey = key;
 
