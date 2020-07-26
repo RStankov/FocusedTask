@@ -8,6 +8,7 @@ import keyCodes from 'utils/keyCodes';
 import styles from './styles.module.css';
 import useDispatch from 'hooks/useDispatch';
 import useSelector from 'hooks/useSelector';
+import Button from 'components/Button';
 
 import { getTodos } from 'modules/selectors';
 
@@ -114,7 +115,7 @@ export default function TaskTodos() {
         ))}
       </Sortable.List>
       <div className={styles.actions}>
-        <button onClick={() => dispatch(newTodo())}>New Todo</button>
+        <Button onClick={() => dispatch(newTodo())}>New Todo</Button>
       </div>
     </Stack.Column>
   );

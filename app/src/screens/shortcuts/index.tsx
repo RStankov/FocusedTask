@@ -8,6 +8,7 @@ import keyCodes from 'utils/keyCodes';
 import { updateGlobalShortcutKey, getGlobalShortcutKey } from 'utils/electron';
 import isAccelerator from 'electron-is-accelerator';
 import classNames from 'classnames';
+import Button from 'components/Button';
 
 export default function Shortcuts() {
   return (
@@ -179,12 +180,12 @@ function ShortcutGlobal() {
                 }
               }}
             />
-            <button onClick={saveChanges}>Save</button>
-            <button onClick={cancelChanges}>Cancel</button>
+            <Button onClick={saveChanges}>Save</Button>
+            <Button onClick={cancelChanges}>Cancel</Button>
           </Stack.Row>
         ) : (
           <>
-            Open Focused Task (global) <button onClick={edit}>change</button>
+            Open Focused Task (global) <Button onClick={edit}>change</Button>
           </>
         )
       }>
