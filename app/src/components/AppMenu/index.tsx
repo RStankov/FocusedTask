@@ -5,15 +5,15 @@ import styles from './styles.module.css';
 import { removeCompletedTodos } from 'modules/task';
 import { newTask, deleteTask } from 'modules/actions';
 import { getSelectedTask, getAllTasks } from 'modules/selectors';
-import { selectTask } from 'modules/actions';
+import { selectTask, importTask } from 'modules/actions';
 import { openShortcuts, openChangelog } from 'modules/selectedScreen';
 
 import {
   isElectron,
   openMenu,
   closeApp,
-  readStoreFromFile,
-  writeStoreToFile,
+  readTaskFromFile,
+  writeTaskToFile,
   confirm,
   IMenuItem,
 } from 'utils/electron';
@@ -63,12 +63,16 @@ function openAppMenu() {
     },
     {
       label: 'Save As...',
-      click: () => writeStoreToFile(store.getState()),
+      click: () => writeTaskToFile(store.getState()),
     },
     {
       label: 'Import...',
       click: async () => {
-        await readStoreFromFile();
+        const task = await readTaskFromFile();
+        console.log(task);
+        if (task) {
+          store.dispatch(importTask(task));
+        }
       },
     },
     {

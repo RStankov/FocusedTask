@@ -10,6 +10,10 @@ export function deleteTask(task: { id: string }) {
   return { type: 'tasks/delete', payload: { task } };
 }
 
+export function importTask(task: any) {
+  return { type: 'tasks/import', payload: { task } };
+}
+
 export function undo() {
   return { type: 'tasks/undo' };
 }

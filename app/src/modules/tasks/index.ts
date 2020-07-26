@@ -102,6 +102,19 @@ const ACTION_HANDLERS: any = {
     };
   },
 
+  'tasks/import': (state: IState, action: IAction) => {
+    const task = { ...createNewTask(), ...action.payload.task };
+
+    return {
+      selected: task.id,
+      tasks: {
+        ...state.tasks,
+        [task.id]: task,
+      },
+      undo: UNDO_EMPTY,
+    };
+  },
+
   undo: (state: IState, action: IAction) => {
     const { past, future } = state.undo;
 
