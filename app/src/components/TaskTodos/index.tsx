@@ -114,7 +114,7 @@ export default function TaskTodos() {
         ))}
       </Sortable.List>
       <div className={styles.actions}>
-        <button onClick={() => dispatch(newTodo())}>new task</button>
+        <button onClick={() => dispatch(newTodo())}>New Todo</button>
       </div>
     </Stack.Column>
   );
