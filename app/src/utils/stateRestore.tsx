@@ -1,6 +1,7 @@
 import storage from 'utils/storage';
+import generateId from 'utils/generateId';
 
-export const VERSION = 2;
+export const VERSION = 3;
 
 export function preloadStore() {
   const version = storage.get('reduxStoreVersion', 1);
@@ -48,13 +49,38 @@ function convertStore(version: number, store: any) {
 
 const STATE_CONVERT = {
   1: (store: any) => {
+    let task = { ...store.task, id: generateId('task') };
+
     return {
       selectedScreen: store.selectedScreen || 'task',
-      task: {
-        future: [],
-        past: [],
-        lastAction: null,
-        present: store.task || {},
+      tasks: {
+        select: task.id,
+        tasks: {
+          [task.id]: task,
+        },
+        undo: {
+          lastAction: null,
+          past: [],
+          future: [],
+        },
+      },
+    };
+  },
+  2: (store: any) => {
+    let task = { ...store.task.present, id: generateId('task') };
+
+    return {
+      selectedScreen: store.selectedScreen || 'task',
+      tasks: {
+        select: task.id,
+        tasks: {
+          [task.id]: task,
+        },
+        undo: {
+          lastAction: null,
+          past: [],
+          future: [],
+        },
       },
     };
   },
