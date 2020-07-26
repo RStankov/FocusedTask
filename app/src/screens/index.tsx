@@ -3,13 +3,11 @@ import useSelector from 'hooks/useSelector';
 import { getSelectedScreen } from 'modules/selectors';
 
 import task from './task';
-import tasksList from './tasksList';
 import shortcuts from './shortcuts';
 import changelog from './changelog';
 
 const SCREENS = {
   task,
-  tasksList,
   shortcuts,
   changelog,
 };

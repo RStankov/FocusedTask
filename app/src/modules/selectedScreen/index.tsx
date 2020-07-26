@@ -5,17 +5,11 @@ export const slice = createSlice({
   initialState: 'task',
   reducers: {
     openTask: () => 'task',
-    openTasksList: () => 'tasksList',
     openShortcuts: () => 'shortcuts',
     openChangelog: () => 'changelog',
   },
 });
 
-export const {
-  openTask,
-  openTasksList,
-  openShortcuts,
-  openChangelog,
-} = slice.actions;
+export const { openTask, openShortcuts, openChangelog } = slice.actions;
 
 export default slice.reducer;

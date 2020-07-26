@@ -4,13 +4,9 @@ import { ReactComponent as PreferencesIcon } from 'icons/preferences.svg';
 import styles from './styles.module.css';
 import { removeCompletedTodos } from 'modules/task';
 import { newTask, deleteTask } from 'modules/actions';
-import { getSelectedTask } from 'modules/selectors';
-
-import {
-  openShortcuts,
-  openChangelog,
-  openTasksList,
-} from 'modules/selectedScreen';
+import { getSelectedTask, getAllTasks } from 'modules/selectors';
+import { selectTask } from 'modules/actions';
+import { openShortcuts, openChangelog } from 'modules/selectedScreen';
 
 import {
   isElectron,
@@ -19,6 +15,7 @@ import {
   readStoreFromFile,
   writeStoreToFile,
   confirm,
+  IMenuItem,
 } from 'utils/electron';
 
 export default function AppClose() {
@@ -30,30 +27,49 @@ export default function AppClose() {
 }
 
 function openAppMenu() {
+  const allTask = getAllTasks(store.getState());
+  const selectedTask = getSelectedTask(store.getState());
+
   openMenu([
     {
-      label: 'New Task',
+      label: 'New',
       click: () => store.dispatch(newTask()),
     },
     {
-      label: 'Save Task As...',
-      click: () => writeStoreToFile(store.getState()),
+      label: 'Open',
+      submenu: (allTask.map(task => ({
+        label: task.title,
+        type: 'checkbox',
+        checked: task.id === selectedTask.id,
+        click: () => store.dispatch(selectTask(task)),
+      })) as IMenuItem[]).concat([
+        {
+          type: 'separator',
+        },
+        {
+          label: 'New',
+          click: () => store.dispatch(newTask()),
+        },
+      ]),
     },
     {
-      label: 'Open Task...',
-      click: async () => {
-        await readStoreFromFile();
-      },
-    },
-    {
-      label: 'Delete Task',
+      label: 'Delete',
       click: () =>
         confirm({
           message: 'Are you sure?',
           detail: 'Your current task data will be erased.',
-          fn: () =>
-            store.dispatch(deleteTask(getSelectedTask(store.getState()))),
+          fn: () => store.dispatch(deleteTask(selectedTask)),
         }),
+    },
+    {
+      label: 'Save As...',
+      click: () => writeStoreToFile(store.getState()),
+    },
+    {
+      label: 'Import...',
+      click: async () => {
+        await readStoreFromFile();
+      },
     },
     {
       type: 'separator',
@@ -64,10 +80,6 @@ function openAppMenu() {
     },
     {
       type: 'separator',
-    },
-    {
-      label: 'Show Tasks List',
-      click: () => store.dispatch(openTasksList()),
     },
     {
       label: 'Show Shortcuts',

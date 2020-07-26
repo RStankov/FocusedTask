@@ -105,11 +105,14 @@ export async function readStoreFromFile() {
   }
 }
 
-type IMenuItem =
+export type IMenuItem =
   | {
       label: string;
-      click: () => void;
+      click?: () => void;
       accelerator?: any;
+      submenu?: IMenuItem[];
+      type?: 'checkbox';
+      checked?: boolean;
     }
   | { type: 'separator' };
 
