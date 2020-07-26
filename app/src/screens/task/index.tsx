@@ -11,6 +11,7 @@ import useDispatch from 'hooks/useDispatch';
 import AppMenu from 'components/AppMenu';
 import useDragAndDropFiles from 'hooks/useDragAndDropFiles';
 import DragFileMessage from './DragFileMessage';
+import Button from 'components/Button';
 
 export default function Task() {
   const dispatch = useDispatch();
@@ -30,7 +31,13 @@ export default function Task() {
         <Section
           emoji="📌"
           title="Bookmarks"
-          actions={<button onClick={() => dispatch(newBookmark())}>+</button>}>
+          actions={
+            <Button
+              onClick={() => dispatch(newBookmark())}
+              title="New Bookmark">
+              +
+            </Button>
+          }>
           <TaskBookmarks />
         </Section>
         <Section emoji="📝" title="Notes">

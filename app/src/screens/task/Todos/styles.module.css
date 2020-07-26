@@ -16,6 +16,7 @@
 
 .checkbox:hover {
   border-color: black;
+  background: #f0f0f0;
 }
 
 .completed {

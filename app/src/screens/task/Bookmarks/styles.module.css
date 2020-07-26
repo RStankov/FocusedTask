@@ -8,6 +8,7 @@
   display: inline-flex;
   font-size: 10px;
   height: 17px;
+  padding-bottom: 1px;
   justify-content: center;
   margin-right: 5px;
   margin-top: 7px;
@@ -17,6 +18,7 @@
 
 .link:hover {
   border-color: black;
+  background: #f0f0f0;
 }
 
 .link:hover .label {
