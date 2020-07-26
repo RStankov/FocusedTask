@@ -2,7 +2,9 @@ import * as React from 'react';
 import store from 'modules';
 import { ReactComponent as PreferencesIcon } from 'icons/preferences.svg';
 import styles from './styles.module.css';
-import { removeCompletedTodos, reset } from 'modules/task';
+import { removeCompletedTodos } from 'modules/task';
+import { newTask, deleteTask } from 'modules/actions';
+import { getSelectedTask } from 'modules/selectors';
 
 import {
   openShortcuts,
@@ -31,12 +33,11 @@ function openAppMenu() {
   openMenu([
     {
       label: 'New Task',
-      click: () =>
-        confirm({
-          message: 'Are you sure?',
-          detail: 'Your current task data will be erased.',
-          fn: () => store.dispatch(reset()),
-        }),
+      click: () => store.dispatch(newTask()),
+    },
+    {
+      label: 'Save Task As...',
+      click: () => writeStoreToFile(store.getState()),
     },
     {
       label: 'Open Task...',
@@ -45,8 +46,14 @@ function openAppMenu() {
       },
     },
     {
-      label: 'Save Task As...',
-      click: () => writeStoreToFile(store.getState()),
+      label: 'Delete Task',
+      click: () =>
+        confirm({
+          message: 'Are you sure?',
+          detail: 'Your current task data will be erased.',
+          fn: () =>
+            store.dispatch(deleteTask(getSelectedTask(store.getState()))),
+        }),
     },
     {
       label: 'Show Task List',
