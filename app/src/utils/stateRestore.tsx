@@ -85,7 +85,7 @@ const STORE_CONVERT: any = {
     return {
       selectedScreen: store.selectedScreen || 'task',
       tasks: {
-        select: task.id,
+        selected: task.id,
         tasks: {
           [task.id]: task,
         },
