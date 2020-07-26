@@ -1,5 +1,9 @@
 import { IStoreState } from './index';
 
+export function getSelectedScreen(store: { selectedScreen: string }) {
+  return store.selectedScreen;
+}
+
 export function getSelectedTask(store: IStoreState) {
   return store.tasks.tasks[store.tasks.selected]!;
 }

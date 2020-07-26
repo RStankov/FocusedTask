@@ -11,7 +11,6 @@ import useDispatch from 'hooks/useDispatch';
 import AppMenu from 'components/AppMenu';
 import useDragAndDropFiles from 'hooks/useDragAndDropFiles';
 import DragFileMessage from './DragFileMessage';
-import TasksList from './tasksList';
 
 export default function Task() {
   const dispatch = useDispatch();
@@ -23,7 +22,6 @@ export default function Task() {
     <div>
       {isDragingFile && <DragFileMessage />}
       <AppMenu />
-      <TasksList />
       <Stack.Column gap="m">
         <TaskTitle />
         <Section emoji="🔜" title="Todos">

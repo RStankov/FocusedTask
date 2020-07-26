@@ -2,8 +2,13 @@ import * as React from 'react';
 import store from 'modules';
 import { ReactComponent as PreferencesIcon } from 'icons/preferences.svg';
 import styles from './styles.module.css';
-import { openShortcuts, openChangelog } from 'modules/selectedScreen';
 import { removeCompletedTodos, reset } from 'modules/task';
+
+import {
+  openShortcuts,
+  openChangelog,
+  openTasksList,
+} from 'modules/selectedScreen';
 
 import {
   isElectron,
@@ -34,14 +39,18 @@ function openAppMenu() {
         }),
     },
     {
-      label: 'Task Open...',
+      label: 'Open Task...',
       click: async () => {
         await readStoreFromFile();
       },
     },
     {
-      label: 'Task Save As...',
+      label: 'Save Task As...',
       click: () => writeStoreToFile(store.getState()),
+    },
+    {
+      label: 'Show Task List',
+      click: () => store.dispatch(openTasksList()),
     },
     {
       type: 'separator',
@@ -49,6 +58,9 @@ function openAppMenu() {
     {
       label: 'Clear Completed Todos',
       click: () => store.dispatch(removeCompletedTodos()),
+    },
+    {
+      type: 'separator',
     },
     {
       label: 'Show Shortcuts',
