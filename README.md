@@ -16,7 +16,7 @@ It lets you focus on one task at the time and split it into minor todos and keep
 
 ### Features
 
-* Only one task - *this is a feature, not a bug* 🎯
+* Focus on a single task - *multitasking is dangerous* 🎯
 * Shortcut for everything - *you don't need mouse* 🛑 🖱
 * Menu-bar app - *it gets out of your way* 😇
 * Organize your one task into - todos, bookmark links, and free-form text 📋
