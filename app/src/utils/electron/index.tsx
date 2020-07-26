@@ -109,6 +109,7 @@ type IMenuItem =
   | {
       label: string;
       click: () => void;
+      accelerator?: any;
     }
   | { type: 'separator' };
 
