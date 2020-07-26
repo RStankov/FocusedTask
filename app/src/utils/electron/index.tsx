@@ -1,7 +1,8 @@
 import electron from './shim';
 import { IStoreState } from 'modules';
-import { exportStore, importStore } from 'utils/stateRestore';
+import { exportTask, importTask } from 'utils/stateRestore';
 import isURI, { isFilePathUri } from 'utils/isURI';
+import { getTitle } from 'modules/selectors';
 
 export const isElectron = !!electron;
 
@@ -52,7 +53,7 @@ export function resizeBasedOnContent() {
 
 const fs = window.require && window.require('fs').promises;
 
-export async function writeStoreToFile(store: IStoreState) {
+export async function writeTaskToFile(store: IStoreState) {
   if (!isElectron) {
     return;
   }
@@ -60,7 +61,9 @@ export async function writeStoreToFile(store: IStoreState) {
   const { filePath } = await electron.remote.dialog.showSaveDialog({
     defaultPath:
       '~/Desktop/' +
-      store.task.present.title.toLocaleLowerCase().replace(/\W+/g, '_') +
+      getTitle(store)
+        .toLocaleLowerCase()
+        .replace(/\W+/g, '_') +
       '.json',
   });
 
@@ -69,13 +72,13 @@ export async function writeStoreToFile(store: IStoreState) {
   }
 
   try {
-    await fs.writeFile(filePath, exportStore(store));
+    await fs.writeFile(filePath, exportTask(store));
   } catch (e) {
     alert(`An error occurred while writing the file: ${e.message}`);
   }
 }
 
-export async function readStoreFromFile() {
+export async function readTaskFromFile() {
   if (!isElectron) {
     return;
   }
@@ -94,18 +97,22 @@ export async function readStoreFromFile() {
   try {
     const data = await fs.readFile(filePath, 'utf-8');
 
-    importStore(data);
-
-    window.location.reload();
+    return importTask(data);
   } catch (e) {
     alert(`An error occurred while reading the file: ${e.message}`);
   }
+
+  return null;
 }
 
-type IMenuItem =
+export type IMenuItem =
   | {
       label: string;
-      click: () => void;
+      click?: () => void;
+      accelerator?: any;
+      submenu?: IMenuItem[];
+      type?: 'checkbox';
+      checked?: boolean;
     }
   | { type: 'separator' };
 

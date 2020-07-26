@@ -1,34 +1,13 @@
 import storage from 'utils/storage';
+import generateId from 'utils/generateId';
+import { getSelectedTask } from 'modules/selectors';
 
-export const VERSION = 2;
+export const VERSION = 3;
 
 export function preloadStore() {
   const version = storage.get('reduxStoreVersion', 1);
   const store = storage.get('reduxStore');
 
-  return convertStore(version, store);
-}
-
-export function saveStore(store: any) {
-  storage.set('reduxStoreVersion', VERSION);
-  storage.set('reduxStore', store);
-}
-
-export function exportStore(store: any) {
-  return JSON.stringify({
-    version: VERSION,
-    date: new Date(),
-    store,
-  });
-}
-
-export function importStore(data: any) {
-  const { version, store } = JSON.parse(data);
-
-  saveStore(convertStore(version, store));
-}
-
-function convertStore(version: number, store: any) {
   if (!store) {
     return undefined;
   }
@@ -37,7 +16,7 @@ function convertStore(version: number, store: any) {
     return store;
   }
 
-  const convert = STATE_CONVERT[version];
+  const convert = STORE_CONVERT[version];
 
   if (convert) {
     return convert(store);
@@ -46,16 +25,77 @@ function convertStore(version: number, store: any) {
   return undefined;
 }
 
-const STATE_CONVERT = {
+export function saveStore(store: any) {
+  storage.set('reduxStoreVersion', VERSION);
+  storage.set('reduxStore', store);
+}
+
+export function exportTask(store: any) {
+  return JSON.stringify({
+    version: VERSION,
+    date: new Date(),
+    task: getSelectedTask(store),
+  });
+}
+
+export function importTask(json: any) {
+  const data = JSON.parse(json);
+
+  if (!data) {
+    return null;
+  }
+
+  const convert = IMPORT_CONVERT[data.version];
+
+  if (convert) {
+    return convert(data);
+  }
+
+  return undefined;
+}
+
+const IMPORT_CONVERT: any = {
+  1: ({ store }: any) => ({ ...store.task, id: generateId('task') }),
+  2: ({ store }: any) => ({ ...store.task.present, id: generateId('task') }),
+  3: ({ task }: any) => task,
+};
+
+const STORE_CONVERT: any = {
   1: (store: any) => {
+    let task = { ...store.task, id: generateId('task') };
+
     return {
       selectedScreen: store.selectedScreen || 'task',
-      task: {
-        future: [],
-        past: [],
-        lastAction: null,
-        present: store.task || {},
+      tasks: {
+        select: task.id,
+        tasks: {
+          [task.id]: task,
+        },
+        undo: {
+          lastAction: null,
+          past: [],
+          future: [],
+        },
       },
     };
   },
-} as any;
+  2: (store: any) => {
+    let task = { ...store.task.present, id: generateId('task') };
+
+    return {
+      selectedScreen: store.selectedScreen || 'task',
+      tasks: {
+        select: task.id,
+        tasks: {
+          [task.id]: task,
+        },
+        undo: {
+          lastAction: null,
+          past: [],
+          future: [],
+        },
+      },
+    };
+  },
+  3: (store: any) => store,
+};

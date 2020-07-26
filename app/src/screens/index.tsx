@@ -1,6 +1,6 @@
 import * as React from 'react';
 import useSelector from 'hooks/useSelector';
-import { getSelectedScreen } from 'modules/selectedScreen';
+import { getSelectedScreen } from 'modules/selectors';
 
 import task from './task';
 import shortcuts from './shortcuts';

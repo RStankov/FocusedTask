@@ -12,6 +12,7 @@ export interface IBookmark {
 }
 
 export interface ITask {
+  id: string;
   title: string;
   todos: ITodo[];
   bookmarks: IBookmark[];

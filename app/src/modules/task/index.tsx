@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import * as types from './types';
+import generateId from 'utils/generateId';
 
 import {
   createTodo,
@@ -13,10 +14,12 @@ import {
 
 type IWithId = types.IWithId;
 
+export type ITask = types.ITask;
 export type ITodo = types.ITodo;
 export type IBookmark = types.IBookmark;
 
 const INITIAL_STATE = {
+  id: generateId('task'),
   title: 'Focus',
   todos: [],
   bookmarks: [],
@@ -146,12 +149,10 @@ export const slice = createSlice({
     updateNote: (state, { payload }) => {
       state.note = payload;
     },
-    reset: () => INITIAL_STATE,
   },
 });
 
 export const {
-  reset,
   updateTaskTitle,
   removeCompletedTodos,
   newTodo,
@@ -171,25 +172,3 @@ export const {
 } = slice.actions;
 
 export default slice.reducer;
-
-interface IStore {
-  task: {
-    present: types.ITask;
-  };
-}
-
-export function getTitle(store: IStore) {
-  return store.task.present.title || '';
-}
-
-export function getTodos(store: IStore) {
-  return store.task.present.todos || [];
-}
-
-export function getBookmarks(store: IStore) {
-  return store.task.present.bookmarks || [];
-}
-
-export function getNote(store: IStore) {
-  return store.task.present.note || '';
-}

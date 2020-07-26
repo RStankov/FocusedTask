@@ -9,8 +9,9 @@ import styles from './styles.module.css';
 import useDispatch from 'hooks/useDispatch';
 import useSelector from 'hooks/useSelector';
 
+import { getTodos } from 'modules/selectors';
+
 import {
-  getTodos,
   moveTodo,
   newTodo,
   pasteTasks,
@@ -113,7 +114,7 @@ export default function TaskTodos() {
         ))}
       </Sortable.List>
       <div className={styles.actions}>
-        <button onClick={() => dispatch(newTodo())}>new task</button>
+        <button onClick={() => dispatch(newTodo())}>New Todo</button>
       </div>
     </Stack.Column>
   );

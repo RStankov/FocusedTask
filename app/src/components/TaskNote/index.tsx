@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from 'components/Input';
-import { updateNote, getNote } from 'modules/task';
+import { updateNote } from 'modules/task';
+import { getNote } from 'modules/selectors';
 import styles from './styles.module.css';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';

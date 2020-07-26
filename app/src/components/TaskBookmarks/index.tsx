@@ -11,6 +11,7 @@ import { openURI } from 'utils/electron';
 import Sortable from 'components/Sortable';
 import Input from 'components/Input';
 import isURI from 'utils/isURI';
+import { getBookmarks } from 'modules/selectors';
 
 import {
   updateBookmark,
@@ -18,7 +19,6 @@ import {
   newBookmark,
   pasteBookmarks,
   moveBookmark,
-  getBookmarks,
 } from 'modules/task';
 
 export default function TaskBookmarks() {

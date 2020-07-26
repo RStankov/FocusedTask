@@ -13,7 +13,3 @@ export const slice = createSlice({
 export const { openTask, openShortcuts, openChangelog } = slice.actions;
 
 export default slice.reducer;
-
-export function getSelectedScreen(store: { selectedScreen: string }) {
-  return store.selectedScreen;
-}
