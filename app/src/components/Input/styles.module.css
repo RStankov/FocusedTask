@@ -8,6 +8,9 @@
   word-break: break-all;
   min-height: 19px;
   border-radius: 5px;
+  font-family: inherit;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
 }
 
 .text {
