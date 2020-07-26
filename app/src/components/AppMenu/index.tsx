@@ -56,10 +56,6 @@ function openAppMenu() {
         }),
     },
     {
-      label: 'Show Task List',
-      click: () => store.dispatch(openTasksList()),
-    },
-    {
       type: 'separator',
     },
     {
@@ -68,6 +64,10 @@ function openAppMenu() {
     },
     {
       type: 'separator',
+    },
+    {
+      label: 'Show Tasks List',
+      click: () => store.dispatch(openTasksList()),
     },
     {
       label: 'Show Shortcuts',
