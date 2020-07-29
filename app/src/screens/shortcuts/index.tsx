@@ -76,7 +76,10 @@ export default function Shortcuts() {
               <Cmd /> + <Key>]</Key>
             </Shortcut>
             <Shortcut description="Toggle completion of todo">
-              <Cmd /> + <Key>Shift</Key> + <Key>c</Key>
+              <Cmd /> + <Key>click</Key>
+            </Shortcut>
+            <Shortcut description="Toggle completion of todo">
+              <Cmd /> + <Shift /> + <Key>c</Key>
             </Shortcut>
           </ShortcutsTable>
         </Section>

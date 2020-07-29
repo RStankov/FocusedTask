@@ -44,7 +44,14 @@ export default function TaskTodos() {
             align="start"
             as={Stack.Row}
             key={todo.id}
-            style={{ paddingLeft: 20 * (todo.ident || 0) }}>
+            style={{ paddingLeft: 20 * (todo.ident || 0) }}
+            onClick={(e: any) => {
+              if (e.metaKey) {
+                e.preventDefault();
+                e.stopPropagation();
+                dispatch(toggleTodo(todo));
+              }
+            }}>
             <Sortable.Handle className={styles.handle} />
             <div className={styles.box}>
               {todo.isCompleted ? (
@@ -69,6 +76,7 @@ export default function TaskTodos() {
               id={`todo-text-${i}`}
               value={todo.text}
               className={todo.isCompleted ? styles.completed : undefined}
+              disableCmd={true}
               onChange={text => {
                 if (!text || text !== todo.text) {
                   dispatch(

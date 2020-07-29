@@ -4,6 +4,7 @@
 
 ### Build (Next)
 
+* __feature__ Cmd + click on todo toggles it (@rstankov)
 * __feature__ Allow multiple tasks (@rstankov)
 * __bug fix__ Don't allow broke state when loading a task (@rstankov)
 * __feature__ Update app icon (@rstankov)

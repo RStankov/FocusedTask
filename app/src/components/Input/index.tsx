@@ -14,11 +14,13 @@ interface IProps {
   multiline?: boolean;
   placeholder?: string;
   autoFocus?: boolean;
+  disableCmd?: boolean;
 }
 
 export default function Input({
   onChange,
   autoFocus = true,
+  disableCmd = true,
   ...props
 }: IProps) {
   const [isEditing, setIsEditing] = React.useState(autoFocus && !props.value);
@@ -32,7 +34,11 @@ export default function Input({
           props.multiline && styles.multiline,
           props.className,
         )}
-        onClick={() => setIsEditing(true)}
+        onClick={(e: any) => {
+          if (!disableCmd || !e.metaKey) {
+            setIsEditing(true);
+          }
+        }}
         id={props.id}>
         {props.value}
       </div>
