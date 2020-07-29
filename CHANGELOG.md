@@ -4,7 +4,8 @@
 
 ### Build (Next)
 
-* __feature__ Cmd + click on todo toggles it (@rstankov)
+* __feature__ Added shortcut Cmd + backspace removes todos and bookmarks (@rstankov)
+* __feature__ Added shortcut Cmd + click on todo toggles it (@rstankov)
 * __feature__ Allow multiple tasks (@rstankov)
 * __bug fix__ Don't allow broke state when loading a task (@rstankov)
 * __feature__ Update app icon (@rstankov)
@@ -24,8 +25,8 @@
 ### Build 2 (2020/05/03)
 
 * __feature__ Add Changelog screen (@rstankov)
-* __feature__ Add New Task via app menu (@rstankov)
-* __feature__ Add Cmd + click on bookmarks opens them (@rstankov)
+* __feature__ Add creating of new tasks via app menu (@rstankov)
+* __feature__ Add saveChanges Cmd + click on bookmarks opens them (@rstankov)
 
 ### Build 1 (2020/04/29)
 

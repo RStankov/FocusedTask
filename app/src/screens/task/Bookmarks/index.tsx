@@ -71,7 +71,11 @@ export default function TaskBookmarks() {
                 dispatch(pasteBookmarks({ id: bookmark.id, clipboard }));
               }}
               onKeyDown={e => {
-                if (e.target.value === '' && e.keyCode === keyCodes.backspace) {
+                if (
+                  e.keyCode === keyCodes.backspace &&
+                  (e.target.value === '' || e.metaKey)
+                ) {
+                  e.preventDefault();
                   dispatch(removeBookmark(bookmark));
                   focusOnBookmarkWithIndex(i - 1);
                 } else if (e.keyCode === keyCodes.enter) {

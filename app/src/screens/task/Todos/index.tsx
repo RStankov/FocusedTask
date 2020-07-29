@@ -91,7 +91,11 @@ export default function TaskTodos() {
                 dispatch(pasteTasks({ id: todo.id, clipboard }));
               }}
               onKeyDown={e => {
-                if (e.target.value === '' && e.keyCode === keyCodes.backspace) {
+                if (
+                  e.keyCode === keyCodes.backspace &&
+                  (e.target.value === '' || e.metaKey)
+                ) {
+                  e.preventDefault();
                   dispatch(removeTodo(todo));
                   focusOnTodoWithIndex(i - 1);
                 } else if (e.keyCode === keyCodes.enter) {

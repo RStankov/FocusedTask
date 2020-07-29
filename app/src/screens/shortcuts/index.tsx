@@ -54,6 +54,9 @@ export default function Shortcuts() {
             <Shortcut description="Remove empty todo">
               <Key>Backspace</Key>
             </Shortcut>
+            <Shortcut description="Remove todo">
+              <Cmd /> + <Key>Backspace</Key>
+            </Shortcut>
             <Shortcut description="Blur current todo">
               <Key>Esc</Key>
             </Shortcut>
@@ -90,6 +93,9 @@ export default function Shortcuts() {
             </Shortcut>
             <Shortcut description="Remove empty bookmark">
               <Key>Backspace</Key>
+            </Shortcut>
+            <Shortcut description="Remove bookmark">
+              <Cmd /> + <Key>Backspace</Key>
             </Shortcut>
             <Shortcut description="Blur current bookmark">
               <Key>Esc</Key>
