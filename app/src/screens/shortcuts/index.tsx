@@ -26,6 +26,9 @@ export default function Shortcuts() {
             <Shortcut description="New todo">
               <Cmd /> + <Key>t</Key>
             </Shortcut>
+            <Shortcut description="Focus on first incomplete todo">
+              <Cmd /> + <Shift /> + <Key>t</Key>
+            </Shortcut>
             <Shortcut description="New bookmark">
               <Cmd /> + <Key>b</Key>
             </Shortcut>

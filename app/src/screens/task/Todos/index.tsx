@@ -3,7 +3,7 @@ import Input from 'components/Input';
 import React from 'react';
 import Sortable from 'components/Sortable';
 import Stack from 'components/Stack';
-import focusOn from 'utils/focusOn';
+import { focusOnTodoWithIndex } from 'utils/focusOn';
 import keyCodes from 'utils/keyCodes';
 import styles from './styles.module.css';
 import useDispatch from 'hooks/useDispatch';
@@ -131,8 +131,4 @@ export default function TaskTodos() {
       </div>
     </Stack.Column>
   );
-}
-
-function focusOnTodoWithIndex(index: number) {
-  focusOn(`todo-text-${index}`);
 }

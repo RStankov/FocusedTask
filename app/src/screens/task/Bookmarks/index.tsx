@@ -4,7 +4,7 @@ import Stack from 'components/Stack';
 import styles from './styles.module.css';
 import ExternalLink from 'components/ExternalLink';
 import keyCodes from 'utils/keyCodes';
-import focusOn from 'utils/focusOn';
+import { focusOnBookmarkWithIndex } from 'utils/focusOn';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 import { openURI } from 'utils/electron';
@@ -98,8 +98,4 @@ export default function TaskBookmarks() {
       </Sortable.List>
     </Stack.Column>
   );
-}
-
-function focusOnBookmarkWithIndex(index: number) {
-  focusOn(`bookmark-${index}`);
 }

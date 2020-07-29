@@ -2,19 +2,28 @@ import focusOn from 'utils/focusOn';
 import keyCodes from 'utils/keyCodes';
 import useEventListener from 'hooks/useEventListener';
 import { openURI, hideApp } from 'utils/electron';
+import { focusOnTodoWithIndex } from 'utils/focusOn';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 
 import { newTodo, newBookmark } from 'modules/task';
-import { getBookmarks } from 'modules/selectors';
+import { getBookmarks, getTodos } from 'modules/selectors';
 import { undo, redo } from 'modules/actions';
 
 export default function useShortcuts() {
   const dispatch = useDispatch();
   const bookmarks = useSelector(getBookmarks);
+  const todos = useSelector(getTodos);
 
   useEventListener('keydown', e => {
-    if (e.metaKey && e.keyCode === keyCodes.t) {
+    if (e.metaKey && e.shiftKey && e.keyCode === keyCodes.t) {
+      const index = todos.findIndex(t => !t.isCompleted);
+      if (index === -1) {
+        dispatch(newTodo());
+      } else {
+        focusOnTodoWithIndex(index);
+      }
+    } else if (e.metaKey && !e.shiftKey && e.keyCode === keyCodes.t) {
       dispatch(newTodo());
     } else if (e.metaKey && e.keyCode === keyCodes.b) {
       dispatch(newBookmark());
