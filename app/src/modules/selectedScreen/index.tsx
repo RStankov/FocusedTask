@@ -7,9 +7,15 @@ export const slice = createSlice({
     openTask: () => 'task',
     openShortcuts: () => 'shortcuts',
     openChangelog: () => 'changelog',
+    openAbout: () => 'about',
   },
 });
 
-export const { openTask, openShortcuts, openChangelog } = slice.actions;
+export const {
+  openTask,
+  openAbout,
+  openShortcuts,
+  openChangelog,
+} = slice.actions;
 
 export default slice.reducer;

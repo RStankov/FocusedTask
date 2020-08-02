@@ -1,0 +1,12 @@
+.about {
+  margin: 40px 0;
+}
+
+.about a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.about a:hover {
+  text-decoration: underline;
+}

@@ -191,3 +191,11 @@ export function updateGlobalShortcutKey(key: string) {
 
   electron.ipcRenderer.send('updateGlobalShortcutKey', key);
 }
+
+export function appVersion() {
+  if (!isElectron) {
+    return null;
+  }
+
+  return electron.remote.app.getVersion();
+}

@@ -1,8 +1,8 @@
 const packager = require('electron-packager');
 const setLanguages = require('electron-packager-languages');
 const createDMG = require('electron-installer-dmg');
+const version = require('../shell/package.json').version;
 
-const version = '0.1.0';
 const distPath = './dist';
 const name = 'FocusedTask';
 

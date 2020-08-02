@@ -2,14 +2,16 @@ import * as React from 'react';
 import useSelector from 'hooks/useSelector';
 import { getSelectedScreen } from 'modules/selectors';
 
-import task from './task';
-import shortcuts from './shortcuts';
+import about from './about';
 import changelog from './changelog';
+import shortcuts from './shortcuts';
+import task from './task';
 
 const SCREENS = {
-  task,
-  shortcuts,
+  about,
   changelog,
+  shortcuts,
+  task,
 };
 
 export default function App() {

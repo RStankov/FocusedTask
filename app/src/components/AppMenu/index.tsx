@@ -6,7 +6,12 @@ import { removeCompletedTodos } from 'modules/task';
 import { newTask, deleteTask } from 'modules/actions';
 import { getSelectedTask, getAllTasks } from 'modules/selectors';
 import { selectTask, importTask } from 'modules/actions';
-import { openShortcuts, openChangelog } from 'modules/selectedScreen';
+
+import {
+  openShortcuts,
+  openChangelog,
+  openAbout,
+} from 'modules/selectedScreen';
 
 import {
   isElectron,
@@ -86,12 +91,16 @@ function openAppMenu() {
       type: 'separator',
     },
     {
-      label: 'Show Shortcuts',
-      click: () => store.dispatch(openShortcuts()),
+      label: 'About',
+      click: () => store.dispatch(openAbout()),
     },
     {
-      label: 'Show Changelog',
+      label: 'Changelog',
       click: () => store.dispatch(openChangelog()),
+    },
+    {
+      label: 'Shortcuts',
+      click: () => store.dispatch(openShortcuts()),
     },
     {
       type: 'separator',

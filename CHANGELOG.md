@@ -4,6 +4,7 @@
 
 ### Build (Next)
 
+* __feature__ Added about screen (@rstankov)
 * __feature__ Shortcut Cmd + Shift + t to focus on first incomplete task (@rstankov)
 * __feature__ Shortcut Cmd + backspace to remove todos and bookmarks (@rstankov)
 * __feature__ Shortcut Cmd + click on todo to toggle it (@rstankov)
