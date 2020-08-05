@@ -4,8 +4,8 @@
   "dependencies": {
     "@reduxjs/toolkit": "1.4.0",
     "@testing-library/jest-dom": "5.11.2",
-    "@testing-library/react": "10.4.7",
-    "@testing-library/user-event": "12.0.17",
+    "@testing-library/react": "10.4.8",
+    "@testing-library/user-event": "12.1.0",
     "autosize": "^4.0.2",
     "classnames": "^2.2.6",
     "electron-is-accelerator": "^0.2.0",
@@ -22,7 +22,7 @@
     "@types/autosize": "^3.0.7",
     "@types/classnames": "^2.2.10",
     "@types/lodash": "4.14.158",
-    "@types/react": "16.9.43",
+    "@types/react": "16.9.44",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "7.1.9",
     "typescript": "3.9.7"
@@ -38,7 +38,11 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
