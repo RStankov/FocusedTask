@@ -3,16 +3,19 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "dev": "docker-compose up -d --no-recreate; nodemon -x ts-node src/index.ts"
+    "dev": "docker-compose up -d --no-recreate; nodemon -x ts-node src/index.ts",
+    "db-migrate": "ts-node src/db/migrate.ts"
   },
   "dependencies": {
+    "@databases/pg": "^2.1.2",
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.27",
+    "@types/node-fetch": "^2.5.7",
     "express": "^4.17.1",
+    "isbot": "^3.0.7",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
   },
-  "devDependencies": {
-    "@types/express": "^4.17.7",
-    "@types/node": "^14.0.27",
-    "nodemon": "^2.0.4"
-  }
 }
