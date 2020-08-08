@@ -10,7 +10,7 @@
     "classnames": "^2.2.6",
     "electron-is-accelerator": "^0.2.0",
     "lodash": "4.17.19",
-    "raw.macro": "0.4.1",
+    "raw.macro": "0.4.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@types/autosize": "^3.0.7",
     "@types/classnames": "^2.2.10",
-    "@types/lodash": "4.14.158",
+    "@types/lodash": "4.14.159",
     "@types/react": "16.9.44",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "7.1.9",
