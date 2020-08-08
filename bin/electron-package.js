@@ -6,6 +6,8 @@ const version = require('../shell/package.json').version;
 const distPath = './dist';
 const name = 'FocusedTask';
 
+const credentials = require('../credentials.json');
+
 packager({
   dir: './shell',
   overwrite: true,
@@ -18,17 +20,14 @@ packager({
   appVersion: version,
   appCategoryType: 'public.app-category.productivity',
   icon: './assets/Icon.icns',
-  // osxSign: {
-  //   identity: '[?]',
-  //   'hardened-runtime': true,
-  //   entitlements: 'entitlements.plist',
-  //   'entitlements-inherit': 'entitlements.plist',
-  //   'signature-flags': 'library',
-  // },
-  // osxNotarize: {
-  //   appleId: '[?]',
-  //   appleIdPassword: '[?]',
-  // },
+  osxSign: {
+    identity: credentials.identity,
+    'hardened-runtime': true,
+    entitlements: 'entitlements.plist',
+    'entitlements-inherit': 'entitlements.plist',
+    'signature-flags': 'library',
+  },
+  osxNotarize: credentials.osxNotarize,
 }).then(() => {
   console.log('Creating the dmg package');
   createDMG(
