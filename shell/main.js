@@ -3,6 +3,9 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 const settings = require('./utils/settings');
+const autoUpdate = require('./utils/autoupdate');
+
+const isDev = !!process.env.ELECTRON_START_URL;
 
 const mb = menubar({
   index:
@@ -33,6 +36,10 @@ mb.on('after-create-window', () => {
 mb.app.on('ready', () => {
   settings.setWindowBounds(mb);
   settings.setGlobalShortcut(mb);
+
+  if (!isDev) {
+    autoUpdate();
+  }
 });
 
 mb.app.on('will-quit', () => {
