@@ -5,7 +5,8 @@
   "dependencies": {
     "electron-settings": "4.0.2",
     "lodash": "4.17.19",
-    "menubar": "9.0.1"
+    "menubar": "9.0.1",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "electron": "8.5.0"

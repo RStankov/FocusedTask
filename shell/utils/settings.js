@@ -1,9 +1,11 @@
 const settings = require('electron-settings');
 const electron = require('electron');
 const _ = require('lodash');
+const uuid = require('uuid');
 
 const BOUNDS_KEY = 'windowBounds';
 const SHORTCUT_KEY = 'globalShortcut';
+const INSTALLATION_ID_KEY = 'installationId';
 
 module.exports = {
   async setWindowBounds(menubar) {
@@ -49,5 +51,15 @@ module.exports = {
     settings.set(SHORTCUT_KEY, key);
     electron.globalShortcut.unregisterAll();
     this.setGlobalShortcut(menubar);
+  },
+
+  async getInstallationId() {
+    let id = await settings.get(INSTALLATION_ID_KEY);
+    if (!id) {
+      id = uuid.v1();
+      settings.set(INSTALLATION_ID_KEY, id);
+    }
+
+    return id;
   },
 };
