@@ -1,0 +1,12 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:9.6.3
+    ports:
+      - '5432:5432'
+    volumes:
+      - /var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: focusedtask
+      POSTGRES_PASSWORD: focusedtask
+      POSTGRES_DB: focusedtask
