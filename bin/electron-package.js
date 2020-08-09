@@ -2,6 +2,7 @@ const packager = require('electron-packager');
 const setLanguages = require('electron-packager-languages');
 const createZip = require('electron-installer-zip');
 const version = require('../shell/package.json').version;
+const fs = require('fs');
 
 const distPath = './dist';
 const name = 'FocusedTask';
@@ -29,6 +30,10 @@ packager({
   },
   osxNotarize: credentials.osxNotarize,
 }).then(() => {
+  fs.unlinkSync(`${distPath}/${name}-darwin-x64/LICENSE`);
+  fs.unlinkSync(`${distPath}/${name}-darwin-x64/LICENSES.chromium.html`);
+  fs.unlinkSync(`${distPath}/${name}-darwin-x64/version`);
+
   console.log('Creating the zip package');
   createZip(
     {
