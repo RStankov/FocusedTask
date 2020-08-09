@@ -1,6 +1,6 @@
 const packager = require('electron-packager');
 const setLanguages = require('electron-packager-languages');
-const createDMG = require('electron-installer-dmg');
+const createZip = require('electron-installer-zip');
 const version = require('../shell/package.json').version;
 
 const distPath = './dist';
@@ -29,13 +29,11 @@ packager({
   },
   osxNotarize: credentials.osxNotarize,
 }).then(() => {
-  console.log('Creating the dmg package');
-  createDMG(
+  console.log('Creating the zip package');
+  createZip(
     {
-      appPath: `${distPath}/${name}-darwin-x64/${name}.app`,
-      name: `${name}-${version}`,
-      out: './dist',
-      overwrite: 'true',
+      dir: `${distPath}/${name}-darwin-x64/${name}.app`,
+      out: `${distPath}/${name}-${version}.zip`,
     },
     error => {
       if (error) {
