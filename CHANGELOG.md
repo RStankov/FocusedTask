@@ -1,6 +1,10 @@
 # Changelog
 
-## Version 1.0
+## Version 0.1.1
+
+* __feature__ Implement autoUpdate (@rstankov)
+
+## Version 0.1.0
 
 * __feature__ MacOS code sign and notarize (@rstankov)
 * __feature__ Added about screen (@rstankov)
