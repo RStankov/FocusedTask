@@ -4,7 +4,8 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "dev": "docker-compose up -d --no-recreate; nodemon -x ts-node src/index.ts",
-    "db-migrate": "ts-node src/db/migrate.ts"
+    "db-migrate": "ts-node src/db/migrate.ts",
+    "deploy": "heroku git:remote --remote heroku-updater -a focused-task"
   },
   "dependencies": {
     "@databases/pg": "^2.1.2",
