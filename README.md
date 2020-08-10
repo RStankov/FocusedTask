@@ -10,7 +10,7 @@ It lets you focus on one task at the time and split it into minor todos and keep
 
 ### Screenshot
 
-<img src="assets/screenshot.png" />
+<img src="assets/screenshot.png" height="400" />
 
 
 ### Features
