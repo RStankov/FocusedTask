@@ -1,8 +1,7 @@
-import focusOn from 'utils/focusOn';
+import focusOn, { focusOnTodoWithIndex } from 'utils/focusOn';
 import keyCodes from 'utils/keyCodes';
 import useEventListener from 'hooks/useEventListener';
 import { openURI, hideApp } from 'utils/electron';
-import { focusOnTodoWithIndex } from 'utils/focusOn';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 
