@@ -64,5 +64,6 @@ export default {
   }: {
     className?: string;
     children: React.ReactNode;
+    onClick?: any;
   }) => <div className={classNames(styles.expand, className)} {...props} />,
 };

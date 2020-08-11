@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.1.2
+
+* __feature__ Click on note header focuses on note (@rstankov)
+
 ## Version 0.1.1
 
 * __feature__ Implement autoUpdate (@rstankov)

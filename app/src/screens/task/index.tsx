@@ -12,6 +12,7 @@ import AppMenu from 'components/AppMenu';
 import useDragAndDropFiles from 'hooks/useDragAndDropFiles';
 import DragFileMessage from './DragFileMessage';
 import Button from 'components/Button';
+import focusOn from 'utils/focusOn';
 
 export default function Task() {
   const dispatch = useDispatch();
@@ -40,7 +41,10 @@ export default function Task() {
           }>
           <TaskBookmarks />
         </Section>
-        <Section emoji="📝" title="Notes">
+        <Section
+          emoji="📝"
+          title="Notes"
+          onTitleClick={() => focusOn('note-text')}>
           <TaskNote />
         </Section>
       </Stack.Column>
