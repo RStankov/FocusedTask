@@ -10,3 +10,15 @@
 .about a:hover {
   text-decoration: underline;
 }
+
+.autoupdate {
+  color: grey;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.button:hover {
+  text-decoration: underline;
+}

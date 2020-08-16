@@ -199,3 +199,19 @@ export function appVersion() {
 
   return electron.remote.app.getVersion();
 }
+
+export function autoUpdateRequest() {
+  electron.ipcRenderer.send('autoUpdateRequest');
+}
+
+export function autoUpdateSubscribe(handler: (message: string) => void) {
+  const listener = (_e: any, message: string) => handler(message);
+
+  electron.ipcRenderer.on('autoUpdateEvent', listener);
+  electron.ipcRenderer.send('autoUpdateSubscribe');
+
+  return () => {
+    electron.ipcRenderer.removeListener('autoUpdateEvent', listener);
+    electron.ipcRenderer.send('autoUpdateUnsubscribe');
+  };
+}

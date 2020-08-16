@@ -2,6 +2,7 @@
 
 ## Version 0.1.2
 
+* __feature__ Auto update via About screen (@rstankov)
 * __feature__ Click on note header focuses on note (@rstankov)
 
 ## Version 0.1.1

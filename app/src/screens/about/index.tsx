@@ -5,6 +5,9 @@ import styles from './styles.module.css';
 import ExternalLink from 'components/ExternalLink';
 import logo from 'icons/logo.png';
 import { appVersion } from 'utils/electron';
+import { autoUpdateRequest } from 'utils/electron';
+import AutoUpdateStatus from './AutoUpdateStatus';
+import TextButton from './TextButton';
 
 export default function Shortcuts() {
   return (
@@ -24,9 +27,14 @@ export default function Shortcuts() {
             Radoslav Stankov
           </ExternalLink>
         </span>
-        <ExternalLink href="http://github.com/rstankov/FocusedTask">
-          Source Code
-        </ExternalLink>
+        <span>
+          <ExternalLink href="http://github.com/rstankov/FocusedTask">
+            Source Code
+          </ExternalLink>{' '}
+          |{' '}
+          <TextButton onClick={autoUpdateRequest}>Check for Updates</TextButton>
+        </span>
+        <AutoUpdateStatus />
       </Stack.Column>
     </>
   );
