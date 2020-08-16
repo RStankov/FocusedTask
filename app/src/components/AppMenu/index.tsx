@@ -74,7 +74,6 @@ function openAppMenu() {
       label: 'Import...',
       click: async () => {
         const task = await readTaskFromFile();
-        console.log(task);
         if (task) {
           store.dispatch(importTask(task));
         }

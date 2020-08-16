@@ -13,7 +13,6 @@ export default function useDragAndDropFiles() {
     e.preventDefault();
     if (!isDraging) {
       setIsDraging(true);
-      console.log('drag');
     }
   };
 
