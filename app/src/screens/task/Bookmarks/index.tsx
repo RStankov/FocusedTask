@@ -51,7 +51,10 @@ export default function TaskBookmarks() {
             }}>
             <Sortable.Handle className={styles.handle} />
             {isURI(bookmark.uri) ? (
-              <ExternalLink href={bookmark.uri} className={styles.link}>
+              <ExternalLink
+                href={bookmark.uri}
+                className={styles.link}
+                title="Open bookmark">
                 <span className={styles.label}>
                   {i < 9 ? i + 1 : i === bookmarks.length - 1 ? 0 : ''}
                 </span>

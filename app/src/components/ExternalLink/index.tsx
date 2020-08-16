@@ -5,6 +5,7 @@ interface IProps {
   children: React.ReactNode;
   href: string;
   className?: string;
+  title?: string;
 }
 
 export default function ExternalLink({ children, ...props }: IProps) {
