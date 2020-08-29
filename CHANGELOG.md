@@ -1,5 +1,10 @@
 # Changelog
 
+
+## Version 0.1.3
+
+* __bu fix__ Fix undo/redo (@rstankov)
+
 ## Version 0.1.2
 
 * __feature__ Auto update via About screen (@rstankov)

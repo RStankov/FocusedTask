@@ -115,7 +115,7 @@ const ACTION_HANDLERS: any = {
     };
   },
 
-  undo: (state: IState, action: IAction) => {
+  'tasks/undo': (state: IState, action: IAction) => {
     const { past, future } = state.undo;
 
     if (past.length === 0) {
@@ -140,7 +140,7 @@ const ACTION_HANDLERS: any = {
     };
   },
 
-  redo: (state: IState, action: IAction) => {
+  'tasks/redo': (state: IState, action: IAction) => {
     const { past, future } = state.undo;
 
     if (future.length === 0) {
