@@ -76,7 +76,6 @@ export default function TaskTodos() {
               id={`todo-text-${i}`}
               value={todo.text}
               className={todo.isCompleted ? styles.completed : undefined}
-              disableCmd={true}
               onChange={text => {
                 if (!text || text !== todo.text) {
                   dispatch(
