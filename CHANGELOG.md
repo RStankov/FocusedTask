@@ -3,7 +3,8 @@
 
 ## Version 0.1.3
 
-* __bu fix__ Fix undo/redo (@rstankov)
+* __feature__ Enable tab to focus todos, bookmarks and notes (@rstankov)
+* __bug fix__ Fix undo/redo (@rstankov)
 
 ## Version 0.1.2
 

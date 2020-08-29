@@ -14,27 +14,30 @@ interface IProps {
   multiline?: boolean;
   placeholder?: string;
   autoFocus?: boolean;
+  tabIndex?: number | undefined;
 }
 
 export default function Input({
   onChange,
   autoFocus = true,
+  tabIndex = 0,
   ...props
 }: IProps) {
   const [isEditing, setIsEditing] = React.useState(autoFocus && !props.value);
 
   if (!isEditing) {
+    const startEditing = () => setIsEditing(true);
     return (
       <div
+        tabIndex={tabIndex}
+        onFocus={startEditing}
         className={classNames(
           styles.common,
           styles.text,
           props.multiline && styles.multiline,
           props.className,
         )}
-        onClick={() => {
-          setIsEditing(true);
-        }}
+        onClick={startEditing}
         id={props.id}>
         {props.value}
       </div>

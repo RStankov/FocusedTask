@@ -19,6 +19,7 @@ export default function TaskTitle() {
         className={styles.title}
         value={title}
         onChange={value => dispatch(updateTaskTitle(value))}
+        tabIndex={undefined}
       />
     </Stack.Row>
   );
