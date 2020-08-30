@@ -1,0 +1,28 @@
+.unchecked {
+  cursor: pointer;
+  user-select: none;
+
+  width: 20px;
+  height: 20px;
+
+  background: #ffffff;
+  border: 1px solid silver;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.unchecked:hover {
+  border-color: black;
+  background: #f0f0f0;
+}
+
+.checked {
+  cursor: pointer;
+  user-select: none;
+  font-size: 19px;
+  line-height: 19px;
+}
+
+.checked:hover {
+  opacity: 0.8;
+}

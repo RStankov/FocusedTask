@@ -1,15 +1,17 @@
 .button {
   cursor: pointer;
-  border-radius: 5px;
-  height: 22px;
-  border: 1px solid silver;
-  padding: 1px 10px 2px;
-  text-align: center;
-  background: #fcfcfc;
   user-select: none;
+
+  padding: 3px 10px 3px;
+  text-align: center;
+
+  background: #ffffff;
+  border: 1px solid silver;
+  box-sizing: border-box;
+  border-radius: 4px;
 }
 
 .button:hover {
-  background: #f0f0f0;
   border-color: black;
+  background: #f0f0f0;
 }

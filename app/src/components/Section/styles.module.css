@@ -1,13 +1,9 @@
-.header {
-  padding-left: 14px;
-}
-
 .title {
-  font-size: 20px;
-  font-weight: 700;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
 }
 
 .content {
   padding-top: 10px;
-  padding-left: 6px;
 }

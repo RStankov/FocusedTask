@@ -1,8 +1,5 @@
 import React from 'react';
-import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
-import styles from './styles.module.css';
-import ExternalLink from 'components/ExternalLink';
 import keyCodes from 'utils/keyCodes';
 import { focusOnBookmarkWithIndex } from 'utils/focusOn';
 import useSelector from 'hooks/useSelector';
@@ -12,6 +9,8 @@ import Sortable from 'components/Sortable';
 import Input from 'components/Input';
 import isURI from 'utils/isURI';
 import { getBookmarks } from 'modules/selectors';
+import BookmarkOpenLink from './OpenLink';
+import AddButton from 'components/AddButton';
 
 import {
   updateBookmark,
@@ -26,7 +25,7 @@ export default function TaskBookmarks() {
   const dispatch = useDispatch();
 
   return (
-    <Stack.Column gap="xs">
+    <Stack.Column>
       <Sortable.List
         useDragHandle={true}
         onSort={({ oldIndex, newIndex }: any) =>
@@ -41,28 +40,19 @@ export default function TaskBookmarks() {
           <Sortable.Item
             index={i}
             align="start"
+            gap="s"
             key={bookmark.id}
-            as={Stack.Row}
             onClick={(e: any) => {
               if (e.metaKey && isURI(bookmark.uri)) {
                 e.preventDefault();
+                e.stopPropagation();
                 openURI(bookmark.uri);
               }
             }}>
-            <Sortable.Handle className={styles.handle} />
-            {isURI(bookmark.uri) ? (
-              <ExternalLink
-                href={bookmark.uri}
-                className={styles.link}
-                title="Open bookmark">
-                <span className={styles.label}>
-                  {i < 9 ? i + 1 : i === bookmarks.length - 1 ? 0 : ''}
-                </span>
-                <Emoji emoji="↗️" className={styles.emoji} />
-              </ExternalLink>
-            ) : (
-              <div className={styles.inactive} />
-            )}
+            <BookmarkOpenLink
+              uri={bookmark.uri}
+              index={i < 9 ? i + 1 : i === bookmarks.length - 1 ? 0 : null}
+            />
             <Input
               id={'bookmark-' + i}
               value={bookmark.uri}
@@ -99,6 +89,10 @@ export default function TaskBookmarks() {
           </Sortable.Item>
         ))}
       </Sortable.List>
+      <AddButton
+        onClick={() => dispatch(newBookmark())}
+        subject={bookmarks.length === 0 ? 'bookmark' : 'another'}
+      />
     </Stack.Column>
   );
 }

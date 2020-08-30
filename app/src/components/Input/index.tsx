@@ -7,7 +7,8 @@ import classNames from 'classnames';
 interface IProps {
   id?: string;
   value: string;
-  onChange: (tvalue: string) => void;
+  onChange: (value: string) => void;
+  onStartEditing?: () => void;
   onPaste?: (value: string) => void;
   onKeyDown?: (e: any) => void;
   className?: string;
@@ -21,22 +22,21 @@ export default function Input({
   onChange,
   autoFocus = true,
   tabIndex = 0,
+  onStartEditing,
   ...props
 }: IProps) {
   const [isEditing, setIsEditing] = React.useState(autoFocus && !props.value);
 
   if (!isEditing) {
-    const startEditing = () => setIsEditing(true);
+    const startEditing = () => {
+      setIsEditing(true);
+      onStartEditing && onStartEditing();
+    };
     return (
       <div
         tabIndex={tabIndex}
         onFocus={startEditing}
-        className={classNames(
-          styles.common,
-          styles.text,
-          props.multiline && styles.multiline,
-          props.className,
-        )}
+        className={classNames(styles.input, props.className)}
         onClick={startEditing}
         id={props.id}>
         {props.value}

@@ -8,24 +8,14 @@ interface IProps {
   emoji: string;
   actions?: React.ReactNode;
   children: React.ReactNode;
-  onTitleClick?: () => void;
 }
 
-export default function Section({
-  title,
-  onTitleClick,
-  emoji,
-  actions,
-  children,
-}: IProps) {
+export default function Section({ title, emoji, children }: IProps) {
   return (
     <div>
-      <Stack.Row gap="s" className={styles.header}>
+      <Stack.Row gap="s">
         <Emoji emoji={emoji} size="l" />
-        <Stack.Expand className={styles.title} onClick={onTitleClick}>
-          {title}
-        </Stack.Expand>
-        {actions && <div>{actions}</div>}
+        <Stack.Expand className={styles.title}>{title}</Stack.Expand>
       </Stack.Row>
       <div className={styles.content}>{children}</div>
     </div>

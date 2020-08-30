@@ -1,20 +1,22 @@
 .link {
   align-items: center;
-  border-radius: 3px;
+  display: inline-flex;
+  justify-content: center;
+  text-decoration: none;
+
+  user-select: none;
+  cursor: pointer;
+
+  color: inherit;
+  font-size: 10px;
+
+  width: 20px;
+  height: 20px;
+
+  background: #ffffff;
   border: 1px solid silver;
   box-sizing: border-box;
-  color: inherit;
-  cursor: pointer;
-  display: inline-flex;
-  font-size: 10px;
-  height: 17px;
-  padding-bottom: 1px;
-  justify-content: center;
-  margin-right: 5px;
-  margin-top: 7px;
-  text-decoration: none;
-  width: 18px;
-  user-select: none;
+  border-radius: 4px;
 }
 
 .link:hover {
@@ -35,7 +37,14 @@
 }
 
 .inactive {
-  min-width: 18px;
+  user-select: none;
+  cursor: not-allowed;
+
+  width: 20px;
+  height: 20px;
+
+  background: #ffffff;
+  border: 1px solid silver;
   box-sizing: border-box;
-  margin-right: 5px;
+  border-radius: 4px;
 }

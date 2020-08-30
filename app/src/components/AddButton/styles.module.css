@@ -1,0 +1,11 @@
+.button {
+  color: #aab4c0;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 23px;
+  user-select: none;
+}
+
+.button:hover {
+  color: black;
+}

@@ -1,6 +1,12 @@
 .handle {
   cursor: pointer;
   visibility: hidden;
+  position: absolute;
+  text-align: center;
+  left: -25px;
+  top: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .handle path {
@@ -9,6 +15,10 @@
 
 .handle:hover path {
   fill: black;
+}
+
+.item {
+  position: relative;
 }
 
 .item:hover .handle {

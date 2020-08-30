@@ -49,10 +49,9 @@ export default class InputTextarea extends React.Component<IProps> {
 
     return (
       <textarea
-        className={classNames(styles.common, styles.textarea, className)}
+        className={classNames(styles.input, styles.textarea, className)}
         onKeyDown={onKeyDown as any}
         ref={this.textareaRef}
-        rows={multiline ? undefined : 1}
         value={value}
         {...props}
       />
