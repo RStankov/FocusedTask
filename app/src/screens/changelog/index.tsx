@@ -13,7 +13,7 @@ export default function Shortcuts() {
     <>
       <BackButton />
       <Stack.Column>
-        <Title emoji="📖" title="Changelog" />
+        <Title title="Changelog" />
         <div className={styles.markdown}>
           <ReactMarkdown source={markdown} escapeHtml={true} />
         </div>

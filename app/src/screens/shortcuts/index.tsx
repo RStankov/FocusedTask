@@ -15,7 +15,7 @@ export default function Shortcuts() {
     <>
       <BackButton />
       <Stack.Column gap="m">
-        <Title emoji="⌨️" title="Shortcuts" />
+        <Title title="Shortcuts" />
         <Section emoji="🌎" title="Global">
           <ShortcutsTable>
             <ShortcutGlobal />

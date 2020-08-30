@@ -1,4 +1,6 @@
 .title {
-  font-size: 36px !important;
-  font-weight: 700;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 26px;
+  margin-right: 30px;
 }
