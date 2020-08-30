@@ -1,6 +1,6 @@
-.close {
+.button {
   cursor: pointer;
-  width: 18px;
+  user-select: none;
   width: 18px;
   position: absolute;
   top: 10px;
@@ -9,10 +9,10 @@
   border-radius: 50%;
 }
 
-.close path {
+.button path {
   fill: white;
 }
 
-.close:hover {
+.button:hover {
   background: black;
 }

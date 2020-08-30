@@ -1,6 +1,6 @@
 .button {
   cursor: pointer;
-  width: 18px;
+  user-select: none;
   width: 18px;
   position: absolute;
   top: 10px;

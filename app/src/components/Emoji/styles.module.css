@@ -1,3 +1,7 @@
+.emoji {
+  user-select: none;
+}
+
 .size-s {
   font-size: 13px;
 }

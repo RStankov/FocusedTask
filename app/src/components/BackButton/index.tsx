@@ -8,6 +8,6 @@ export default function BackButton() {
   const dispatch = useDispatch();
 
   return (
-    <CloseIcon className={styles.close} onClick={() => dispatch(openTask())} />
+    <CloseIcon className={styles.button} onClick={() => dispatch(openTask())} />
   );
 }

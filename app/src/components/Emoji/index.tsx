@@ -18,7 +18,7 @@ export default function Emoji({
   return (
     <span
       role="img"
-      className={classNames(className, styles[`size-${size}`])}
+      className={classNames(className, styles.emoji, styles[`size-${size}`])}
       {...props}>
       {emoji}
     </span>
