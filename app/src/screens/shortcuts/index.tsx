@@ -19,15 +19,6 @@ export default function Shortcuts() {
         <Section emoji="🌎" title="Global">
           <ShortcutsTable>
             <ShortcutGlobal />
-            <Shortcut description="Undo">
-              <Cmd /> + <Key>z</Key>
-            </Shortcut>
-            <Shortcut description="Redo">
-              <Cmd /> + <Shift /> + <Key>z</Key>
-            </Shortcut>
-            <Shortcut description="Focus on todo, bookmark or note">
-              <Key>Tab</Key>
-            </Shortcut>
           </ShortcutsTable>
         </Section>
         <Section emoji="🎯" title="Task">
@@ -49,6 +40,15 @@ export default function Shortcuts() {
             </Shortcut>
             <Shortcut description="Open [1st-9th] bookmark">
               <Cmd /> + <Key>[1-9]</Key>
+            </Shortcut>
+            <Shortcut description="Undo">
+              <Cmd /> + <Key>z</Key>
+            </Shortcut>
+            <Shortcut description="Redo">
+              <Cmd /> + <Shift /> + <Key>z</Key>
+            </Shortcut>
+            <Shortcut description="Focus on todo, bookmark or note">
+              <Key>Tab</Key>
             </Shortcut>
           </ShortcutsTable>
         </Section>
