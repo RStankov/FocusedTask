@@ -22,6 +22,7 @@ const mb = menubar({
     minWidth: 300,
     maxHeight: 900,
     minHeight: 600,
+    backgroundColor: '#FAFAFA',
     webPreferences: {
       nodeIntegration: true,
       scrollBounce: true,
