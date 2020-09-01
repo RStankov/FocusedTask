@@ -1,0 +1,45 @@
+{
+  "currentRelease": "0.1.3",
+  "releases": [
+    {
+      "version": "0.1.3",
+      "updateTo": {
+        "version": "0.1.3",
+        "name": "0.1.3",
+        "pub_date": "2020-09-01T00:00:00.0Z",
+        "notes": "New release",
+        "url": "https://focused-tasks.s3.eu-central-1.amazonaws.com/FocusedTask-0.1.3.zip"
+      }
+    },
+    {
+      "version": "0.1.2",
+      "updateTo": {
+        "version": "0.1.2",
+        "name": "0.1.2",
+        "pub_date": "2020-08-16T00:00:00.0Z",
+        "notes": "New release",
+        "url": "https://focused-tasks.s3.eu-central-1.amazonaws.com/FocusedTask-0.1.2.zip"
+      }
+    },
+    {
+      "version": "0.1.1",
+      "updateTo": {
+        "version": "0.1.1",
+        "name": "0.1.1",
+        "pub_date": "2020-08-09T00:00:00.0Z",
+        "notes": "New release",
+        "url": "https://focused-tasks.s3.eu-central-1.amazonaws.com/FocusedTask-0.1.1.zip"
+      }
+    },
+    {
+      "version": "0.1.0",
+      "updateTo": {
+        "version": "0.1.0",
+        "name": "0.1.0",
+        "pub_date": "2020-07-09T00:00:00.0Z",
+        "notes": "Initial release",
+        "url": "https://focused-tasks.s3.eu-central-1.amazonaws.com/FocusedTask-0.1.0.zip"
+      }
+    }
+  ]
+}
