@@ -28,7 +28,11 @@ export default function AppClose() {
     return null;
   }
 
-  return <PreferencesIcon className={styles.button} onClick={openAppMenu} />;
+  return (
+    <span className={styles.button}>
+      <PreferencesIcon className={styles.button} onClick={openAppMenu} />
+    </span>
+  );
 }
 
 function openAppMenu() {

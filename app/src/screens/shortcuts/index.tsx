@@ -14,20 +14,11 @@ export default function Shortcuts() {
   return (
     <>
       <BackButton />
-      <Stack.Column gap="m">
-        <Title emoji="⌨️" title="Shortcuts" />
+      <Stack.Column gap="xl">
+        <Title title="Shortcuts" />
         <Section emoji="🌎" title="Global">
           <ShortcutsTable>
             <ShortcutGlobal />
-            <Shortcut description="Undo">
-              <Cmd /> + <Key>z</Key>
-            </Shortcut>
-            <Shortcut description="Redo">
-              <Cmd /> + <Shift /> + <Key>z</Key>
-            </Shortcut>
-            <Shortcut description="Focus on todo, bookmark or note">
-              <Key>Tab</Key>
-            </Shortcut>
           </ShortcutsTable>
         </Section>
         <Section emoji="🎯" title="Task">
@@ -49,6 +40,15 @@ export default function Shortcuts() {
             </Shortcut>
             <Shortcut description="Open [1st-9th] bookmark">
               <Cmd /> + <Key>[1-9]</Key>
+            </Shortcut>
+            <Shortcut description="Undo">
+              <Cmd /> + <Key>z</Key>
+            </Shortcut>
+            <Shortcut description="Redo">
+              <Cmd /> + <Shift /> + <Key>z</Key>
+            </Shortcut>
+            <Shortcut description="Focus on todo, bookmark or note">
+              <Key>Tab</Key>
             </Shortcut>
           </ShortcutsTable>
         </Section>
@@ -179,7 +179,7 @@ function ShortcutGlobal() {
     <Shortcut
       description={
         isEditing ? (
-          <Stack.Row gap="s">
+          <Stack.Row gap="m">
             <input
               value={key}
               onChange={setKey}
@@ -224,7 +224,7 @@ export function useGlobalShortcutForm() {
     },
     cancelChanges() {
       setKey(getGlobalShortcutKey());
-      setIsEditing(true);
+      setIsEditing(false);
     },
     saveChanges() {
       if (isKeyAcceptable(key)) {

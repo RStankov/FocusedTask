@@ -1,0 +1,31 @@
+.unchecked {
+  cursor: pointer;
+  user-select: none;
+
+  width: var(--box-size);
+  height: var(--box-size);
+  min-width: var(--box-size);
+  min-height: var(--box-size);
+
+  background: var(--box-background);
+  border: var(--border);
+  box-sizing: border-box;
+  border-radius: var(--radius);
+}
+
+.unchecked:hover {
+  border-color: var(--hover);
+  background: #f0f0f0;
+}
+
+.checked {
+  cursor: pointer;
+  user-select: none;
+  font-size: var(--box-size);
+  line-height: var(--box-size);
+  margin-right: -3px;
+}
+
+.checked:hover {
+  opacity: 0.8;
+}

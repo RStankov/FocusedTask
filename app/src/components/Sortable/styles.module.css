@@ -1,14 +1,24 @@
 .handle {
   cursor: pointer;
   visibility: hidden;
+  position: absolute;
+  text-align: center;
+  width: var(--box-size);
+  height: var(--box-size);
+  left: calc(-1 * (var(--box-size) + 8px));
+  top: 0;
 }
 
 .handle path {
-  fill: silver;
+  fill: var(--line);
 }
 
 .handle:hover path {
-  fill: black;
+  fill: var(--hover);
+}
+
+.item {
+  position: relative;
 }
 
 .item:hover .handle {

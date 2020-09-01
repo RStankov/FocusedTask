@@ -1,5 +1,7 @@
 .title {
-  font-size: 36px !important;
-  font-weight: 700;
-  margin-right: 25px;
+  font-size: var(--font-title) !important;
+  line-height: var(--font-title-height) !important;
+  top: 0 !important;
+  font-weight: bold;
+  margin-right: 30px;
 }

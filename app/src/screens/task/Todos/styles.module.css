@@ -1,34 +1,4 @@
-.box {
-  padding-top: 3px;
-}
-
-.checkbox {
-  border: 1px solid silver;
-  border-radius: 3px;
-  width: 17px;
-  height: 17px;
-  margin-right: 4px;
-  margin-top: 4px;
-  margin-bottom: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.checkbox:hover {
-  border-color: black;
-  background: #f0f0f0;
-}
-
 .completed {
-  color: grey;
+  color: var(--line);
   text-decoration: line-through;
-}
-
-.actions {
-  padding-left: 42px;
-  padding-top: 5px;
-}
-
-.handle {
-  margin-top: 7px;
 }

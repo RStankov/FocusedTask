@@ -1,4 +1,3 @@
-import Emoji from 'components/Emoji';
 import Input from 'components/Input';
 import React from 'react';
 import Sortable from 'components/Sortable';
@@ -8,7 +7,8 @@ import keyCodes from 'utils/keyCodes';
 import styles from './styles.module.css';
 import useDispatch from 'hooks/useDispatch';
 import useSelector from 'hooks/useSelector';
-import Button from 'components/Button';
+import TodoCheckbox from './Checkbox';
+import AddButton from 'components/AddButton';
 
 import { getTodos } from 'modules/selectors';
 
@@ -42,9 +42,9 @@ export default function TaskTodos() {
           <Sortable.Item
             index={i}
             align="start"
-            as={Stack.Row}
+            gap="m"
             key={todo.id}
-            style={{ paddingLeft: 20 * (todo.ident || 0) }}
+            style={{ marginLeft: 28 * (todo.ident || 0) }}
             onClick={(e: any) => {
               if (e.metaKey) {
                 e.preventDefault();
@@ -52,26 +52,10 @@ export default function TaskTodos() {
                 dispatch(toggleTodo(todo));
               }
             }}>
-            <Sortable.Handle className={styles.handle} />
-            <div className={styles.box}>
-              {todo.isCompleted ? (
-                <Emoji
-                  emoji={'✅'}
-                  onClick={e => {
-                    e.stopPropagation();
-                    dispatch(toggleTodo(todo));
-                  }}
-                />
-              ) : (
-                <div
-                  className={styles.checkbox}
-                  onClick={e => {
-                    e.stopPropagation();
-                    dispatch(toggleTodo(todo));
-                  }}
-                />
-              )}
-            </div>
+            <TodoCheckbox
+              isChecked={todo.isCompleted}
+              onClick={() => dispatch(toggleTodo(todo))}
+            />
             <Input
               id={`todo-text-${i}`}
               value={todo.text}
@@ -125,9 +109,10 @@ export default function TaskTodos() {
           </Sortable.Item>
         ))}
       </Sortable.List>
-      <div className={styles.actions}>
-        <Button onClick={() => dispatch(newTodo())}>New Todo</Button>
-      </div>
+      <AddButton
+        onClick={() => dispatch(newTodo())}
+        subject={todos.length === 0 ? 'todo' : 'another'}
+      />
     </Stack.Column>
   );
 }

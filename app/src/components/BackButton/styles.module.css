@@ -1,18 +1,19 @@
-.close {
+.button {
   cursor: pointer;
-  width: 18px;
-  width: 18px;
+  user-select: none;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: grey;
+  top: var(--l);
+  right: var(--l);
+  width: var(--box-size);
+  height: var(--box-size);
+  background: var(--line);
   border-radius: 50%;
 }
 
-.close path {
-  fill: white;
+.button path {
+  fill: var(--background);
 }
 
-.close:hover {
-  background: black;
+.button:hover {
+  background: var(--hover);
 }

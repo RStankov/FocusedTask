@@ -1,8 +1,8 @@
 # Changelog
 
-
 ## Version 0.1.3
 
+* __feature__ Polish UI (@rstankov, @vestimir)
 * __feature__ Enable tab to focus todos, bookmarks and notes (@rstankov)
 * __bug fix__ Fix undo/redo (@rstankov)
 
@@ -36,6 +36,8 @@
 * __change__ Replace Toggle todo from Cmd + c to Cmd + Shift + c (@rstankov)
 * __feature__ Changelog screen (@rstankov)
 * __feature__ Create new tasks via app menu (@rstankov)
-* __feature__ Shortcut  Cmd + click on bookmarks to opens them (@rstankov)
+* __feature__ Shortcut Cmd + click on bookmarks to opens them (@rstankov)
+
+## Version 0.0.0
 
 * Initial release (@rstankov)

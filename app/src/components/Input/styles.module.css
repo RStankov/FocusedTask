@@ -1,34 +1,27 @@
-.common {
-  flex: 1 1 100%;
-  padding: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  line-height: 1.2;
-  word-wrap: break-word;
-  word-break: break-all;
-  min-height: 19px;
-  border-radius: 5px;
-  font-family: inherit;
-  -webkit-font-smoothing: inherit;
+.input {
   -moz-osx-font-smoothing: inherit;
-}
-
-.text {
+  -webkit-font-smoothing: inherit;
+  border-radius: var(--radius);
   border: 1px solid transparent;
-}
-
-.text:hover {
   cursor: pointer;
-}
+  flex: 1 1 100%;
+  font-family: inherit;
+  font-size: var(--font-text);
+  line-height: var(--font-text-height);
+  padding: 1px 5px 2px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
 
-.multiline {
-  white-space: pre;
+  position: relative;
+  top: -4px;
+  left: -6px;
 }
 
 .textarea {
-  border: 1px solid silver;
-  resize: none !important;
-  outline: none;
+  background: var(--box-background);
+  border: var(--border);
   height: 19px;
-  background: white;
+  outline: none;
+  resize: none !important;
 }

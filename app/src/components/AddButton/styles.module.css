@@ -1,0 +1,9 @@
+.button {
+  user-select: none;
+  cursor: pointer;
+  color: var(--silent);
+}
+
+.button:hover {
+  color: var(--hover);
+}

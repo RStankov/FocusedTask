@@ -17,7 +17,7 @@ export default function Shortcuts() {
         align="center"
         justify="center"
         className={styles.about}
-        gap="s">
+        gap="m">
         <img src={logo} alt="Logo" width={100} height={100} />
         <strong>Focused Task</strong>
         <span>Version {appVersion()}</span>

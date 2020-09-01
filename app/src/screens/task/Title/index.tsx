@@ -1,5 +1,4 @@
 import React from 'react';
-import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
 import { updateTaskTitle } from 'modules/task';
@@ -13,8 +12,7 @@ export default function TaskTitle() {
   const dispatch = useDispatch();
 
   return (
-    <Stack.Row gap="xs">
-      <Emoji emoji="🎯" size="xxl" />
+    <Stack.Row>
       <Input
         className={styles.title}
         value={title}

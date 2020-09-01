@@ -1,0 +1,20 @@
+.dragFileMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: var(--font-title);
+  line-height: var(--font-title-height);
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+
+  padding: var(--m);
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}

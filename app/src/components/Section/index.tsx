@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Emoji from 'components/Emoji';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
 
@@ -8,24 +7,16 @@ interface IProps {
   emoji: string;
   actions?: React.ReactNode;
   children: React.ReactNode;
-  onTitleClick?: () => void;
 }
 
-export default function Section({
-  title,
-  onTitleClick,
-  emoji,
-  actions,
-  children,
-}: IProps) {
+export default function Section({ title, emoji, children }: IProps) {
   return (
     <div>
-      <Stack.Row gap="s" className={styles.header}>
-        <Emoji emoji={emoji} size="l" />
-        <Stack.Expand className={styles.title} onClick={onTitleClick}>
-          {title}
-        </Stack.Expand>
-        {actions && <div>{actions}</div>}
+      <Stack.Row gap="s" className={styles.title}>
+        <span role="img" aria-label="">
+          {emoji}
+        </span>
+        <Stack.Expand>{title}</Stack.Expand>
       </Stack.Row>
       <div className={styles.content}>{children}</div>
     </div>
