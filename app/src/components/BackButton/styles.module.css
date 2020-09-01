@@ -1,10 +1,10 @@
 .button {
   cursor: pointer;
   user-select: none;
-  width: 18px;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
+  width: 18px;
   background: grey;
   border-radius: 50%;
 }
