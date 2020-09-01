@@ -1,15 +1,20 @@
 .dragFileMessage {
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  bottom: 0;
-  color: white;
   display: flex;
-  font-size: 20px;
-  font-weight: bold;
+  align-items: center;
   justify-content: center;
-  left: 0;
-  padding: 10px;
+
+  font-size: var(--font-title);
+  line-height: var(--font-title-height);
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+
+  padding: var(--m);
+
   position: absolute;
+  left: 0;
+  bottom: 0;
   right: 0;
   top: 0;
+  z-index: 1;
 }

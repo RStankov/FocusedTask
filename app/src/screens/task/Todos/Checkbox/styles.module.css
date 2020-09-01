@@ -2,27 +2,28 @@
   cursor: pointer;
   user-select: none;
 
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
-  min-height: 20px;
+  width: var(--box-size);
+  height: var(--box-size);
+  min-width: var(--box-size);
+  min-height: var(--box-size);
 
-  background: #ffffff;
-  border: 1px solid silver;
+  background: var(--box-background);
+  border: var(--border);
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: var(--radius);
 }
 
 .unchecked:hover {
-  border-color: black;
+  border-color: var(--hover);
   background: #f0f0f0;
 }
 
 .checked {
   cursor: pointer;
   user-select: none;
-  font-size: 19px;
-  line-height: 19px;
+  font-size: var(--box-size);
+  line-height: var(--box-size);
+  margin-right: -3px;
 }
 
 .checked:hover {

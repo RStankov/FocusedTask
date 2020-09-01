@@ -1,9 +1,9 @@
 .title {
   font-weight: bold;
-  font-size: 18px;
-  line-height: 21px;
+  font-size: var(--font-subtitle);
+  line-height: var(--font-subtitle-height);
 }
 
 .content {
-  padding-top: 10px;
+  padding-top: var(--m);
 }

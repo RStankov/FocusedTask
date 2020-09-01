@@ -40,7 +40,7 @@ export default function TaskBookmarks() {
           <Sortable.Item
             index={i}
             align="start"
-            gap="s"
+            gap="m"
             key={bookmark.id}
             onClick={(e: any) => {
               if (e.metaKey && isURI(bookmark.uri)) {

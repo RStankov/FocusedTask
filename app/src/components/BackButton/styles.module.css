@@ -2,17 +2,18 @@
   cursor: pointer;
   user-select: none;
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 18px;
-  background: grey;
+  top: var(--l);
+  right: var(--l);
+  width: var(--box-size);
+  height: var(--box-size);
+  background: var(--line);
   border-radius: 50%;
 }
 
 .button path {
-  fill: white;
+  fill: var(--background);
 }
 
 .button:hover {
-  background: black;
+  background: var(--hover);
 }

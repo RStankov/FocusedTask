@@ -7,14 +7,14 @@
 }
 
 .button svg {
-  width: 18px;
-  height: 18px;
+  width: var(--box-size);
+  height: var(--box-size);
 }
 
 .button path {
-  stroke: grey;
+  stroke: var(--line);
 }
 
 .button:hover path {
-  stroke: black;
+  stroke: var(--hover);
 }

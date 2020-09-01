@@ -2,14 +2,17 @@ import * as React from 'react';
 import classNames from 'classnames';
 import styles from './styles.module.css';
 
-interface IProps {
+interface ISubProps {
   children: React.ReactNode;
   className?: string;
-  direction: 'column' | 'row';
-  align: 'start' | 'center' | 'end';
-  justify: 'start' | 'center' | 'end';
-  gap?: 'xs' | 's' | 'm' | 'l' | 'xl' | 'xl';
+  align?: 'start' | 'center' | 'end';
+  justify?: 'start' | 'center' | 'end';
+  gap?: 's' | 'm' | 'l' | 'xl';
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+}
+
+interface IProps extends ISubProps {
+  direction: 'column' | 'row';
 }
 
 const Stack = React.forwardRef(
@@ -29,15 +32,6 @@ const Stack = React.forwardRef(
     return <div ref={ref} className={combinedClassName} {...props} />;
   },
 );
-
-type ISubProps = {
-  children: React.ReactNode;
-  className?: string;
-  align?: 'start' | 'center' | 'end';
-  justify?: 'start' | 'center' | 'end';
-  gap?: 'xs' | 's' | 'm' | 'l' | 'xl' | 'xl';
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-};
 
 export default {
   Column: React.forwardRef((props: ISubProps, ref) => (

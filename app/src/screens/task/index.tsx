@@ -18,7 +18,7 @@ export default function Task() {
     <>
       {isDragingFile && <DragFileMessage />}
       <AppMenu />
-      <Stack.Column gap="l">
+      <Stack.Column gap="xl">
         <TaskTitle />
         <Section emoji="🔜" title="Todos">
           <TaskTodos />

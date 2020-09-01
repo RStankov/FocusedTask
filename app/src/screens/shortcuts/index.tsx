@@ -14,7 +14,7 @@ export default function Shortcuts() {
   return (
     <>
       <BackButton />
-      <Stack.Column gap="m">
+      <Stack.Column gap="xl">
         <Title title="Shortcuts" />
         <Section emoji="🌎" title="Global">
           <ShortcutsTable>
@@ -179,7 +179,7 @@ function ShortcutGlobal() {
     <Shortcut
       description={
         isEditing ? (
-          <Stack.Row gap="s">
+          <Stack.Row gap="m">
             <input
               value={key}
               onChange={setKey}
@@ -224,7 +224,7 @@ export function useGlobalShortcutForm() {
     },
     cancelChanges() {
       setKey(getGlobalShortcutKey());
-      setIsEditing(true);
+      setIsEditing(false);
     },
     saveChanges() {
       if (isKeyAcceptable(key)) {

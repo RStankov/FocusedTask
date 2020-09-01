@@ -1,5 +1,4 @@
 import React from 'react';
-import Emoji from 'components/Emoji';
 import styles from './styles.module.css';
 import ExternalLink from 'components/ExternalLink';
 import isURI from 'utils/isURI';
@@ -17,7 +16,9 @@ export default function BookmarkOpenLink({ uri, index }: IProps) {
   return (
     <ExternalLink href={uri} className={styles.link} title="Open bookmark">
       <span className={styles.label}>{index}</span>
-      <Emoji emoji="↗️" className={styles.emoji} />
+      <span role="img" aria-label="open link" className={styles.emoji}>
+        ↗️
+      </span>
     </ExternalLink>
   );
 }

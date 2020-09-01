@@ -5,24 +5,24 @@
 }
 
 .markdown ul li + li {
-  margin-top: 10px;
+  margin-top: var(--m);
 }
 
 .markdown strong {
-  background: #ffffff;
-  border: 1px solid silver;
+  background: var(--box-background);
+  border: var(--border);
   box-sizing: border-box;
-  border-radius: 4px;
-  font-size: 12px;
+  border-radius: var(--radius);
+  font-size: 10px;
   line-height: 14px;
-  padding: 2px 5px;
+  padding: 4px 5px 4px;
   text-transform: uppercase;
 }
 
 .markdown h2 {
   font-weight: bold;
-  font-size: 18px;
-  line-height: 21px;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  font-size: var(--font-subtitle);
+  line-height: var(--font-subtitle-height);
+  margin-top: var(--l);
+  margin-bottom: var(--s);
 }

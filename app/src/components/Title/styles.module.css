@@ -1,6 +1,5 @@
 .title {
   font-weight: bold;
-  font-size: 22px;
-  line-height: 26px;
-  margin-right: 30px;
+  font-size: var(--font-title);
+  line-height: var(--font-title-height);
 }

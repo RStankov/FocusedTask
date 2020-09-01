@@ -1,6 +1,6 @@
 .drag {
   -webkit-app-region: drag;
-  height: 20px;
+  height: var(--box-size);
   position: absolute;
   top: 0;
   left: 0;

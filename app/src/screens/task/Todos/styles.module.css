@@ -1,4 +1,4 @@
 .completed {
-  color: grey;
+  color: var(--line);
   text-decoration: line-through;
 }

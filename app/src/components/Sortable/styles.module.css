@@ -3,18 +3,18 @@
   visibility: hidden;
   position: absolute;
   text-align: center;
-  left: -25px;
+  width: var(--box-size);
+  height: var(--box-size);
+  left: calc(-1 * (var(--box-size) + 8px));
   top: 0;
-  width: 20px;
-  height: 20px;
 }
 
 .handle path {
-  fill: silver;
+  fill: var(--line);
 }
 
 .handle:hover path {
-  fill: black;
+  fill: var(--hover);
 }
 
 .item {

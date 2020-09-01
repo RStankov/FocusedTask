@@ -42,7 +42,7 @@ export default function TaskTodos() {
           <Sortable.Item
             index={i}
             align="start"
-            gap="s"
+            gap="m"
             key={todo.id}
             style={{ marginLeft: 28 * (todo.ident || 0) }}
             onClick={(e: any) => {
