@@ -6,7 +6,7 @@
   width: var(--box-size);
   height: var(--box-size);
   left: calc(-1 * (var(--box-size) + 8px));
-  top: 0;
+  top: 1px;
 }
 
 .handle path {
