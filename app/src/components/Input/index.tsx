@@ -34,7 +34,7 @@ export default function Input({
     };
     return (
       <div
-        tabIndex={tabIndex}
+        tabIndex={tabIndex === -1 ? undefined : tabIndex}
         onFocus={startEditing}
         className={classNames(styles.input, props.className)}
         onClick={startEditing}

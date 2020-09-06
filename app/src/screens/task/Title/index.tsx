@@ -19,7 +19,7 @@ export default function TaskTitle() {
         className={styles.title}
         value={title}
         onChange={value => dispatch(updateTaskTitle(value || 'Untitled'))}
-        tabIndex={undefined}
+        tabIndex={-1}
         placeholder="Title..."
       />
     </Stack.Row>
