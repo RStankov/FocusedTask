@@ -34,10 +34,10 @@ const UNDO_EMPTY = {
   future: [],
 };
 
-function createNewTask() {
+function createNewTask(title?: string) {
   return {
     id: generateId('task'),
-    title: 'Focus',
+    title: title || '',
     todos: [],
     bookmarks: [],
     note: '',
@@ -89,7 +89,7 @@ const ACTION_HANDLERS: any = {
       selected = Object.keys(tasks)[0];
 
       if (!selected) {
-        const newTask = createNewTask();
+        const newTask = createNewTask('Focus');
         selected = newTask.id;
         tasks[selected] = newTask;
       }

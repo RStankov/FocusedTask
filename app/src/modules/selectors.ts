@@ -27,3 +27,7 @@ export function getBookmarks(store: IStoreState) {
 export function getNote(store: IStoreState) {
   return getSelectedTask(store).note || '';
 }
+
+export function getSelectedTaskId(store: IStoreState) {
+  return store.tasks.tasks[store.tasks.selected]!.id;
+}

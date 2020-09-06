@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.1.4
+
+* __feature__ Ask for task name when creating it (@rstankov)
+
 ## Version 0.1.3
 
 * __feature__ Polish UI (@rstankov, @vestimir)
