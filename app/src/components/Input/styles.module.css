@@ -10,7 +10,6 @@
   line-height: var(--font-text-height);
   padding: 1px 5px 2px;
   white-space: pre-wrap;
-  word-break: break-all;
   word-wrap: break-word;
 
   position: relative;
