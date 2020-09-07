@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 0.1.4
+## Version 0.2.0
 
 * __bug fix__ ESC on input doesn't close the app (@rstankov)
 * __bug fix__ UI fixes (@rstankov)
