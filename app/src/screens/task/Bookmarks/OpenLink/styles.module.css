@@ -1,4 +1,5 @@
-.link {
+.link,
+.inactive {
   align-items: center;
   display: inline-flex;
   justify-content: center;
@@ -37,17 +38,4 @@
 .emoji {
   display: none;
   font-size: 16px;
-}
-
-.inactive {
-  user-select: none;
-  cursor: not-allowed;
-
-  width: var(--box-size);
-  height: var(--box-size);
-
-  background: var(--box-background);
-  border: var(--border);
-  box-sizing: border-box;
-  border-radius: var(--radius);
 }
