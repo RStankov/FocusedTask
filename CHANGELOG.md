@@ -2,6 +2,7 @@
 
 ## Version 0.1.4
 
+* __bug fix__ ESC on input doesn't close the app (@rstankov)
 * __bug fix__ UI fixes (@rstankov)
 * __feature__ Ask for task name when creating it (@rstankov)
 

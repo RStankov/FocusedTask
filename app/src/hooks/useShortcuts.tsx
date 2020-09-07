@@ -48,13 +48,10 @@ export default function useShortcuts() {
       openURI(bookmarks[8]?.uri);
     } else if (e.metaKey && e.keyCode === keyCodes['0']) {
       openURI(bookmarks[bookmarks.length - 1]?.uri);
-    } else if (e.keyCode === keyCodes.esc && e.target.tagName !== 'INPUT') {
+    } else if (e.keyCode === keyCodes.esc && !isInput(e)) {
       hideApp();
     } else if (e.metaKey && e.keyCode === keyCodes.z) {
-      if (
-        e.target.tagName.toUpperCase() !== 'TEXTAREA' &&
-        e.target.tagName.toUpperCase() !== 'INPUT'
-      ) {
+      if (!isInput(e)) {
         if (e.shiftKey) {
           dispatch(redo());
         } else {
@@ -63,4 +60,11 @@ export default function useShortcuts() {
       }
     }
   });
+}
+
+function isInput(e: { target: { tagName: string } }) {
+  return (
+    e.target.tagName.toUpperCase() === 'TEXTAREA' ||
+    e.target.tagName.toUpperCase() === 'INPUT'
+  );
 }
