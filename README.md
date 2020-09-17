@@ -8,9 +8,9 @@ It lets you focus on one task at the time and split it into minor todos and keep
 >
 > *Rado Stankov*
 
-### Screenshot
-
 <img src="assets/screenshot.png" height="400" />
+
+🍿 <a href="https://www.youtube.com/watch?v=Vp2ASWq-S04">See it in action</a> 🎥
 
 
 ### Features
@@ -24,7 +24,7 @@ It lets you focus on one task at the time and split it into minor todos and keep
 
 ### Download
 
-👉 <a href="http://focused-task.herokuapp.com/download">Download latest version</a> 👈
+👉 <a href="http://focused-task.herokuapp.com/download?ref=github">Download latest version</a> 👈
 
 ## Development
 
