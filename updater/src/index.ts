@@ -15,7 +15,7 @@ app.use('/download', async (req, res) => {
   res.redirect(release.updateTo.url);
 
   if (!(req.headers['user-agent'] && isBot(req.headers['user-agent']))) {
-    logDownload(release.version);
+    logDownload(release.version, req.query.ref || req.header('Referer'));
   }
 });
 

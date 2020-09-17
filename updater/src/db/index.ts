@@ -1,16 +1,16 @@
 import { db } from '../config';
 import { sql } from '@databases/pg';
 
-export async function logDownload(version: string) {
+export async function logDownload(version: string, ref: any) {
   await db.query(sql`
     INSERT INTO download_logs
-      (version, requested_at)
+      (version, requested_at, referer)
     VALUES
-      (${version}, ${new Date()})
+      (${version}, ${new Date()}, ${ref})
   `);
-}
 
-db.query(sql`SELECT * FROM update_logs`).then((r: any) => console.log(r));
+  db.query(sql`SELECT * FROM download_logs`).then((r) => console.log(r));
+}
 
 export async function logUpdate(version: string, installationId: string) {
   const time = new Date();
