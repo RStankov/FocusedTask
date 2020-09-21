@@ -1,12 +1,12 @@
 # <img src="assets/icon.png" width="24" height="24" /> Focused Task
 
-A macOS menu bar task app build with React/Redux and Electron.
+<a href="https://www.producthunt.com/posts/focused-task?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-focused-task" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=264189&theme=light" alt="Focused Task at Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
-It lets you focus on one task at the time and split it into minor todos and keep all related information about this task in one place.
+MacOS menu bar app that helps you focus on a single task.
+By splitting it into smaller todos and keeping all related information about it in one place.
+The app is designed to get out of your way. Everything can be done via a shortcut.
 
-> This is just an experiment, don't take it too seriously 😅
->
-> *Rado Stankov*
+It is built with Electron and uses React and Redux.
 
 <img src="assets/screenshot.png" height="400" />
 
