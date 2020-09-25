@@ -4,8 +4,12 @@ import { sql } from '@databases/pg';
 const MIGRATIONS = [
   () =>
     db.query(sql`
-    ALTER TABLE download_logs ADD COLUMN referer VARCHAR(255)
-  `),
+      ALTER TABLE download_logs ADD COLUMN referer VARCHAR(255);
+    `),
+  () =>
+    db.query(sql`
+      ALTER TABLE download_logs ALTER COLUMN requested_at TYPE TIMESTAMP USING requested_at::timestamp;
+    `),
 ];
 
 async function migrate() {
@@ -58,7 +62,7 @@ async function migrate() {
       );
     } else {
       await db.query(
-        sql`UPDATE FROM database_migrations SET version=${MIGRATIONS.length}`,
+        sql`UPDATE database_migrations SET version=${MIGRATIONS.length}`,
       );
     }
   }
