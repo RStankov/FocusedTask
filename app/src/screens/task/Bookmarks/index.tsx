@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Stack from 'components/Stack';
 import keyCodes from 'utils/keyCodes';
 import { focusOnBookmarkWithIndex } from 'utils/focusOn';

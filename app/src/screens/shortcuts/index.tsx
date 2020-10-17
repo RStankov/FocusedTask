@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Section from 'components/Section';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
@@ -189,7 +189,7 @@ function ShortcutGlobal() {
                 styles.input,
                 !isKeyAcceptable(key) && styles.error,
               )}
-              onKeyDown={e => {
+              onKeyDown={(e) => {
                 if (e.keyCode === keyCodes.enter) {
                   saveChanges();
                 }

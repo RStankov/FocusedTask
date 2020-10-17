@@ -1,5 +1,5 @@
+import * as React from 'react';
 import Input from 'components/Input';
-import React from 'react';
 import Sortable from 'components/Sortable';
 import Stack from 'components/Stack';
 import { focusOnTodoWithIndex } from 'utils/focusOn';
@@ -60,7 +60,7 @@ export default function TaskTodos() {
               id={`todo-text-${i}`}
               value={todo.text}
               className={todo.isCompleted ? styles.completed : undefined}
-              onChange={text => {
+              onChange={(text) => {
                 if (!text || text !== todo.text) {
                   dispatch(
                     updateTodoText({
@@ -70,10 +70,10 @@ export default function TaskTodos() {
                   );
                 }
               }}
-              onPaste={clipboard => {
+              onPaste={(clipboard) => {
                 dispatch(pasteTasks({ id: todo.id, clipboard }));
               }}
-              onKeyDown={e => {
+              onKeyDown={(e) => {
                 if (
                   e.keyCode === keyCodes.backspace &&
                   (e.target.value === '' || e.metaKey)

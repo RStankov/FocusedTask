@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Stack from 'components/Stack';
 import styles from './styles.module.css';
 import { updateTaskTitle } from 'modules/task';
@@ -18,7 +18,7 @@ export default function TaskTitle() {
         key={id}
         className={styles.title}
         value={title}
-        onChange={value => dispatch(updateTaskTitle(value || 'Untitled'))}
+        onChange={(value) => dispatch(updateTaskTitle(value || 'Untitled'))}
         tabIndex={-1}
         placeholder="Title..."
       />

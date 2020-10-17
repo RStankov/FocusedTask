@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styles from './styles.module.css';
 import ExternalLink from 'components/ExternalLink';
 import isURI from 'utils/isURI';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import useDispatch from 'hooks/useDispatch';
 import styles from './styles.module.css';
 import { ReactComponent as CloseIcon } from 'icons/close.svg';

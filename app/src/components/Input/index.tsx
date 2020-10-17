@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styles from './styles.module.css';
 import Textarea from './Textarea';
 import keyCodes from 'utils/keyCodes';

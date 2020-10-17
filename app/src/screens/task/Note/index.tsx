@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Input from 'components/Input';
 import { updateNote } from 'modules/task';
 import { getNote } from 'modules/selectors';
@@ -27,7 +27,7 @@ export default function TaskNote() {
           onStartEditing={() => {
             setShowNewButton(false);
           }}
-          onChange={value => {
+          onChange={(value) => {
             dispatch(updateNote(value));
             setShowNewButton(!value);
           }}

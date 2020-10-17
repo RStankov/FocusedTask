@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Section from 'components/Section';
 import Stack from 'components/Stack';
 import TaskTitle from './Title';
