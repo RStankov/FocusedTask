@@ -2,6 +2,7 @@
 
 ## Version 0.2.1
 
+* __feature__ Initial markdown support - bold text input(@rstankov)
 * __bug fix__ Show numbers for all bookmarks, even when number is better than 10 (@rstankov)
 
 ## Version 0.2.0

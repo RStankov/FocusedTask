@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 import Textarea from './Textarea';
 import keyCodes from 'utils/keyCodes';
 import classNames from 'classnames';
+import { hasMarkdown, applyMarkdown } from './utils';
 
 interface IProps {
   id?: string;
@@ -39,7 +40,7 @@ export default function Input({
         className={classNames(styles.input, props.className)}
         onClick={startEditing}
         id={props.id}>
-        {props.value}
+        {hasMarkdown(props.value) ? applyMarkdown(props.value) : props.value}
       </div>
     );
   }
@@ -47,7 +48,7 @@ export default function Input({
   return (
     <InputInEditMode
       {...props}
-      onChange={value => {
+      onChange={(value) => {
         setIsEditing(false);
         onChange && onChange(value);
       }}
@@ -73,10 +74,10 @@ function InputInEditMode({
       multiline={false}
       value={value}
       placeholder={placeholder}
-      onChange={e => {
+      onChange={(e) => {
         setValue(e.target.value);
       }}
-      onFocus={e => {
+      onFocus={(e) => {
         e.target.setSelectionRange(
           e.target.value.length,
           e.target.value.length,
@@ -85,7 +86,7 @@ function InputInEditMode({
       onBlur={() => {
         onChange(value);
       }}
-      onPaste={e => {
+      onPaste={(e) => {
         if (multiline || !onPaste) {
           return;
         }
@@ -100,7 +101,7 @@ function InputInEditMode({
 
         onPaste(clipboard);
       }}
-      onKeyDown={e => {
+      onKeyDown={(e) => {
         if (!multiline && e.keyCode === keyCodes.enter) {
           e.preventDefault();
 
