@@ -49,21 +49,18 @@ export default function TaskBookmarks() {
                 openURI(bookmark.uri);
               }
             }}>
-            <BookmarkOpenLink
-              uri={bookmark.uri}
-              index={i < 9 ? i + 1 : i === bookmarks.length - 1 ? 0 : null}
-            />
+            <BookmarkOpenLink uri={bookmark.uri} index={i + 1} />
             <Input
               id={'bookmark-' + i}
               value={bookmark.uri}
               placeholder="https://example.com"
-              onChange={value =>
+              onChange={(value) =>
                 dispatch(updateBookmark({ id: bookmark.id, uri: value }))
               }
-              onPaste={clipboard => {
+              onPaste={(clipboard) => {
                 dispatch(pasteBookmarks({ id: bookmark.id, clipboard }));
               }}
-              onKeyDown={e => {
+              onKeyDown={(e) => {
                 if (
                   e.keyCode === keyCodes.backspace &&
                   (e.target.value === '' || e.metaKey)

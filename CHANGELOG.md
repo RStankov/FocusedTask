@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.2.1
+
+* __bug fix__ Show numbers for all bookmarks, even when number is better than 10 (@rstankov)
+
 ## Version 0.2.0
 
 * __bug fix__ ESC on input doesn't close the app (@rstankov)

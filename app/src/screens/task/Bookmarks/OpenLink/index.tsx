@@ -5,7 +5,7 @@ import isURI from 'utils/isURI';
 
 interface IProps {
   uri: string;
-  index: number | null;
+  index: number;
 }
 
 export default function BookmarkOpenLink({ uri, index }: IProps) {
