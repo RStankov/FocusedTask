@@ -1,7 +1,7 @@
 const electron = require('electron');
 const settings = require('./settings');
 
-module.exports = async function() {
+module.exports = async function () {
   const installationId = await settings.getInstallationId();
   const autoUpdater = electron.autoUpdater;
 
@@ -15,7 +15,7 @@ module.exports = async function() {
     serverType: 'json',
   });
 
-  autoUpdater.on('error', error => {
+  autoUpdater.on('error', (error) => {
     autoUpdateEvent(`${error}`);
   });
 
@@ -23,11 +23,11 @@ module.exports = async function() {
     autoUpdateEvent('Checking for new update...');
   });
 
-  autoUpdater.on('update-available', error => {
+  autoUpdater.on('update-available', (error) => {
     autoUpdateEvent('New version is downloading...');
   });
 
-  autoUpdater.on('update-not-available', error => {
+  autoUpdater.on('update-not-available', (error) => {
     autoUpdateEvent('Running on newest version.');
   });
 
@@ -70,7 +70,7 @@ module.exports = async function() {
 
   autoUpdateRequest();
 
-  setInterval(autoUpdateRequest, 6 * 60 * 1000);
+  setInterval(autoUpdateRequest, 12 * 60 * 1000);
 };
 
 // NOTE(rstankov): Placeholder for the render process
@@ -94,11 +94,11 @@ function autoUpdateEvent(message) {
   }
 }
 
-electron.ipcMain.on('autoUpdateSubscribe', e => {
+electron.ipcMain.on('autoUpdateSubscribe', (e) => {
   renderIpc = e.sender;
   autoUpdateEvent(latestMessage);
 });
 
-electron.ipcMain.on('autoUpdateUnsubscribe', e => {
+electron.ipcMain.on('autoUpdateUnsubscribe', (e) => {
   renderIpc = null;
 });
