@@ -30,7 +30,7 @@ export default function TaskTodos() {
     <Stack.Column>
       <Sortable.List
         useDragHandle={true}
-        onSort={({ oldIndex, newIndex }: any) =>
+        onSort={({ oldIndex, newIndex }) =>
           dispatch(
             moveTodo({
               id: todos[oldIndex]!.id,

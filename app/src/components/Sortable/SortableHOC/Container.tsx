@@ -10,40 +10,52 @@ import {
   addEventListener,
   removeEventListener,
   shouldCancelStart,
+  IBrowserEvent,
 } from './utils';
 
-// axis: 'x' | 'y' | 'xy';
-// onSort: (result: { oldIndex: number, newIndex: number }) => void;
-// transitionDuration: number;
-// useDragHandle?: boolean;
+import { ISortableElement, IAxis, ISortChange } from './types';
 
-export default function sortableContainer(Component) {
-  return class WithSortableContainer extends React.Component {
+interface IProps {
+  axis: IAxis;
+  onSort:
+    | ((change: ISortChange) => void)
+    | ((change: ISortChange) => Promise<any>);
+  transitionDuration: number;
+  useDragHandle?: boolean;
+}
+
+export default function sortableContainer<T>(
+  build: (props: T, ref: any) => React.ReactElement,
+) {
+  const Component = (React.forwardRef(build) as any) as React.FC<any>;
+
+  return class WithSortableContainer extends React.Component<T & IProps> {
     static displayName = displayName('sortableList', Component);
 
     static defaultProps = {
       axis: 'y',
       transitionDuration: 300,
+      useDragHandle: false,
     };
 
-    constructor(props) {
-      super(props);
-
-      this.manager = new Manager();
-    }
+    manager = new Manager();
+    container: HTMLElement | null = null;
+    sorter: Sorter | null = null;
 
     componentWillUnmount() {
       if (this.container) {
         removeEventListener(this.container, 'start', this.onStart);
       }
 
-      if (this.sort) {
-        this.onEnd();
-      }
+      this.sorter?.onEnd();
     }
 
-    onStart = event => {
+    onStart = (event: IBrowserEvent) => {
       if (this.sorter || shouldCancelStart(event)) {
+        return;
+      }
+
+      if (!this.container) {
         return;
       }
 
@@ -54,7 +66,10 @@ export default function sortableContainer(Component) {
         return;
       }
 
-      const el = closest(event.target, el => el.sortableInfo != null);
+      const el = closest(
+        event.target,
+        (e: any) => e.sortableInfo != null,
+      ) as ISortableElement | null;
 
       if (!el) {
         return;
@@ -71,15 +86,15 @@ export default function sortableContainer(Component) {
       });
     };
 
-    onSort = result => {
-      this.sorter = null;
-
-      if (this.props.onSort && result.oldIndex !== result.newIndex) {
-        this.props.onSort(result);
+    onSort = async (change: ISortChange) => {
+      if (this.props.onSort && change.oldIndex !== change.newIndex) {
+        await this.props.onSort(change);
       }
+
+      this.sorter = null;
     };
 
-    setContainer = ref => {
+    setContainer = (ref: HTMLElement) => {
       if (this.container) {
         removeEventListener(this.container, 'start', this.onStart);
       }

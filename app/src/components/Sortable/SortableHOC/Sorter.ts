@@ -10,11 +10,57 @@ import {
   setTranslate3d,
   addEventListener,
   removeEventListener,
+  IBrowserEvent,
 } from './utils';
 
+import {
+  ISortableElement,
+  IAxis,
+  IPosition,
+  IBounds,
+  IOffset,
+  ISortChange,
+} from './types';
+
 import AutoScroller from './AutoScroller';
+import Manager from './Manager';
+
+interface ISorterOptions {
+  manager: Manager;
+  container: HTMLElement;
+  el: ISortableElement;
+  axis: IAxis;
+  onComplete: (change: ISortChange) => void | Promise<any>;
+  transitionDuration: number;
+  event: IBrowserEvent;
+}
 
 export default class Sorter {
+  manager: Manager;
+  container: HTMLElement;
+  el: HTMLElement;
+  axis: IAxis;
+  onComplete: (change: ISortChange) => void | Promise<any>;
+  transitionDuration: number;
+
+  initalIndex: number;
+  newIndex: number | null;
+  contentWindow: Window;
+  scrollContainer: HTMLElement;
+
+  margin: IPosition;
+  elBounds: IBounds;
+  containerBounds: IBounds;
+  baseHelperX: number;
+  baseHelperY: number;
+  baseX: number;
+  baseY: number;
+  helper: HTMLElement;
+  offset: IPosition = { x: 0, y: 0 };
+
+  autoScroller: AutoScroller;
+  listenerNode: HTMLElement | Window;
+
   constructor({
     manager,
     container,
@@ -23,7 +69,7 @@ export default class Sorter {
     onComplete,
     transitionDuration,
     event,
-  }) {
+  }: ISorterOptions) {
     this.manager = manager;
     this.el = el;
     this.axis = axis;
@@ -64,7 +110,7 @@ export default class Sorter {
     this.baseY =
       offsetEdge.top - this.scrollContainer.scrollTop - initialOffset.y;
 
-    this.helper = document.body.appendChild(cloneNode(el));
+    this.helper = document.body.appendChild(cloneNode(el)) as HTMLElement;
 
     setStyle(this.helper, {
       boxSizing: 'border-box',
@@ -81,8 +127,8 @@ export default class Sorter {
       visibility: 'hidden',
     });
 
-    const minTranslate = {};
-    const maxTranslate = {};
+    const minTranslate: Partial<IPosition> = {};
+    const maxTranslate: Partial<IPosition> = {};
 
     if (this.axis.indexOf('x') !== -1) {
       minTranslate.x =
@@ -107,20 +153,20 @@ export default class Sorter {
     this.autoScroller = new AutoScroller({
       container: this.scrollContainer,
       onScroll: this.onScroll,
-      maxTranslate,
-      minTranslate,
+      maxTranslate: maxTranslate as IPosition,
+      minTranslate: minTranslate as IPosition,
       height: elBounds.height,
       width: elBounds.width,
     });
 
-    this.manager.sortedItems().forEach(({ el }) => {
-      el.bounds = {
-        height: Math.min(el.offsetHeight, elBounds.height) / 2,
-        width: Math.min(el.offsetWidth, elBounds.width) / 2,
-        ...getEdgeOffset(el, container),
+    this.manager.sortedItems().forEach((sortable) => {
+      sortable.el.bounds = {
+        height: Math.min(sortable.el.offsetHeight, elBounds.height) / 2,
+        width: Math.min(sortable.el.offsetWidth, elBounds.width) / 2,
+        ...getEdgeOffset(sortable.el, container),
       };
 
-      setTransitionDuration(el, transitionDuration);
+      setTransitionDuration(sortable.el, transitionDuration);
     });
 
     this.listenerNode = event.touches ? el : this.contentWindow;
@@ -129,14 +175,14 @@ export default class Sorter {
     addEventListener(this.listenerNode, 'end', this.onEnd);
   }
 
-  onScroll = offset => {
+  onScroll = (offset: IOffset) => {
     this.offset.x += offset.left;
     this.offset.y += offset.top;
 
     this._sort();
   };
 
-  onMove = event => {
+  onMove = (event: IBrowserEvent) => {
     // Prevent scrolling on mobile
     if (typeof event.preventDefault === 'function') {
       event.preventDefault();
@@ -156,11 +202,16 @@ export default class Sorter {
     this._sort();
   };
 
-  onEnd = () => {
+  onEnd = async () => {
     removeEventListener(this.listenerNode, 'move', this.onMove);
     removeEventListener(this.listenerNode, 'end', this.onEnd);
 
-    this.helper.parentNode.removeChild(this.helper);
+    await this.onComplete({
+      newIndex: this.newIndex!,
+      oldIndex: this.initalIndex,
+    });
+
+    this.helper.parentNode?.removeChild(this.helper);
 
     setStyle(this.el, {
       opacity: '',
@@ -175,11 +226,6 @@ export default class Sorter {
     });
 
     this.autoScroller.stop();
-
-    this.onComplete({
-      newIndex: this.newIndex,
-      oldIndex: this.initalIndex,
-    });
 
     this.manager.invalidateCache();
   };
@@ -292,8 +338,8 @@ export default class Sorter {
             this.containerBounds.left + bounds.width
           ) {
             // If it moves passed the left bounds, then animate it to the last position of the previous row.
-            // We just use the offset of the previous node to calculate where to move, because that node's original position
-            // is exactly where we want to go
+            // We just use the offset of the previous node to calculate where to move, because that node's
+            // original position is exactly where we want to go
             const prevNode = items[i - 1];
             if (prevNode) {
               const prevBounds = this._getBounds(prevNode.el);
@@ -314,7 +360,7 @@ export default class Sorter {
     }
   }
 
-  _getBounds(el) {
+  _getBounds(el: ISortableElement): IBounds {
     if (el.bounds) {
       return el.bounds;
     }
@@ -326,5 +372,7 @@ export default class Sorter {
     };
 
     setTransitionDuration(el, this.transitionDuration);
+
+    return el.bounds;
   }
 }

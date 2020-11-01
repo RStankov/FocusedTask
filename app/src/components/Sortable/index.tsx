@@ -10,20 +10,34 @@ import styles from './styles.module.css';
 import classNames from 'classnames';
 
 const Handle = sortableHandle(
-  React.forwardRef(({ className }: any, ref: any) => (
-    <div className={classNames(styles.handle, className)}>
-      <DragIcon ref={ref} width={18} height={18} />
+  ({ className }: { className?: string }, ref: any) => (
+    <div className={classNames(styles.handle, className)} ref={ref}>
+      <DragIcon width={18} height={18} />
     </div>
-  )),
+  ),
 );
 
 export default {
-  List: sortableContainer(
-    React.forwardRef((props: any, ref: any) => <div ref={ref} {...props} />),
-  ),
+  List: sortableContainer((props: { children: React.ReactNode }, ref: any) => (
+    <div ref={ref} {...props} />
+  )),
 
   Item: sortableElement(
-    React.forwardRef(({ className, children, ...props }: any, ref: any) => (
+    (
+      {
+        className,
+        children,
+        ...props
+      }: {
+        children: React.ReactNode;
+        className?: string;
+        align?: 'start';
+        gap?: 'm';
+        style?: any;
+        onClick?: (e: any) => void;
+      },
+      ref: any,
+    ) => (
       <Stack.Row
         ref={ref}
         className={classNames(styles.item, className)}
@@ -31,6 +45,6 @@ export default {
         {children}
         <Handle />
       </Stack.Row>
-    )),
+    ),
   ),
 };

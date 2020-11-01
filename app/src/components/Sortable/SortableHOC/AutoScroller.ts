@@ -1,4 +1,24 @@
+import { IPosition, IOffset } from './types';
+
+interface IAutoScrollerOptions {
+  container: HTMLElement;
+  onScroll: (offset: IOffset) => void;
+  width: number;
+  height: number;
+  minTranslate: IPosition;
+  maxTranslate: IPosition;
+}
+
 export default class AutoScroller {
+  container: HTMLElement;
+  onScroll: (offset: IOffset) => void;
+  width: number;
+  height: number;
+  minTranslate: IPosition;
+  maxTranslate: IPosition;
+
+  interval: any | null;
+
   constructor({
     container,
     onScroll,
@@ -6,7 +26,7 @@ export default class AutoScroller {
     height,
     minTranslate,
     maxTranslate,
-  }) {
+  }: IAutoScrollerOptions) {
     this.container = container;
     this.onScroll = onScroll;
     this.width = width;
@@ -22,8 +42,8 @@ export default class AutoScroller {
     }
   }
 
-  update(translate) {
-    const { minTranslate, maxTranslate, width, height } = this;
+  update(translate: IPosition) {
+    const { minTranslate, maxTranslate, width, height } = this; // tslint:disable-line no-this-assignment
 
     const direction = {
       x: 0,

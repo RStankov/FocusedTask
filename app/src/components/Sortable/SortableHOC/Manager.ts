@@ -1,13 +1,18 @@
-export default class Manager {
-  _items = [];
-  cache = null;
+import { ISortableElement } from './types';
 
-  add(ref) {
+interface IRef {
+  el: ISortableElement;
+}
+
+export default class Manager {
+  _items: IRef[] = [];
+  cache: IRef[] | null = null;
+
+  add(ref: IRef) {
     this._items.push(ref);
-    this._cache = null;
   }
 
-  remove(ref) {
+  remove(ref: IRef) {
     const index = this._items.indexOf(ref);
 
     if (index !== -1) {
@@ -25,7 +30,9 @@ export default class Manager {
       return this.cache;
     }
 
-    return (this.cache = this._items.sort(sortByIndex));
+    this.cache = this._items.sort(sortByIndex);
+
+    return this.cache;
   }
 }
 
@@ -34,12 +41,12 @@ function sortByIndex(
     el: {
       sortableInfo: { index: index1 },
     },
-  },
+  }: IRef,
   {
     el: {
       sortableInfo: { index: index2 },
     },
-  },
+  }: IRef,
 ) {
   return index1 - index2;
 }

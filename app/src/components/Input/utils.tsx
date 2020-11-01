@@ -4,6 +4,7 @@ export function hasMarkdown(text: string) {
   return text.includes('**');
 }
 
+//eslint-disable-next-line no-useless-escape
 const BOLD_REGEX = /(\*\*[^\*]+\*\*)/gi;
 
 export function applyMarkdown(text: string) {

@@ -1,22 +1,42 @@
+import { IPosition, IOffset } from './types';
+
+export interface IBrowserEvent {
+  button: number;
+  target: HTMLElement;
+  touches: { pageX: number; pageY: number }[];
+  changedTouches: { pageX: number; pageY: number }[];
+  pageY: number;
+  pageX: number;
+  preventDefault?: () => void;
+}
+
 const EVENTS = {
   start: ['touchstart', 'mousedown'],
   move: ['touchmove', 'mousemove'],
   end: ['touchend', 'touchcancel', 'mouseup'],
 };
 
-export function addEventListener(el, event, listener) {
-  EVENTS[event].forEach(eventName =>
-    el.addEventListener(eventName, listener, false),
+export function addEventListener(
+  el: HTMLElement | Window,
+  event: keyof typeof EVENTS,
+  listener: (event: IBrowserEvent) => void,
+) {
+  EVENTS[event].forEach((eventName) =>
+    el.addEventListener(eventName, listener as any, false),
   );
 }
 
-export function removeEventListener(el, event, listener) {
-  EVENTS[event].forEach(eventName =>
-    el.removeEventListener(eventName, listener),
+export function removeEventListener(
+  el: HTMLElement | Window,
+  event: keyof typeof EVENTS,
+  listener: (event: IBrowserEvent) => void,
+) {
+  EVENTS[event].forEach((eventName) =>
+    el.removeEventListener(eventName, listener as any),
   );
 }
 
-const vendorPrefix = (function() {
+const vendorPrefix = (() => {
   if (typeof window === 'undefined' || typeof document === 'undefined') {
     // Server environment
     return '';
@@ -28,58 +48,63 @@ const vendorPrefix = (function() {
   const styles = window.getComputedStyle(document.documentElement, '') || [
     '-moz-hidden-iframe',
   ];
-  const pre = (Array.prototype.slice
+  const pre = ((Array.prototype.slice as any)
     .call(styles)
     .join('')
     .match(/-(moz|webkit|ms)-/) ||
-    (styles.OLink === '' && ['', 'o']))[1];
+    ((styles as any).OLink === '' && ['', 'o']))[1];
 
-  switch (pre) {
-    case 'ms':
-      return 'ms';
-    default:
-      return pre && pre.length ? pre[0].toUpperCase() + pre.substr(1) : '';
+  if (pre === 'ms') {
+    return 'ms';
   }
+
+  return pre && pre.length ? pre[0].toUpperCase() + pre.substr(1) : '';
 })();
 
-export function setStyle(el, styles) {
-  Object.keys(styles).forEach(key => {
+export function setStyle(el: HTMLElement, styles: any) {
+  Object.keys(styles).forEach((key: any) => {
     el.style[key] = styles[key];
   });
 }
 
-export function setTranslate3d(el, translate) {
-  el.style[`${vendorPrefix}Transform`] =
+export function setTranslate3d(el: HTMLElement, translate: IPosition | null) {
+  el.style[`${vendorPrefix}Transform` as any] =
     translate == null ? '' : `translate3d(${translate.x}px,${translate.y}px,0)`;
 }
 
-export function setTransitionDuration(el, duration) {
-  el.style[`${vendorPrefix}TransitionDuration`] =
+export function setTransitionDuration(
+  el: HTMLElement,
+  duration: number | null,
+) {
+  el.style[`${vendorPrefix}TransitionDuration` as any] =
     duration == null ? '' : `${duration}ms`;
 }
 
-export function closest(el, fn) {
+export function closest(
+  el: HTMLElement | null,
+  fn: (el: HTMLElement) => boolean,
+) {
   while (el) {
     if (fn(el)) {
       return el;
     }
 
-    el = el.parentNode;
+    el = (el.parentNode as HTMLElement) || null;
   }
 
   return null;
 }
 
-function getPixelValue(stringValue) {
-  if (stringValue.substr(-2) === 'px') {
-    return parseFloat(stringValue);
+function getPixelValue(value: string) {
+  if (value.substr(-2) === 'px') {
+    return parseFloat(value);
   }
 
   return 0;
 }
 
-export function getElementMargin(element) {
-  const style = window.getComputedStyle(element);
+export function getElementMargin(el: HTMLElement) {
+  const style = window.getComputedStyle(el);
 
   return {
     bottom: getPixelValue(style.marginBottom),
@@ -89,13 +114,13 @@ export function getElementMargin(element) {
   };
 }
 
-export function displayName(prefix, Component) {
+export function displayName(prefix: string, Component: any) {
   const componentName = Component.displayName || Component.name;
 
   return componentName ? `${prefix}(${componentName})` : prefix;
 }
 
-export function getPosition(event) {
+export function getPosition(event: IBrowserEvent) {
   if (event.touches && event.touches.length) {
     return {
       x: event.touches[0].pageX,
@@ -114,9 +139,14 @@ export function getPosition(event) {
   }
 }
 
-export function getEdgeOffset(el, parent, offset = { left: 0, top: 0 }) {
+export function getEdgeOffset(
+  el: HTMLElement | null,
+  parent: HTMLElement | null,
+  offset: { left: number; top: number } = { left: 0, top: 0 },
+): IOffset {
   if (!el) {
-    return undefined;
+    // NOTE(rstankov): this shouldn't happen
+    return { top: 0, left: 0 };
   }
 
   // Get the actual offsetTop / offsetLeft value, no matter how deep the el is nested
@@ -129,31 +159,34 @@ export function getEdgeOffset(el, parent, offset = { left: 0, top: 0 }) {
     return elOffset;
   }
 
-  return getEdgeOffset(el.parentNode, parent, elOffset);
+  return getEdgeOffset(
+    (el.parentNode as HTMLElement) || null,
+    parent,
+    elOffset,
+  );
 }
 
-function isScrollable(el) {
+function isScrollable(el: HTMLElement) {
   const computedStyle = window.getComputedStyle(el);
   const overflowRegex = /(auto|scroll)/;
   const properties = ['overflow', 'overflowX', 'overflowY'];
 
-  return properties.find(property =>
-    overflowRegex.test(computedStyle[property]),
+  return properties.find((property) =>
+    overflowRegex.test(computedStyle[property as any]),
   );
 }
 
-export function getScrollingParent(el) {
+export function getScrollingParent(el: HTMLElement | null): HTMLElement | null {
   if (!(el instanceof HTMLElement)) {
     return null;
   } else if (isScrollable(el)) {
     return el;
   } else {
-    return getScrollingParent(el.parentNode);
+    return getScrollingParent(el.parentNode as HTMLElement | null);
   }
 }
-
-export function getContainerGridGap(element) {
-  const style = window.getComputedStyle(element);
+export function getContainerGridGap(el: HTMLElement): IPosition {
+  const style = window.getComputedStyle(el);
 
   if (style.display === 'grid') {
     return {
@@ -175,11 +208,13 @@ const NodeType = {
   Select: 'SELECT',
 };
 
-export function cloneNode(el) {
+export function cloneNode(el: HTMLElement) {
   const selector = 'input, textarea, select, canvas, [contenteditable]';
-  const fields = el.querySelectorAll(selector);
+  const fields = el.querySelectorAll(selector) as any;
   const clonedNode = el.cloneNode(true);
-  const clonedFields = [...clonedNode.querySelectorAll(selector)];
+  const clonedFields = [
+    ...(clonedNode as any).querySelectorAll(selector),
+  ] as any[];
 
   clonedFields.forEach((field, i) => {
     if (field.type !== 'file') {
@@ -213,7 +248,7 @@ const interactiveElements = [
   NodeType.Button,
 ];
 
-export function shouldCancelStart(event) {
+export function shouldCancelStart(event: IBrowserEvent) {
   if (event.button === 2) {
     return false;
   }
@@ -222,7 +257,7 @@ export function shouldCancelStart(event) {
     return true;
   }
 
-  if (closest(event.target, el => el.contentEditable === 'true')) {
+  if (closest(event.target, (el) => el.contentEditable === 'true')) {
     return true;
   }
 
