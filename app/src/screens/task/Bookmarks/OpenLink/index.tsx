@@ -1,15 +1,19 @@
 import * as React from 'react';
 import styles from './styles.module.css';
 import ExternalLink from 'components/ExternalLink';
-import isURI from 'utils/isURI';
+import { bookmarkUri } from 'utils/bookmarks';
 
 interface IProps {
-  uri: string;
+  bookmark: {
+    uri: string;
+  };
   index: number;
 }
 
-export default function BookmarkOpenLink({ uri, index }: IProps) {
-  if (!isURI(uri)) {
+export default function BookmarkOpenLink({ bookmark, index }: IProps) {
+  const uri = bookmarkUri(bookmark);
+
+  if (!uri) {
     return <div className={styles.inactive} />;
   }
 

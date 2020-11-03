@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import Textarea from './Textarea';
 import keyCodes from 'utils/keyCodes';
 import classNames from 'classnames';
-import { hasMarkdown, applyMarkdown } from './utils';
+import { renderText, IRenderer } from './utils';
 
 interface IProps {
   id?: string;
@@ -17,7 +17,7 @@ interface IProps {
   placeholder?: string;
   autoFocus?: boolean;
   tabIndex?: number | undefined;
-  maxLength?: number;
+  textRender?: IRenderer;
 }
 
 export default function Input({
@@ -25,7 +25,7 @@ export default function Input({
   autoFocus = true,
   tabIndex = 0,
   onStartEditing,
-  maxLength,
+  textRender = 'markdown',
   ...props
 }: IProps) {
   const [isEditing, setIsEditing] = React.useState(autoFocus && !props.value);
@@ -43,7 +43,7 @@ export default function Input({
         className={classNames(styles.input, props.className)}
         title={props.value}
         id={props.id}>
-        {renderContent(props.value, maxLength)}
+        {renderText(props.value, textRender)}
       </div>
     );
   }
@@ -57,13 +57,6 @@ export default function Input({
       }}
     />
   );
-}
-
-function renderContent(text: string, maxLength?: number) {
-  if (maxLength && text.length > maxLength + 10) {
-    text = text.substr(0, maxLength) + '...';
-  }
-  return hasMarkdown(text) ? applyMarkdown(text) : text;
 }
 
 function InputInEditMode({

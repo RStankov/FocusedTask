@@ -1,7 +1,8 @@
 import focusOn, { focusOnTodoWithIndex } from 'utils/focusOn';
 import keyCodes from 'utils/keyCodes';
 import useEventListener from 'hooks/useEventListener';
-import { openURI, hideApp } from 'utils/electron';
+import { hideApp } from 'utils/electron';
+import { openBookmark } from 'utils/bookmarks';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 
@@ -14,9 +15,9 @@ export default function useShortcuts() {
   const bookmarks = useSelector(getBookmarks);
   const todos = useSelector(getTodos);
 
-  useEventListener('keydown', e => {
+  useEventListener('keydown', (e) => {
     if (e.metaKey && e.shiftKey && e.keyCode === keyCodes.t) {
-      const index = todos.findIndex(t => !t.isCompleted);
+      const index = todos.findIndex((t) => !t.isCompleted);
       if (index === -1) {
         dispatch(newTodo());
       } else {
@@ -29,25 +30,25 @@ export default function useShortcuts() {
     } else if (e.metaKey && e.keyCode === keyCodes.n) {
       focusOn('note-text');
     } else if (e.metaKey && e.keyCode === keyCodes['1']) {
-      openURI(bookmarks[0]?.uri);
+      openBookmark(bookmarks[0]);
     } else if (e.metaKey && e.keyCode === keyCodes['2']) {
-      openURI(bookmarks[1]?.uri);
+      openBookmark(bookmarks[1]);
     } else if (e.metaKey && e.keyCode === keyCodes['3']) {
-      openURI(bookmarks[2]?.uri);
+      openBookmark(bookmarks[2]);
     } else if (e.metaKey && e.keyCode === keyCodes['4']) {
-      openURI(bookmarks[3]?.uri);
+      openBookmark(bookmarks[3]);
     } else if (e.metaKey && e.keyCode === keyCodes['5']) {
-      openURI(bookmarks[4]?.uri);
+      openBookmark(bookmarks[4]);
     } else if (e.metaKey && e.keyCode === keyCodes['6']) {
-      openURI(bookmarks[5]?.uri);
+      openBookmark(bookmarks[5]);
     } else if (e.metaKey && e.keyCode === keyCodes['7']) {
-      openURI(bookmarks[6]?.uri);
+      openBookmark(bookmarks[6]);
     } else if (e.metaKey && e.keyCode === keyCodes['8']) {
-      openURI(bookmarks[7]?.uri);
+      openBookmark(bookmarks[7]);
     } else if (e.metaKey && e.keyCode === keyCodes['9']) {
-      openURI(bookmarks[8]?.uri);
+      openBookmark(bookmarks[8]);
     } else if (e.metaKey && e.keyCode === keyCodes['0']) {
-      openURI(bookmarks[bookmarks.length - 1]?.uri);
+      openBookmark(bookmarks[bookmarks.length - 1]);
     } else if (e.keyCode === keyCodes.esc && !isInput(e)) {
       hideApp();
     } else if (e.metaKey && e.keyCode === keyCodes.z) {

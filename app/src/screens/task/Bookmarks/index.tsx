@@ -49,12 +49,12 @@ export default function TaskBookmarks() {
                 openURI(bookmark.uri);
               }
             }}>
-            <BookmarkOpenLink uri={bookmark.uri} index={i + 1} />
+            <BookmarkOpenLink bookmark={bookmark} index={i + 1} />
             <Input
               id={'bookmark-' + i}
               value={bookmark.uri}
               placeholder="https://example.com"
-              maxLength={50}
+              textRender="link"
               onChange={(value) =>
                 dispatch(updateBookmark({ id: bookmark.id, uri: value }))
               }
