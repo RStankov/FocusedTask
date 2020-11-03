@@ -17,6 +17,7 @@ interface IProps {
   placeholder?: string;
   autoFocus?: boolean;
   tabIndex?: number | undefined;
+  maxLength?: number;
 }
 
 export default function Input({
@@ -24,6 +25,7 @@ export default function Input({
   autoFocus = true,
   tabIndex = 0,
   onStartEditing,
+  maxLength,
   ...props
 }: IProps) {
   const [isEditing, setIsEditing] = React.useState(autoFocus && !props.value);
@@ -37,10 +39,11 @@ export default function Input({
       <div
         tabIndex={tabIndex === -1 ? undefined : tabIndex}
         onFocus={startEditing}
-        className={classNames(styles.input, props.className)}
         onClick={startEditing}
+        className={classNames(styles.input, props.className)}
+        title={props.value}
         id={props.id}>
-        {hasMarkdown(props.value) ? applyMarkdown(props.value) : props.value}
+        {renderContent(props.value, maxLength)}
       </div>
     );
   }
@@ -54,6 +57,13 @@ export default function Input({
       }}
     />
   );
+}
+
+function renderContent(text: string, maxLength?: number) {
+  if (maxLength && text.length > maxLength + 10) {
+    text = text.substr(0, maxLength) + '...';
+  }
+  return hasMarkdown(text) ? applyMarkdown(text) : text;
 }
 
 function InputInEditMode({

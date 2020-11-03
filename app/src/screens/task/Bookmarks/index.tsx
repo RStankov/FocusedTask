@@ -54,6 +54,7 @@ export default function TaskBookmarks() {
               id={'bookmark-' + i}
               value={bookmark.uri}
               placeholder="https://example.com"
+              maxLength={50}
               onChange={(value) =>
                 dispatch(updateBookmark({ id: bookmark.id, uri: value }))
               }
