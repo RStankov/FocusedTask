@@ -1,8 +1,12 @@
 # Changelog
 
+## Version 0.2.2
+
+* __feature__ Support x-callback urls like bear://x-callback-url/note/123 (@rstankov)
+
 ## Version 0.2.1
 
-* __feature__ Initial markdown support - bold text input(@rstankov)
+* __feature__ Initial markdown support - bold text (@rstankov)
 * __bug fix__ Show numbers for all bookmarks, even when number is better than 10 (@rstankov)
 
 ## Version 0.2.0
