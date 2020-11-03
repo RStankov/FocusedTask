@@ -1,6 +1,5 @@
 .handle {
   cursor: pointer;
-  visibility: hidden;
   position: absolute;
   text-align: center;
   width: var(--box-size);
@@ -21,6 +20,10 @@
   position: relative;
 }
 
-.item:hover .handle {
+.handle svg {
+  visibility: hidden;
+}
+
+.item:hover .handle svg {
   visibility: visible;
 }

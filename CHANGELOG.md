@@ -2,6 +2,7 @@
 
 ## Version 0.2.2
 
+* __bug fix__ Show drag handle when you hover over it (@rstankov)
 * __feature__ Restrict long to 50 characters (@rstankov)
 * __feature__ Support x-callback urls like bear://x-callback-url/note/123 (@rstankov)
 
