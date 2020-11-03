@@ -87,7 +87,7 @@ function InputInEditMode({
         );
       }}
       onBlur={() => {
-        onChange(value);
+        onChange(value.trim());
       }}
       onPaste={(e) => {
         if (multiline || !onPaste) {
