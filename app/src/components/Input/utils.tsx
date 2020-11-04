@@ -1,14 +1,14 @@
 import * as React from 'react';
-import isURI from 'utils/isURI';
+import { bookmarkTitle } from 'utils/bookmarks';
 
-export function hasMarkdown(text: string) {
+function hasMarkdown(text: string) {
   return text.includes('**');
 }
 
 //eslint-disable-next-line no-useless-escape
 const BOLD_REGEX = /(\*\*[^\*]+\*\*)/gi;
 
-export function applyMarkdown(text: string) {
+function applyMarkdown(text: string) {
   return text
     .split(BOLD_REGEX)
     .map((chunk, i) =>
@@ -16,17 +16,12 @@ export function applyMarkdown(text: string) {
     );
 }
 
-export function renderMarkdown(text: string) {
+function renderMarkdown(text: string) {
   return hasMarkdown(text) ? applyMarkdown(text) : text;
 }
 
-export function renderLink(text: string) {
-  if (text.includes(' ')) {
-    const [chunk1, chunk2] = text.split(' ');
-    if (isURI(chunk2)) {
-      text = chunk1 + ' ↗️';
-    }
-  }
+function renderLink(text: string) {
+  text = bookmarkTitle(text);
 
   if (text.length > 60) {
     text = text.substr(0, 50) + '...';

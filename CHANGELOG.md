@@ -1,6 +1,10 @@
 # Changelog
 
-## Version 0.3
+## Version 0.3.1
+
+* __bug fix__ Support multiple spaces (@rstankov)
+
+## Version 0.3.0
 
 * __feature__ Allow titles for links (@rstankov)
 * __bug fix__ Show drag handle when you hover over it (@rstankov)

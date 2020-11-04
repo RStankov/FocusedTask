@@ -1,5 +1,6 @@
 import { openURI } from 'utils/electron';
 import isURI from 'utils/isURI';
+import { last } from 'lodash';
 
 interface IBookmark {
   uri: string;
@@ -19,7 +20,7 @@ export function openBookmark(bookmark?: IBookmark) {
 
 export function bookmarkUri({ uri }: IBookmark) {
   if (uri.includes(' ')) {
-    uri = uri.split(' ')[1];
+    uri = last(uri.split(' ')) || '';
   }
 
   if (isURI(uri)) {
@@ -27,4 +28,16 @@ export function bookmarkUri({ uri }: IBookmark) {
   }
 
   return null;
+}
+
+export function bookmarkTitle(text: string) {
+  if (text.includes(' ')) {
+    const chunks = text.split(' ');
+    const last = chunks.splice(-1)[0] || '';
+    if (isURI(last)) {
+      text = chunks.join(' ') + ' ↗️';
+    }
+  }
+
+  return text;
 }
