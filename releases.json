@@ -1,11 +1,11 @@
 {
-  "currentRelease": "0.3.0",
+  "currentRelease": "0.3",
   "releases": [
     {
-      "version": "0.3.0",
+      "version": "0.3",
       "updateTo": {
-        "version": "0.3.0",
-        "name": "0.3.0",
+        "version": "0.3",
+        "name": "0.3",
         "pub_date": "2020-11-04T00:00:00.0Z",
         "notes": "New release",
         "url": "https://focused-tasks.s3.eu-central-1.amazonaws.com/FocusedTask-0.3.zip"
