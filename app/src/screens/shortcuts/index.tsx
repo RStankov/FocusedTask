@@ -50,6 +50,9 @@ export default function Shortcuts() {
             <Shortcut description="Focus on todo, bookmark or note">
               <Key>Tab</Key>
             </Shortcut>
+            <Shortcut description="Switch between tasks">
+              <Cmd /> + <Key>`</Key>
+            </Shortcut>
           </ShortcutsTable>
         </Section>
         <Section emoji="🔜" title="Todos">

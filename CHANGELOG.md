@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.4.0
+
+* __feature__ Shortcut Cmd + ` to switch between tasks(@rstankov)
+
 ## Version 0.3.1
 
 * __bug fix__ Support multiple spaces (@rstankov)

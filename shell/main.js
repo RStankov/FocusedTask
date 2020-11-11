@@ -4,6 +4,7 @@ const url = require('url');
 const path = require('path');
 const settings = require('./utils/settings');
 const autoUpdate = require('./utils/autoupdate');
+const switchTask = require('./utils/switchTask');
 
 const isDev = !!process.env.ELECTRON_START_URL;
 
@@ -63,10 +64,12 @@ mb.app.on('web-contents-created', (e, contents) => {
   });
 });
 
-electron.ipcMain.on('resize', function(_e, width, height) {
+electron.ipcMain.on('resize', function (_e, width, height) {
   mb.window.setSize(width, height);
 });
 
-electron.ipcMain.on('updateGlobalShortcutKey', function(_e, key) {
+electron.ipcMain.on('updateGlobalShortcutKey', function (_e, key) {
   settings.updateGlobalShortcutKey(mb, key);
 });
+
+switchTask.register(mb);

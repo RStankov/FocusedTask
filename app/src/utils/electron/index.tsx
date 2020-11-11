@@ -61,9 +61,7 @@ export async function writeTaskToFile(store: IStoreState) {
   const { filePath } = await electron.remote.dialog.showSaveDialog({
     defaultPath:
       '~/Desktop/' +
-      getTitle(store)
-        .toLocaleLowerCase()
-        .replace(/\W+/g, '_') +
+      getTitle(store).toLocaleLowerCase().replace(/\W+/g, '_') +
       '.json',
   });
 
@@ -127,7 +125,7 @@ export function openMenu(items: IMenuItem[]) {
 
   const menu = new Menu();
 
-  items.forEach(item => menu.append(new MenuItem(item)));
+  items.forEach((item) => menu.append(new MenuItem(item)));
 
   menu.popup(remote.getCurrentWindow());
 }
@@ -213,5 +211,13 @@ export function autoUpdateSubscribe(handler: (message: string) => void) {
   return () => {
     electron.ipcRenderer.removeListener('autoUpdateEvent', listener);
     electron.ipcRenderer.send('autoUpdateUnsubscribe');
+  };
+}
+
+export function taskSwitchSubscribe(handler: () => void) {
+  electron.ipcRenderer.on('switchTaskShortcut', handler);
+
+  return () => {
+    electron.ipcRenderer.removeListener('switchTaskShortcut', handler);
   };
 }

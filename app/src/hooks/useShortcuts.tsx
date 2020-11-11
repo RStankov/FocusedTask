@@ -1,19 +1,27 @@
+import * as React from 'react';
+
 import focusOn, { focusOnTodoWithIndex } from 'utils/focusOn';
 import keyCodes from 'utils/keyCodes';
 import useEventListener from 'hooks/useEventListener';
-import { hideApp } from 'utils/electron';
+import { hideApp, taskSwitchSubscribe } from 'utils/electron';
 import { openBookmark } from 'utils/bookmarks';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 
 import { newTodo, newBookmark } from 'modules/task';
 import { getBookmarks, getTodos } from 'modules/selectors';
-import { undo, redo } from 'modules/actions';
+import { undo, redo, nextTask } from 'modules/actions';
 
 export default function useShortcuts() {
   const dispatch = useDispatch();
   const bookmarks = useSelector(getBookmarks);
   const todos = useSelector(getTodos);
+
+  React.useEffect(() => {
+    return taskSwitchSubscribe(() => {
+      dispatch(nextTask());
+    });
+  }, [dispatch]);
 
   useEventListener('keydown', (e) => {
     if (e.metaKey && e.shiftKey && e.keyCode === keyCodes.t) {

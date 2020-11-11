@@ -72,6 +72,30 @@ const ACTION_HANDLERS: any = {
     };
   },
 
+  'tasks/next': (state: IState) => {
+    const tasks = Object.values(state.tasks);
+
+    if (tasks.length < 2) {
+      return state;
+    }
+
+    const current = tasks.findIndex((t) => t.id === state.selected);
+    if (current === -1) {
+      return state;
+    }
+
+    const next = tasks[current + 1] || tasks[0];
+    if (!next) {
+      return state;
+    }
+
+    return {
+      selected: next.id,
+      tasks: state.tasks,
+      undo: UNDO_EMPTY,
+    };
+  },
+
   'tasks/delete': (state: IState, action: IAction) => {
     const taskId = action.payload.task.id;
 

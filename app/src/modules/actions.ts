@@ -6,6 +6,10 @@ export function selectTask(task: { id: string }) {
   return { type: 'tasks/select', payload: { task } };
 }
 
+export function nextTask() {
+  return { type: 'tasks/next' };
+}
+
 export function deleteTask(task: { id: string }) {
   return { type: 'tasks/delete', payload: { task } };
 }
