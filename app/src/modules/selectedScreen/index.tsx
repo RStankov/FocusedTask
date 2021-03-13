@@ -11,10 +11,10 @@ export const slice = createSlice({
   name: 'selectedScreen',
   initialState,
   reducers: {
-    openTask(state) { state.screen = 'task'},
-    openShortcuts(state) { state.screen = 'shortcuts'},
-    openChangelog(state) { state.screen = 'changelog'},
-    openAbout(state) { state.screen = 'about'},
+    openTask: (state) => { state.screen = 'task'},
+    openShortcuts: (state) => { state.screen = 'shortcuts'},
+    openChangelog: (state) => { state.screen = 'changelog'},
+    openAbout: (state) => { state.screen = 'about'},
   },
 });
 

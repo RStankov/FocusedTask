@@ -1,7 +1,7 @@
 import * as React from 'react';
 import useSelector from 'hooks/useSelector';
 import { getSelectedScreen } from 'modules/selectors';
-import {SCREENS} from './screens'
+import { SCREENS } from './screens'
 
 
 export default function App() {
