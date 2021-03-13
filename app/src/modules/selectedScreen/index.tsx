@@ -1,20 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Screens } from 'screens/screens';
+
+interface ScreenState {
+  screen: Screens
+};
+
+const initialState: ScreenState = { screen: 'task' };
 
 export const slice = createSlice({
   name: 'selectedScreen',
-  initialState: 'task',
+  initialState,
   reducers: {
-    openTask: () => 'task',
-    openShortcuts: () => 'shortcuts',
-    openChangelog: () => 'changelog',
-    openAbout: () => 'about',
+    openTask(state) { state.screen = 'task'},
+    openShortcuts(state) { state.screen = 'shortcuts'},
+    openChangelog(state) { state.screen = 'changelog'},
+    openAbout(state) { state.screen = 'about'},
   },
 });
 
 export const {
   openTask,
-  openAbout,
   openShortcuts,
+  openAbout,
   openChangelog,
 } = slice.actions;
 

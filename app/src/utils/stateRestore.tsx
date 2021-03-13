@@ -65,7 +65,9 @@ const STORE_CONVERT: any = {
     let task = { ...store.task, id: generateId('task') };
 
     return {
-      selectedScreen: store.selectedScreen || 'task',
+      selectedScreen: {
+        screen: store.selectedScreen?.screen || 'task',
+      },
       tasks: {
         select: task.id,
         tasks: {
@@ -83,7 +85,9 @@ const STORE_CONVERT: any = {
     let task = { ...store.task.present, id: generateId('task') };
 
     return {
-      selectedScreen: store.selectedScreen || 'task',
+      selectedScreen: {
+        screen: store.selectedScreen?.screen || 'task',
+      },
       tasks: {
         selected: task.id,
         tasks: {
