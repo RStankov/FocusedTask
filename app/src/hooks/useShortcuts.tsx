@@ -37,6 +37,8 @@ export default function useShortcuts() {
       dispatch(newBookmark());
     } else if (e.metaKey && e.keyCode === keyCodes.n) {
       focusOn('note-text');
+    } else if (e.metaKey && e.keyCode === keyCodes.e) {
+      focusOn('title-text');
     } else if (e.metaKey && e.keyCode === keyCodes['1']) {
       openBookmark(bookmarks[0]);
     } else if (e.metaKey && e.keyCode === keyCodes['2']) {
