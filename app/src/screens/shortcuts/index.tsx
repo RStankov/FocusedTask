@@ -21,8 +21,18 @@ export default function Shortcuts() {
             <ShortcutGlobal />
           </ShortcutsTable>
         </Section>
+        <Section emoji="⚙️" title="General">
+          <ShortcutsTable>
+            <Shortcut description="Open shortcuts">
+              <Cmd /> + <Key>h</Key>
+            </Shortcut>
+          </ShortcutsTable>
+        </Section>
         <Section emoji="🎯" title="Task">
           <ShortcutsTable>
+            <Shortcut description="Focus title">
+              <Cmd /> + <Key>r</Key>
+            </Shortcut>
             <Shortcut description="New todo">
               <Cmd /> + <Key>t</Key>
             </Shortcut>

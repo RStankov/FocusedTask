@@ -12,11 +12,11 @@ import DragFileMessage from './DragFileMessage';
 
 export default function Task() {
   useShortcuts();
-  const isDragingFile = useDragAndDropFiles();
+  const isDraggingFile = useDragAndDropFiles();
 
   return (
     <>
-      {isDragingFile && <DragFileMessage />}
+      {isDraggingFile && <DragFileMessage />}
       <AppMenu />
       <Stack.Column gap="xl">
         <TaskTitle />
