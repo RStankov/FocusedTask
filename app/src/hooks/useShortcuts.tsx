@@ -11,6 +11,7 @@ import useDispatch from 'hooks/useDispatch';
 import { newTodo, newBookmark } from 'modules/task';
 import { getBookmarks, getTodos } from 'modules/selectors';
 import { undo, redo, nextTask } from 'modules/actions';
+import { openShortcuts } from 'modules/selectedScreen';
 
 export default function useShortcuts() {
   const dispatch = useDispatch();
@@ -39,6 +40,8 @@ export default function useShortcuts() {
       focusOn('note-text');
     } else if (e.metaKey && e.keyCode === keyCodes.e) {
       focusOn('title-text');
+    } else if (e.metaKey && e.keyCode === keyCodes.h) {
+      dispatch(openShortcuts());
     } else if (e.metaKey && e.keyCode === keyCodes['1']) {
       openBookmark(bookmarks[0]);
     } else if (e.metaKey && e.keyCode === keyCodes['2']) {

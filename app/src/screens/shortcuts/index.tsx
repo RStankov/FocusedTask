@@ -31,7 +31,7 @@ export default function Shortcuts() {
         <Section emoji="🎯" title="Task">
           <ShortcutsTable>
             <Shortcut description="Focus title">
-              <Cmd /> + <Key>r</Key>
+              <Cmd /> + <Key>e</Key>
             </Shortcut>
             <Shortcut description="New todo">
               <Cmd /> + <Key>t</Key>
