@@ -25,7 +25,7 @@ const mb = menubar({
     minHeight: 600,
     backgroundColor: '#FAFAFA',
     webPreferences: {
-      // TODO needs enabling
+      // TODO needs enabling ?
       // nodeIntegration: false,
       // contextIsolation: true
       nodeIntegration: true,
