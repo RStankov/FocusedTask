@@ -63,7 +63,7 @@ function ThemeDropdown() {
   return (
     <div>
       <select
-        className={styles.select_selected}
+        className={styles.select}
         value={theme}
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
           const theme = e.target.value as Theme

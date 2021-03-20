@@ -41,20 +41,7 @@
 }
 
 
-
-
-
-
-.custom_select {
-  position: relative;
-  font-family: Arial;
-}
-
-.custom_select select {
-  display: none; /*hide original SELECT element: */
-}
-
-.select_selected {
-  color: purple;
-  background-color: DodgerBlue;
+.select {
+  color: var(--text-color);
+  background-color: var(--background);
 }
