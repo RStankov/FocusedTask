@@ -18,136 +18,20 @@ export default function Preferences() {
     <>
       <BackButton />
       <Stack.Column gap="xl">
-        <Title title="Shortcuts" />
-        <Section emoji="🌎" title="Global">
-          <ShortcutsTable>
-            <ShortcutGlobal />
-          </ShortcutsTable>
-        </Section>
+        <Title title="Preferences" />
         <Section emoji="⚙️" title="General">
-          <ShortcutsTable>
-            <Shortcut description="Open shortcuts">
-              <Cmd /> + <Key>h</Key>
-            </Shortcut>
-            <Shortcut description="Go back">
-              <Key>Esc</Key>
-            </Shortcut>
-          </ShortcutsTable>
-        </Section>
-        <Section emoji="🎯" title="Task">
-          <ShortcutsTable>
-            <Shortcut description="Focus on title">
-              <Cmd /> + <Key>e</Key>
-            </Shortcut>
-            <Shortcut description="New todo">
-              <Cmd /> + <Key>t</Key>
-            </Shortcut>
-            <Shortcut description="Focus on first incomplete todo">
-              <Cmd /> + <Shift /> + <Key>t</Key>
-            </Shortcut>
-            <Shortcut description="New bookmark">
-              <Cmd /> + <Key>b</Key>
-            </Shortcut>
-            <Shortcut description="Focus on note">
-              <Cmd /> + <Key>n</Key>
-            </Shortcut>
-            <Shortcut description="Open last bookmark">
-              <Cmd /> + <Key>0</Key>
-            </Shortcut>
-            <Shortcut description="Open [1st-9th] bookmark">
-              <Cmd /> + <Key>[1-9]</Key>
-            </Shortcut>
-            <Shortcut description="Undo">
-              <Cmd /> + <Key>z</Key>
-            </Shortcut>
-            <Shortcut description="Redo">
-              <Cmd /> + <Shift /> + <Key>z</Key>
-            </Shortcut>
-            <Shortcut description="Focus on todo, bookmark or note">
-              <Key>Tab</Key>
-            </Shortcut>
-            <Shortcut description="Switch between tasks">
-              <Cmd /> + <Key>`</Key>
-            </Shortcut>
-          </ShortcutsTable>
-        </Section>
-        <Section emoji="🔜" title="Todos">
-          <ShortcutsTable>
-            <Shortcut description="New todo">
-              <Key>Enter</Key>
-            </Shortcut>
-            <Shortcut description="Remove empty todo">
-              <Key>Backspace</Key>
-            </Shortcut>
-            <Shortcut description="Remove todo">
-              <Cmd /> + <Key>Backspace</Key>
-            </Shortcut>
-            <Shortcut description="Blur current todo">
-              <Key>Esc</Key>
-            </Shortcut>
-            <Shortcut description="Focus previous todo">
-              <Key>↑</Key>
-            </Shortcut>
-            <Shortcut description="Focus next todo">
-              <Key>↓</Key>
-            </Shortcut>
-            <Shortcut description="Move todo up">
-              <Cmd /> + <Key>↑</Key>
-            </Shortcut>
-            <Shortcut description="Move todo down">
-              <Cmd /> + <Key>↓</Key>
-            </Shortcut>
-            <Shortcut description="Decrease todo indentation">
-              <Cmd /> + <Key>[</Key>
-            </Shortcut>
-            <Shortcut description="Increase todo indentation">
-              <Cmd /> + <Key>]</Key>
-            </Shortcut>
-            <Shortcut description="Toggle completion of todo">
-              <Cmd /> + <Key>click</Key>
-            </Shortcut>
-            <Shortcut description="Toggle completion of todo">
-              <Cmd /> + <Shift /> + <Key>c</Key>
-            </Shortcut>
-          </ShortcutsTable>
-        </Section>
-        <Section emoji="📌" title="Bookmarks">
-          <ShortcutsTable>
-            <Shortcut description="New bookmark">
-              <Key>⏎ Enter</Key>
-            </Shortcut>
-            <Shortcut description="Remove empty bookmark">
-              <Key>Backspace</Key>
-            </Shortcut>
-            <Shortcut description="Remove bookmark">
-              <Cmd /> + <Key>Backspace</Key>
-            </Shortcut>
-            <Shortcut description="Blur current bookmark">
-              <Key>Esc</Key>
-            </Shortcut>
-            <Shortcut description="Focus previous bookmark">
-              <Key>↑</Key>
-            </Shortcut>
-            <Shortcut description="Focus next bookmark">
-              <Key>↓</Key>
-            </Shortcut>
-            <Shortcut description="Move bookmark up">
-              <Cmd /> + <Key>↑</Key>
-            </Shortcut>
-            <Shortcut description="Move bookmark down">
-              <Cmd /> + <Key>↓</Key>
-            </Shortcut>
-            <Shortcut description="Open bookmark">
-              <Cmd /> + <Key>click</Key>
-            </Shortcut>
-          </ShortcutsTable>
+          <PreferencesTable>
+            <Preference description="Theme">
+              <ThemeDropdown />
+            </Preference>
+          </PreferencesTable>
         </Section>
       </Stack.Column>
     </>
   );
 }
 
-function ShortcutsTable({ children }: { children: React.ReactNode }) {
+function PreferencesTable({ children }: { children: React.ReactNode }) {
   return (
     <table className={styles.table}>
       <tbody>{children}</tbody>
@@ -155,7 +39,7 @@ function ShortcutsTable({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Shortcut({
+function Preference({
   description,
   children,
 }: {
@@ -164,96 +48,46 @@ function Shortcut({
 }) {
   return (
     <tr>
+      <td>{description}</td>
       <td className={styles.keys} align="right">
         {children}
       </td>
-      <td>{description}</td>
     </tr>
   );
 }
 
-function Cmd() {
-  return <Key>⌘ Cmd</Key>;
-}
+const themes = ['light' , 'dark'] as const
+type Themes = typeof themes[number];
 
-function Shift() {
-  return <Key>Shift</Key>;
-}
-
-function Key({ children }: { children: React.ReactNode }) {
-  return <span className={styles.key}>{children}</span>;
-}
-
-function ShortcutGlobal() {
-  const {
-    key,
-    setKey,
-    isEditing,
-    edit,
-    cancelChanges,
-    saveChanges,
-  } = useGlobalShortcutForm();
-
+function ThemeDropdown() {
+  const [theme, setTheme] = React.useState(loadTheme());
   return (
-    <Shortcut
-      description={
-        isEditing ? (
-          <Stack.Row gap="m">
-            <input
-              value={key}
-              onChange={setKey}
-              autoFocus={true}
-              maxLength={1}
-              className={classNames(
-                styles.input,
-                !isKeyAcceptable(key) && styles.error,
-              )}
-              onKeyDown={(e) => {
-                if (e.keyCode === keyCodes.enter) {
-                  saveChanges();
-                }
-              }}
-            />
-            <Button onClick={saveChanges}>Save</Button>
-            <Button onClick={cancelChanges}>Cancel</Button>
-          </Stack.Row>
-        ) : (
-          <>
-            Open Focused Task (global) <Button onClick={edit}>change</Button>
-          </>
-        )
-      }>
-      <Cmd /> + <Key>{key}</Key>
-    </Shortcut>
-  );
+  // <div className={styles.custom_select} style={{width: '200px'}}>
+  <div>
+    <select className={styles.select_selected} value={theme} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+      const theme = e.target.value as Themes
+      updateTheme(theme)
+      setTheme(theme)
+    }} id="theme" >
+      {themes.map((theme) => <option value={theme}>{theme}</option>)}
+    </select>
+  </div>)
 }
 
-export function useGlobalShortcutForm() {
-  const [isEditing, setIsEditing] = React.useState(false);
-  const [key, setKey] = React.useState(getGlobalShortcutKey);
+// type Themes = "dark" | "light"
 
-  return {
-    key,
-    setKey(e: any) {
-      setKey(e.target.value);
-    },
-    isEditing,
-    edit() {
-      setIsEditing(true);
-    },
-    cancelChanges() {
-      setKey(getGlobalShortcutKey());
-      setIsEditing(false);
-    },
-    saveChanges() {
-      if (isKeyAcceptable(key)) {
-        updateGlobalShortcutKey(key);
-        setIsEditing(false);
-      }
-    },
-  };
+function updateTheme(theme: Themes) {
+  localStorage.setItem('theme', theme);
+  document.documentElement.setAttribute("data-theme", theme);
 }
 
-function isKeyAcceptable(key: string) {
-  return isAccelerator(`CommandOrControl+${key}`);
+
+function loadTheme():Themes | undefined  {
+  try {
+    const theme = localStorage.get('theme')
+    document.documentElement.setAttribute("data-theme", theme);
+    return theme
+  } catch {
+    return undefined
+  }
 }

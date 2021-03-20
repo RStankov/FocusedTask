@@ -39,3 +39,68 @@
 .input.error {
   outline: 1px solid red;
 }
+
+
+
+
+
+
+.custom_select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom_select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select_selected {
+  color: pink;
+  background-color: DodgerBlue;
+}
+
+/* Style the arrow inside the select element: */
+.select_selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select_selected.select_arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select_items div,.select_selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select_items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select_hide {
+  display: none;
+}
+
+.select_items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
