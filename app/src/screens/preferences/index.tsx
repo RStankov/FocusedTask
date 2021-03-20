@@ -8,7 +8,7 @@ import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 import useShortcuts from 'hooks/useShortcuts';
 import { getTheme } from 'modules/selectors';
-import { changeTheme } from 'modules/theme';
+import { themes, Theme, changeTheme } from 'modules/theme';
 
 export default function Preferences() {
   useShortcuts();
@@ -55,9 +55,6 @@ function Preference({
   );
 }
 
-const themes = ['light' , 'dark'] as const
-export type Themes = typeof themes[number];
-
 function ThemeDropdown() {
   const theme = useSelector(getTheme)
   const dispatch = useDispatch();
@@ -69,7 +66,7 @@ function ThemeDropdown() {
         className={styles.select_selected}
         value={theme}
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-          const theme = e.target.value as Themes
+          const theme = e.target.value as Theme
           dispatch(changeTheme(theme))
         }}
         id="theme" >
