@@ -1,4 +1,3 @@
-import * as React from 'react';
 import useDispatch from 'hooks/useDispatch';
 import styles from './styles.module.css';
 import { ReactComponent as CloseIcon } from 'icons/close.svg';
@@ -14,6 +13,7 @@ export default function BackButton() {
       dispatch(openTask())
     }
   })
+
 
   return (
     <CloseIcon className={styles.button} onClick={() => dispatch(openTask())} />

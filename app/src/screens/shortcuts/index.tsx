@@ -9,8 +9,11 @@ import { updateGlobalShortcutKey, getGlobalShortcutKey } from 'utils/electron';
 import isAccelerator from 'electron-is-accelerator';
 import classNames from 'classnames';
 import Button from 'components/Button';
+import useShortcuts from 'hooks/useShortcuts';
 
 export default function Shortcuts() {
+  useShortcuts();
+
   return (
     <>
       <BackButton />
@@ -33,7 +36,7 @@ export default function Shortcuts() {
         </Section>
         <Section emoji="🎯" title="Task">
           <ShortcutsTable>
-            <Shortcut description="Focus title">
+            <Shortcut description="Focus on title">
               <Cmd /> + <Key>e</Key>
             </Shortcut>
             <Shortcut description="New todo">

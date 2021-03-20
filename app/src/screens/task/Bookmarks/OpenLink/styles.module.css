@@ -39,3 +39,19 @@
   display: none;
   font-size: 16px;
 }
+
+
+@media screen and (prefers-color-scheme: dark) {
+  .link:hover {
+    border-color: var(--hover);
+    background: #555;
+  }
+
+  .link:hover .label {
+    display: none;
+  }
+
+  .link:hover .emoji {
+    display: inline-block;
+  }
+}
