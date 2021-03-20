@@ -3,11 +3,13 @@ import { throttle } from 'lodash';
 import { preloadStore, saveStore } from 'utils/stateRestore';
 import tasks from './tasks';
 import selectedScreen from './selectedScreen';
+import theme from './theme';
 
 const store = configureStore({
   reducer: {
     tasks,
     selectedScreen,
+    theme,
   },
   preloadedState: preloadStore(),
 });

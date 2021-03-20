@@ -31,3 +31,7 @@ export function getNote(store: IStoreState) {
 export function getSelectedTaskId(store: IStoreState) {
   return store.tasks.tasks[store.tasks.selected]!.id;
 }
+
+export function getTheme(store: IStoreState) {
+  return store.theme.theme
+}
