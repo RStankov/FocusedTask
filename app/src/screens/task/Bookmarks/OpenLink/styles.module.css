@@ -24,7 +24,7 @@
 
 .link:hover {
   border-color: var(--hover);
-  background: #f0f0f0;
+  background: (--icon-hover-background)
 }
 
 .link:hover .label {
@@ -41,17 +41,3 @@
 }
 
 
-@media screen and (prefers-color-scheme: dark) {
-  .link:hover {
-    border-color: var(--hover);
-    background: #555;
-  }
-
-  .link:hover .label {
-    display: none;
-  }
-
-  .link:hover .emoji {
-    display: inline-block;
-  }
-}

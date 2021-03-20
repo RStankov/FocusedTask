@@ -15,16 +15,8 @@
 
 .unchecked:hover {
   border-color: var(--hover);
-  background: #f0f0f0;
+  background: (--icon-hover-background)
 }
-
-@media screen and (prefers-color-scheme: dark) {
-  .unchecked:hover {
-    border-color: var(--hover);
-    background: #555;
-  }
-}
-
 
 .checked {
   cursor: pointer;

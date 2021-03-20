@@ -8,6 +8,7 @@
   --box-background: white;
   --border: 1px solid #c6cbd1;
   --radius: 4px;
+  --icon-hover-background: #f0f0f0;
   --s: 5px;
   --m: 10px;
   --l: 20px;
@@ -30,6 +31,7 @@
   --box-background: #666;
   --border: 1px solid #999;
   --radius: 4px;
+  --icon-hover-background: #555;
   --s: 5px;
   --m: 10px;
   --l: 20px;
@@ -41,6 +43,11 @@
   --font-text: 14px;
   --font-text-height: 23px;
 }
+
+/*
+How to trigger a theme change:
+document.documentElement.setAttribute("data-theme", "dark");
+ */
 
 body {
   font-family: BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
