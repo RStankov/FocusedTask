@@ -57,37 +57,45 @@ function Preference({
 }
 
 const themes = ['light' , 'dark'] as const
-type Themes = typeof themes[number];
+export type Themes = typeof themes[number];
 
 function ThemeDropdown() {
-  const [theme, setTheme] = React.useState(loadTheme());
+  const [theme, setTheme] = React.useState(reloadTheme());
   return (
-  // <div className={styles.custom_select} style={{width: '200px'}}>
-  <div>
-    <select className={styles.select_selected} value={theme} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-      const theme = e.target.value as Themes
-      updateTheme(theme)
-      setTheme(theme)
-    }} id="theme" >
-      {themes.map((theme) => <option value={theme}>{theme}</option>)}
-    </select>
+    <div>
+      <select className={styles.select_selected} value={theme} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+        const theme = e.target.value as Themes
+        updateTheme(theme)
+        setTheme(theme)
+      }} id="theme" >
+        {themes.map((theme) => <option value={theme}>{theme}</option>)}
+      </select>
   </div>)
 }
 
-// type Themes = "dark" | "light"
 
 function updateTheme(theme: Themes) {
   localStorage.setItem('theme', theme);
   document.documentElement.setAttribute("data-theme", theme);
 }
 
+function reloadTheme():Themes  {
+  const theme = document.documentElement.getAttribute("data-theme") as Themes
+  return theme
+}
 
-function loadTheme():Themes | undefined  {
+export function initialLoadTheme(): Themes {
   try {
-    const theme = localStorage.get('theme')
-    document.documentElement.setAttribute("data-theme", theme);
+    const savedTheme = localStorage.getItem('theme')
+    const isOsDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    const theme = (() => {
+      if(savedTheme) return savedTheme
+      if(isOsDarkMode) return 'dark'
+      return 'light'
+    })() as Themes
     return theme
   } catch {
-    return undefined
+    // defaults to light theme if not available from OS or local storage
+    return 'light'
   }
 }
