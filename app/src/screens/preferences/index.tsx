@@ -58,7 +58,6 @@ function Preference({
 function ThemeDropdown() {
   const theme = useSelector(getTheme)
   const dispatch = useDispatch();
-  console.log('theme',theme)
 
   return (
     <div>

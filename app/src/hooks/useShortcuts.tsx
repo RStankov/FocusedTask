@@ -19,7 +19,6 @@ export default function useShortcuts() {
   const bookmarks = useSelector(getBookmarks);
   const todos = useSelector(getTodos);
   const selectedScreen = useSelector(getSelectedScreen);
-  console.log('selectedScreen', selectedScreen)
 
   React.useEffect(() => {
     return taskSwitchSubscribe(() => {
@@ -28,8 +27,6 @@ export default function useShortcuts() {
   }, [dispatch]);
 
   useEventListener('keydown', (e) => {
-    console.log('event',e)
-
     if(selectedScreen !== 'task') {
       if (e.keyCode === keyCodes.esc) {
         dispatch(openTask())
