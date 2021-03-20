@@ -44,11 +44,6 @@
   --font-text-height: 23px;
 }
 
-/*
-How to trigger a theme change:
-document.documentElement.setAttribute("data-theme", "dark");
- */
-
 body {
   font-family: BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
