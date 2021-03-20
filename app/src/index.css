@@ -60,6 +60,7 @@ body {
   padding: 15px 20px 20px;
   font-size: var(--font-text);
   line-height: var(--font-text-height);
+  transition: all 350ms linear;
 }
 
 #root {
