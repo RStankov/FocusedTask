@@ -20,28 +20,26 @@
   --font-text-height: 23px;
 }
 
-@media screen and (prefers-color-scheme: dark) {
-  :root {
-    --background: #222;
-    --silent: #888;
-    --line: #999;
-    --hover: white;
-    --text-color: #bbb;
-    --box-size: 20px;
-    --box-background: #666;
-    --border: 1px solid #999;
-    --radius: 4px;
-    --s: 5px;
-    --m: 10px;
-    --l: 20px;
-    --xl: 25px;
-    --font-title: 22px;
-    --font-title-height: 26px;
-    --font-subtitle: 18px;
-    --font-subtitle-height: 21px;
-    --font-text: 14px;
-    --font-text-height: 23px;
-  }
+[data-theme="dark"] {
+  --background: #222;
+  --silent: #888;
+  --line: #999;
+  --hover: white;
+  --text-color: #bbb;
+  --box-size: 20px;
+  --box-background: #666;
+  --border: 1px solid #999;
+  --radius: 4px;
+  --s: 5px;
+  --m: 10px;
+  --l: 20px;
+  --xl: 25px;
+  --font-title: 22px;
+  --font-title-height: 26px;
+  --font-subtitle: 18px;
+  --font-subtitle-height: 21px;
+  --font-text: 14px;
+  --font-text-height: 23px;
 }
 
 body {

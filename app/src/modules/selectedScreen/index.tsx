@@ -13,6 +13,7 @@ export const slice = createSlice({
   reducers: {
     openTask: (state) => { state.screen = 'task'},
     openShortcuts: (state) => { state.screen = 'shortcuts'},
+    openPreferences: (state) => { state.screen = 'preferences'},
     openChangelog: (state) => { state.screen = 'changelog'},
     openAbout: (state) => { state.screen = 'about'},
   },
