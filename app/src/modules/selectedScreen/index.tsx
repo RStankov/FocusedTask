@@ -23,6 +23,7 @@ export const {
   openTask,
   openShortcuts,
   openAbout,
+  openPreferences,
   openChangelog,
 } = slice.actions;
 

@@ -10,6 +10,7 @@ import { selectTask, importTask } from 'modules/actions';
 import {
   openShortcuts,
   openChangelog,
+  openPreferences,
   openAbout,
 } from 'modules/selectedScreen';
 
@@ -100,6 +101,10 @@ function openAppMenu() {
     {
       label: 'Changelog',
       click: () => store.dispatch(openChangelog()),
+    },
+    {
+      label: 'Preferences',
+      click: () => store.dispatch(openPreferences()),
     },
     {
       label: 'Shortcuts',
