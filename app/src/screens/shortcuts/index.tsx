@@ -29,7 +29,7 @@ export default function Shortcuts() {
             <Shortcut description="Open shortcuts">
               <Cmd /> + <Key>h</Key>
             </Shortcut>
-            <Shortcut description="Go back">
+            <Shortcut description="Go back to task screen">
               <Key>Esc</Key>
             </Shortcut>
           </ShortcutsTable>
