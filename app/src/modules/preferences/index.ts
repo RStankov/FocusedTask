@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import useSelector from 'hooks/useSelector';
-import { getTheme } from 'modules/selectors';
 
 export const themes = ['light' , 'dark'] as const
 export type Theme = typeof themes[number];
@@ -34,8 +32,4 @@ function initialLoadTheme(): Theme {
   return isOsDarkMode ? 'dark' : 'light'
 }
 
-export function useTheme() {
-  const theme = useSelector(getTheme)
-  document.documentElement.setAttribute("data-theme", theme);
-}
 
