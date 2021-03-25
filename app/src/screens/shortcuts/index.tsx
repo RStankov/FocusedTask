@@ -9,10 +9,8 @@ import { updateGlobalShortcutKey, getGlobalShortcutKey } from 'utils/electron';
 import isAccelerator from 'electron-is-accelerator';
 import classNames from 'classnames';
 import Button from 'components/Button';
-import useShortcuts from 'hooks/useShortcuts';
 
 export default function Shortcuts() {
-  useShortcuts();
 
   return (
     <>

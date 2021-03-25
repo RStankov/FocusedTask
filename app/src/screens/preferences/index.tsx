@@ -6,12 +6,10 @@ import BackButton from 'components/BackButton';
 import Title from 'components/Title';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
-import useShortcuts from 'hooks/useShortcuts';
 import { getTheme } from 'modules/selectors';
 import { themes, Theme, changeTheme } from 'modules/theme';
 
 export default function Preferences() {
-  useShortcuts();
 
   return (
     <>

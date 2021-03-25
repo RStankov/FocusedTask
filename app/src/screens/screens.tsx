@@ -4,7 +4,7 @@ import preferences from './preferences';
 import shortcuts from './shortcuts';
 import task from './task';
 
-export const SCREENS = {
+export const Screens = {
   about,
   changelog,
   preferences,
@@ -12,4 +12,4 @@ export const SCREENS = {
   task,
 };
 
-export type Screens = keyof typeof SCREENS
+export type IScreens = keyof typeof Screens

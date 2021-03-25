@@ -8,10 +8,8 @@ import { appVersion } from 'utils/electron';
 import { autoUpdateRequest } from 'utils/electron';
 import AutoUpdateStatus from './AutoUpdateStatus';
 import TextButton from './TextButton';
-import useShortcuts from 'hooks/useShortcuts';
 
 export default function About() {
-  useShortcuts()
 
   return (
     <>

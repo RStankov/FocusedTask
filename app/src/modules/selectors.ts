@@ -1,7 +1,7 @@
 import { IStoreState } from './index';
 
 export function getSelectedScreen(store: IStoreState) {
-  return store.selectedScreen.screen;
+  return store.selectedScreen;
 }
 
 export function getSelectedTask(store: IStoreState) {

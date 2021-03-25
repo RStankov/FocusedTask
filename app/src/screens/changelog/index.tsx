@@ -5,12 +5,10 @@ import Title from 'components/Title';
 import ReactMarkdown from 'react-markdown';
 import styles from './styles.module.css';
 import raw from 'raw.macro';
-import useShortcuts from 'hooks/useShortcuts';
 
 const markdown = raw('../../../../CHANGELOG.md').replace(/^# .*\n\n/, '');
 
 export default function ChangeLog() {
-  useShortcuts()
 
 
   return (
