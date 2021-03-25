@@ -33,5 +33,5 @@ export function getSelectedTaskId(store: IStoreState) {
 }
 
 export function getTheme(store: IStoreState) {
-  return store.theme.theme
+  return store.preferences.theme
 }

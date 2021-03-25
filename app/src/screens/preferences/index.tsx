@@ -7,7 +7,7 @@ import Title from 'components/Title';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 import { getTheme } from 'modules/selectors';
-import { themes, Theme, changeTheme } from 'modules/theme';
+import { themes, Theme, changeTheme } from 'modules/preferences';
 
 export default function Preferences() {
 
