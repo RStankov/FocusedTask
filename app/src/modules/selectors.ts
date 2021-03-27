@@ -1,6 +1,6 @@
 import { IStoreState } from './index';
 
-export function getSelectedScreen(store: { selectedScreen: string }) {
+export function getSelectedScreen(store: IStoreState) {
   return store.selectedScreen;
 }
 
@@ -30,4 +30,8 @@ export function getNote(store: IStoreState) {
 
 export function getSelectedTaskId(store: IStoreState) {
   return store.tasks.tasks[store.tasks.selected]!.id;
+}
+
+export function getTheme(store: IStoreState) {
+  return store.preferences.theme
 }

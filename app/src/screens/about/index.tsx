@@ -9,7 +9,8 @@ import { autoUpdateRequest } from 'utils/electron';
 import AutoUpdateStatus from './AutoUpdateStatus';
 import TextButton from './TextButton';
 
-export default function Shortcuts() {
+export default function About() {
+
   return (
     <>
       <BackButton />

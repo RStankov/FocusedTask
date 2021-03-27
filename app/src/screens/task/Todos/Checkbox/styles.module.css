@@ -15,7 +15,7 @@
 
 .unchecked:hover {
   border-color: var(--hover);
-  background: #f0f0f0;
+  background: (--icon-hover-background)
 }
 
 .checked {

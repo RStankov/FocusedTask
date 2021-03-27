@@ -1,0 +1,47 @@
+.keys {
+  width: 160px;
+}
+
+.key {
+  display: inline-block;
+  padding: 0px 5px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  vertical-align: 1px;
+  color: var(--box-background);
+  background: var(--text-color);
+  border-radius: var(--radius);
+  min-width: 10px;
+  text-align: center;
+}
+
+.table {
+  border-spacing: 0;
+  border-radius: var(--radius);
+  border: var(--border);
+  width: 100%;
+}
+
+.table td {
+  padding: 6px 13px;
+}
+
+.table td + td {
+  border-left: var(--border);
+}
+
+.input {
+  width: 30px;
+  text-align: center;
+}
+
+.input.error {
+  outline: 1px solid red;
+}
+
+
+.select {
+  color: var(--text-color);
+  background-color: var(--background);
+}

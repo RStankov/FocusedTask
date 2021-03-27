@@ -5,18 +5,16 @@ import TaskTitle from './Title';
 import TaskTodos from './Todos';
 import TaskBookmarks from './Bookmarks';
 import TaskNote from './Note';
-import useShortcuts from 'hooks/useShortcuts';
 import AppMenu from 'components/AppMenu';
 import useDragAndDropFiles from 'hooks/useDragAndDropFiles';
 import DragFileMessage from './DragFileMessage';
 
 export default function Task() {
-  useShortcuts();
-  const isDragingFile = useDragAndDropFiles();
+  const isDraggingFile = useDragAndDropFiles();
 
   return (
     <>
-      {isDragingFile && <DragFileMessage />}
+      {isDraggingFile && <DragFileMessage />}
       <AppMenu />
       <Stack.Column gap="xl">
         <TaskTitle />

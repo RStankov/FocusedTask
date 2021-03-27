@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Input from 'components/Input';
+import keyCodes from 'utils/keyCodes';
 import { updateNote } from 'modules/task';
 import { getNote } from 'modules/selectors';
 import useSelector from 'hooks/useSelector';
@@ -30,6 +31,11 @@ export default function TaskNote() {
           onChange={(value) => {
             dispatch(updateNote(value));
             setShowNewButton(!value);
+          }}
+          onKeyDown={(e) => {
+            if (e.keyCode === keyCodes.esc) {
+              e.target.blur();
+            }
           }}
         />
       </Stack.Row>

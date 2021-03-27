@@ -15,6 +15,7 @@ export default function TaskTitle() {
   return (
     <Stack.Row>
       <Input
+        id="title-text"
         key={id}
         className={styles.title}
         value={title}

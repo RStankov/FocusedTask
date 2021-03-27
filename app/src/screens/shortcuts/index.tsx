@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import Button from 'components/Button';
 
 export default function Shortcuts() {
+
   return (
     <>
       <BackButton />
@@ -21,8 +22,21 @@ export default function Shortcuts() {
             <ShortcutGlobal />
           </ShortcutsTable>
         </Section>
+        <Section emoji="⚙️" title="General">
+          <ShortcutsTable>
+            <Shortcut description="Open shortcuts">
+              <Cmd /> + <Key>h</Key>
+            </Shortcut>
+            <Shortcut description="Go back to task screen">
+              <Key>Esc</Key>
+            </Shortcut>
+          </ShortcutsTable>
+        </Section>
         <Section emoji="🎯" title="Task">
           <ShortcutsTable>
+            <Shortcut description="Focus on title">
+              <Cmd /> + <Key>e</Key>
+            </Shortcut>
             <Shortcut description="New todo">
               <Cmd /> + <Key>t</Key>
             </Shortcut>

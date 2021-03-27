@@ -8,7 +8,9 @@ import raw from 'raw.macro';
 
 const markdown = raw('../../../../CHANGELOG.md').replace(/^# .*\n\n/, '');
 
-export default function Shortcuts() {
+export default function ChangeLog() {
+
+
   return (
     <>
       <BackButton />

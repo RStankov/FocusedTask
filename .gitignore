@@ -20,3 +20,5 @@ yarn-error.log*
 /shell/build
 /dist
 credentials.json
+
+app/.eslintcache
