@@ -11,6 +11,7 @@
   padding: 1px 5px 2px;
   white-space: pre-wrap;
   word-wrap: break-word;
+  color: var(--text-color);
 
   position: relative;
   top: -4px;
@@ -23,4 +24,5 @@
   height: 19px;
   outline: none;
   resize: none !important;
+  color: var(--text-color);
 }
