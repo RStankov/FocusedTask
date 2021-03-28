@@ -7,10 +7,9 @@ import Title from 'components/Title';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 import { getTheme } from 'modules/selectors';
-import { themes, Theme, changeTheme } from 'modules/preferences';
+import { themes, ITheme, changeTheme } from 'modules/preferences';
 
 export default function Preferences() {
-
   return (
     <>
       <BackButton />
@@ -54,7 +53,7 @@ function Preference({
 }
 
 function ThemeDropdown() {
-  const theme = useSelector(getTheme)
+  const theme = useSelector(getTheme);
   const dispatch = useDispatch();
 
   return (
@@ -63,13 +62,15 @@ function ThemeDropdown() {
         className={styles.select}
         value={theme}
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-          const theme = e.target.value as Theme
-          dispatch(changeTheme(theme))
+          dispatch(changeTheme(e.target.value as ITheme));
         }}
-        id="theme" >
-        {themes.map((theme) => <option value={theme} key={theme}>{theme}</option>)}
+        id="theme">
+        {themes.map((theme) => (
+          <option value={theme} key={theme}>
+            {theme}
+          </option>
+        ))}
       </select>
-  </div>)
+    </div>
+  );
 }
-
-

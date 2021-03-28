@@ -1,35 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const themes = ['light' , 'dark'] as const
-export type Theme = typeof themes[number];
+export const themes = ['light', 'dark'] as const;
+export type ITheme = typeof themes[number];
 
 interface IPreferences {
-  theme: Theme
-};
-
-const initialState: IPreferences = { theme: initialLoadTheme() };
+  theme: ITheme;
+}
 
 export const slice = createSlice({
   name: 'selectedScreen',
-  initialState,
+  initialState: {
+    theme: initialLoadTheme(),
+  } as IPreferences,
   reducers: {
     changeTheme: (state, action) => {
-      state.theme = action.payload
+      state.theme = action.payload;
     },
   },
 });
 
-export const {
-  changeTheme
-} = slice.actions;
+export const { changeTheme } = slice.actions;
 
 export default slice.reducer;
 
+function initialLoadTheme(): ITheme {
+  const isOsDarkMode =
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-
-function initialLoadTheme(): Theme {
-  const isOsDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-  return isOsDarkMode ? 'dark' : 'light'
+  return isOsDarkMode ? 'dark' : 'light';
 }
-
-

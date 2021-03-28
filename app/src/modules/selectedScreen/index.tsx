@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IScreens } from 'screens/screens';
 
-
 const initialState = 'task' as IScreens;
 
 export const slice = createSlice({

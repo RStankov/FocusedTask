@@ -13,7 +13,6 @@ import { getSelectedScreen, getBookmarks, getTodos } from 'modules/selectors';
 import { undo, redo, nextTask } from 'modules/actions';
 import { openShortcuts, openTask } from 'modules/selectedScreen';
 
-
 export default function useShortcuts() {
   const dispatch = useDispatch();
   const bookmarks = useSelector(getBookmarks);
@@ -27,9 +26,9 @@ export default function useShortcuts() {
   }, [dispatch]);
 
   useEventListener('keydown', (e) => {
-    if(selectedScreen !== 'task') {
+    if (selectedScreen !== 'task') {
       if (e.keyCode === keyCodes.esc) {
-        dispatch(openTask())
+        dispatch(openTask());
       }
     } else if (selectedScreen === 'task') {
       if (e.metaKey && e.shiftKey && e.keyCode === keyCodes.t) {
