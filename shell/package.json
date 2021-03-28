@@ -4,9 +4,9 @@
   "version": "0.4.0",
   "dependencies": {
     "electron-settings": "4.0.2",
-    "lodash": "4.17.20",
-    "menubar": "9.0.1",
-    "uuid": "^8.3.0"
+    "lodash": "4.17.21",
+    "menubar": "9.0.3",
+    "uuid": "8.3.2"
   },
   "devDependencies": {
     "electron": "8.5.2"
