@@ -26,7 +26,9 @@ const mb = menubar({
     backgroundColor: '#FAFAFA',
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
       scrollBounce: true,
+      enableRemoteModule: true,
     },
   },
 });
