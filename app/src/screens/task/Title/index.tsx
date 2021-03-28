@@ -6,6 +6,7 @@ import { getTitle, getSelectedTaskId } from 'modules/selectors';
 import Input from 'components/Input';
 import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
+import keyCodes from 'utils/keyCodes';
 
 export default function TaskTitle() {
   const title = useSelector(getTitle);
@@ -20,6 +21,11 @@ export default function TaskTitle() {
         className={styles.title}
         value={title}
         onChange={(value) => dispatch(updateTaskTitle(value || 'Untitled'))}
+        onKeyDown={(e) => {
+          if (e.keyCode === keyCodes.esc) {
+            e.target.blur();
+          }
+        }}
         tabIndex={-1}
         placeholder="Title..."
       />
