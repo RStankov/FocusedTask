@@ -1,0 +1,18 @@
+.content {
+  width: 160px;
+}
+
+.table {
+  border-spacing: 0;
+  border-radius: var(--radius);
+  border: var(--border);
+  width: 100%;
+}
+
+.table td {
+  padding: 6px 13px;
+}
+
+.table td + td {
+  border-left: var(--border);
+}

@@ -8,6 +8,7 @@ import useSelector from 'hooks/useSelector';
 import useDispatch from 'hooks/useDispatch';
 import { getTheme } from 'modules/selectors';
 import { themes, ITheme, changeTheme } from 'modules/preferences';
+import Table from 'components/Table';
 
 export default function Preferences() {
   return (
@@ -16,39 +17,14 @@ export default function Preferences() {
       <Stack.Column gap="xl">
         <Title title="Preferences" />
         <Section emoji="⚙️" title="General">
-          <PreferencesTable>
-            <Preference description="Theme">
+          <Table>
+            <Table.Row description="Theme">
               <ThemeDropdown />
-            </Preference>
-          </PreferencesTable>
+            </Table.Row>
+          </Table>
         </Section>
       </Stack.Column>
     </>
-  );
-}
-
-function PreferencesTable({ children }: { children: React.ReactNode }) {
-  return (
-    <table className={styles.table}>
-      <tbody>{children}</tbody>
-    </table>
-  );
-}
-
-function Preference({
-  description,
-  children,
-}: {
-  description: string | React.ReactNode;
-  children: React.ReactNode;
-}) {
-  return (
-    <tr>
-      <td>{description}</td>
-      <td className={styles.keys} align="right">
-        {children}
-      </td>
-    </tr>
   );
 }
 

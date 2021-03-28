@@ -9,164 +9,139 @@ import { updateGlobalShortcutKey, getGlobalShortcutKey } from 'utils/electron';
 import isAccelerator from 'electron-is-accelerator';
 import classNames from 'classnames';
 import Button from 'components/Button';
+import Table from 'components/Table';
 
 export default function Shortcuts() {
-
   return (
     <>
       <BackButton />
       <Stack.Column gap="xl">
         <Title title="Shortcuts" />
         <Section emoji="🌎" title="Global">
-          <ShortcutsTable>
+          <Table>
             <ShortcutGlobal />
-          </ShortcutsTable>
+          </Table>
         </Section>
         <Section emoji="⚙️" title="General">
-          <ShortcutsTable>
-            <Shortcut description="Open shortcuts">
+          <Table>
+            <Table.Row description="Open shortcuts">
               <Cmd /> + <Key>h</Key>
-            </Shortcut>
-            <Shortcut description="Go back to task screen">
+            </Table.Row>
+            <Table.Row description="Go back to task screen">
               <Key>Esc</Key>
-            </Shortcut>
-          </ShortcutsTable>
+            </Table.Row>
+          </Table>
         </Section>
         <Section emoji="🎯" title="Task">
-          <ShortcutsTable>
-            <Shortcut description="Focus on title">
+          <Table>
+            <Table.Row description="Focus on title">
               <Cmd /> + <Key>e</Key>
-            </Shortcut>
-            <Shortcut description="New todo">
+            </Table.Row>
+            <Table.Row description="New todo">
               <Cmd /> + <Key>t</Key>
-            </Shortcut>
-            <Shortcut description="Focus on first incomplete todo">
+            </Table.Row>
+            <Table.Row description="Focus on first incomplete todo">
               <Cmd /> + <Shift /> + <Key>t</Key>
-            </Shortcut>
-            <Shortcut description="New bookmark">
+            </Table.Row>
+            <Table.Row description="New bookmark">
               <Cmd /> + <Key>b</Key>
-            </Shortcut>
-            <Shortcut description="Focus on note">
+            </Table.Row>
+            <Table.Row description="Focus on note">
               <Cmd /> + <Key>n</Key>
-            </Shortcut>
-            <Shortcut description="Open last bookmark">
+            </Table.Row>
+            <Table.Row description="Open last bookmark">
               <Cmd /> + <Key>0</Key>
-            </Shortcut>
-            <Shortcut description="Open [1st-9th] bookmark">
+            </Table.Row>
+            <Table.Row description="Open [1st-9th] bookmark">
               <Cmd /> + <Key>[1-9]</Key>
-            </Shortcut>
-            <Shortcut description="Undo">
+            </Table.Row>
+            <Table.Row description="Undo">
               <Cmd /> + <Key>z</Key>
-            </Shortcut>
-            <Shortcut description="Redo">
+            </Table.Row>
+            <Table.Row description="Redo">
               <Cmd /> + <Shift /> + <Key>z</Key>
-            </Shortcut>
-            <Shortcut description="Focus on todo, bookmark or note">
+            </Table.Row>
+            <Table.Row description="Focus on todo, bookmark or note">
               <Key>Tab</Key>
-            </Shortcut>
-            <Shortcut description="Switch between tasks">
+            </Table.Row>
+            <Table.Row description="Switch between tasks">
               <Cmd /> + <Key>`</Key>
-            </Shortcut>
-          </ShortcutsTable>
+            </Table.Row>
+          </Table>
         </Section>
         <Section emoji="🔜" title="Todos">
-          <ShortcutsTable>
-            <Shortcut description="New todo">
+          <Table>
+            <Table.Row description="New todo">
               <Key>Enter</Key>
-            </Shortcut>
-            <Shortcut description="Remove empty todo">
+            </Table.Row>
+            <Table.Row description="Remove empty todo">
               <Key>Backspace</Key>
-            </Shortcut>
-            <Shortcut description="Remove todo">
+            </Table.Row>
+            <Table.Row description="Remove todo">
               <Cmd /> + <Key>Backspace</Key>
-            </Shortcut>
-            <Shortcut description="Blur current todo">
+            </Table.Row>
+            <Table.Row description="Blur current todo">
               <Key>Esc</Key>
-            </Shortcut>
-            <Shortcut description="Focus previous todo">
+            </Table.Row>
+            <Table.Row description="Focus previous todo">
               <Key>↑</Key>
-            </Shortcut>
-            <Shortcut description="Focus next todo">
+            </Table.Row>
+            <Table.Row description="Focus next todo">
               <Key>↓</Key>
-            </Shortcut>
-            <Shortcut description="Move todo up">
+            </Table.Row>
+            <Table.Row description="Move todo up">
               <Cmd /> + <Key>↑</Key>
-            </Shortcut>
-            <Shortcut description="Move todo down">
+            </Table.Row>
+            <Table.Row description="Move todo down">
               <Cmd /> + <Key>↓</Key>
-            </Shortcut>
-            <Shortcut description="Decrease todo indentation">
+            </Table.Row>
+            <Table.Row description="Decrease todo indentation">
               <Cmd /> + <Key>[</Key>
-            </Shortcut>
-            <Shortcut description="Increase todo indentation">
+            </Table.Row>
+            <Table.Row description="Increase todo indentation">
               <Cmd /> + <Key>]</Key>
-            </Shortcut>
-            <Shortcut description="Toggle completion of todo">
+            </Table.Row>
+            <Table.Row description="Toggle completion of todo">
               <Cmd /> + <Key>click</Key>
-            </Shortcut>
-            <Shortcut description="Toggle completion of todo">
+            </Table.Row>
+            <Table.Row description="Toggle completion of todo">
               <Cmd /> + <Shift /> + <Key>c</Key>
-            </Shortcut>
-          </ShortcutsTable>
+            </Table.Row>
+          </Table>
         </Section>
         <Section emoji="📌" title="Bookmarks">
-          <ShortcutsTable>
-            <Shortcut description="New bookmark">
+          <Table>
+            <Table.Row description="New bookmark">
               <Key>⏎ Enter</Key>
-            </Shortcut>
-            <Shortcut description="Remove empty bookmark">
+            </Table.Row>
+            <Table.Row description="Remove empty bookmark">
               <Key>Backspace</Key>
-            </Shortcut>
-            <Shortcut description="Remove bookmark">
+            </Table.Row>
+            <Table.Row description="Remove bookmark">
               <Cmd /> + <Key>Backspace</Key>
-            </Shortcut>
-            <Shortcut description="Blur current bookmark">
+            </Table.Row>
+            <Table.Row description="Blur current bookmark">
               <Key>Esc</Key>
-            </Shortcut>
-            <Shortcut description="Focus previous bookmark">
+            </Table.Row>
+            <Table.Row description="Focus previous bookmark">
               <Key>↑</Key>
-            </Shortcut>
-            <Shortcut description="Focus next bookmark">
+            </Table.Row>
+            <Table.Row description="Focus next bookmark">
               <Key>↓</Key>
-            </Shortcut>
-            <Shortcut description="Move bookmark up">
+            </Table.Row>
+            <Table.Row description="Move bookmark up">
               <Cmd /> + <Key>↑</Key>
-            </Shortcut>
-            <Shortcut description="Move bookmark down">
+            </Table.Row>
+            <Table.Row description="Move bookmark down">
               <Cmd /> + <Key>↓</Key>
-            </Shortcut>
-            <Shortcut description="Open bookmark">
+            </Table.Row>
+            <Table.Row description="Open bookmark">
               <Cmd /> + <Key>click</Key>
-            </Shortcut>
-          </ShortcutsTable>
+            </Table.Row>
+          </Table>
         </Section>
       </Stack.Column>
     </>
-  );
-}
-
-function ShortcutsTable({ children }: { children: React.ReactNode }) {
-  return (
-    <table className={styles.table}>
-      <tbody>{children}</tbody>
-    </table>
-  );
-}
-
-function Shortcut({
-  description,
-  children,
-}: {
-  description: string | React.ReactNode;
-  children: React.ReactNode;
-}) {
-  return (
-    <tr>
-      <td className={styles.keys} align="right">
-        {children}
-      </td>
-      <td>{description}</td>
-    </tr>
   );
 }
 
@@ -193,7 +168,7 @@ function ShortcutGlobal() {
   } = useGlobalShortcutForm();
 
   return (
-    <Shortcut
+    <Table.Row
       description={
         isEditing ? (
           <Stack.Row gap="m">
@@ -222,7 +197,7 @@ function ShortcutGlobal() {
         )
       }>
       <Cmd /> + <Key>{key}</Key>
-    </Shortcut>
+    </Table.Row>
   );
 }
 
