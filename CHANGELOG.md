@@ -3,12 +3,14 @@
 
 ## Version 0.5.0
 
+* __bug fix__ Fix multiline paste on Todo and Bookmark (@rstankov)
 * __feature__ Dark / Light mode with preferences page (@tjhdev)
 * __feature__ Go back - ESC shortcut key when in sub menus (@tjhdev)
 * __feature__ Shortcut page shortcut (cmd + h) (@tjhdev)
 * __feature__ Focus task title (cmd + e) (@tjhdev)
 * __bug fix__ Fix crash when dragging empty todo in final position (@tjhdev)
-* __bug fix__ Pressing ESC in notes removes focus on text area (@tjhdev)
+* __bug fix__ Pressing ESC in notes removes focus on textarea (@tjhdev)
+* __bug fix__ Pressing ESC in task title removes focus (@rstankov)
 
 ## Version 0.4.1
 

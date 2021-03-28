@@ -103,6 +103,8 @@ function InputInEditMode({
         e.preventDefault();
 
         onPaste(clipboard);
+
+        (e.target as any).blur();
       }}
       onKeyDown={(e) => {
         if (!multiline && e.keyCode === keyCodes.enter) {
