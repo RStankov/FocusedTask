@@ -1,9 +1,16 @@
-import connect from '@databases/pg';
+import createConnectionPool from '@databases/pg';
 
-export const db = connect(
-  process.env.DATABASE_URL ||
-    'postgresql://focusedtask:focusedtask@127.0.0.1:5432/focusedtask',
-);
+export const db = process.env.DATABASE_URL
+  ? createConnectionPool({
+      onQueryError: (_query: any, { text }: any, err: any) => {
+        console.log(
+          `${new Date().toISOString()} ERROR QUERY ${text} - ${err.message}`,
+        );
+      },
+    })
+  : createConnectionPool(
+      'postgresql://focusedtask:focusedtask@127.0.0.1:5432/focusedtask',
+    );
 
 export const port = process.env.PORT || 3000;
 

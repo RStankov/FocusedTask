@@ -3,6 +3,7 @@ import isBot from 'isbot';
 import { port, siteURL } from './config';
 import { fetchCurrentRelease, fetchAllReleases } from './releases';
 import { logDownload, logUpdate } from './db';
+import { db } from './config';
 
 const app = express();
 
@@ -32,3 +33,9 @@ app.use('/releases', async (req, res) => {
 app.use('/', (_req, res) => res.redirect(301, siteURL));
 
 app.listen(port, () => console.log(`Server listing on port ${port}`));
+
+process.once('SIGTERM', () => {
+  db.dispose().catch((ex) => {
+    console.error(ex);
+  });
+});
