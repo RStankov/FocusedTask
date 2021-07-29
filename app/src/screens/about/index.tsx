@@ -10,7 +10,6 @@ import AutoUpdateStatus from './AutoUpdateStatus';
 import TextButton from './TextButton';
 
 export default function About() {
-
   return (
     <>
       <BackButton />
@@ -29,7 +28,7 @@ export default function About() {
           </ExternalLink>
         </span>
         <span>
-          <ExternalLink href="http://github.com/rstankov/FocusedTask">
+          <ExternalLink href="https://github.com/rstankov/FocusedTask">
             Source Code
           </ExternalLink>{' '}
           |{' '}
