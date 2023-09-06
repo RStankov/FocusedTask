@@ -9,7 +9,7 @@
     "uuid": "8.3.2"
   },
   "devDependencies": {
-    "electron": "8.5.2"
+    "electron": "22.3.21"
   },
   "scripts": {
     "start": "electron ."
