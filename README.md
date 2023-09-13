@@ -24,7 +24,7 @@ It is built with Electron and uses React and Redux.
 
 ### Download
 
-👉 <a href="https://focused-task.herokuapp.com/download?ref=github">Download latest version</a> 👈
+👉 <a href="https://focused-tasks.s3.eu-central-1.amazonaws.com/FocusedTask-0.5.1.zip">Download latest version</a> 👈
 
 ## Development
 
